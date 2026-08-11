@@ -251,8 +251,8 @@ ThemeProvider (next-themes, dark default)
 
 ```
 public/
-├── Arfazrll_light.svg          ← Logo (light mode) — used in layout.tsx icons
-├── Arfazrll_dark.svg           ← Logo (dark mode) — used in layout.tsx icons
+├── Hazem_light.webp             ← Logo (light mode) — used in layout.tsx icons
+├── Hazem_dark.webp              ← Logo (dark mode) — used in layout.tsx icons
 ├── favicon.svg                 ← Browser favicon
 ├── resume.pdf                  ← Resume PDF (loaded by Resume page)
 │
@@ -309,7 +309,7 @@ public/
 | **UI text / labels** | `messages/en.json` (and `messages/id.json`) |
 | **Theme colors** | `tailwind.config.ts` + `src/styles/globals.css` |
 | **Site metadata (title, OG)** | `src/app/layout.tsx` |
-| **Logo / favicon** | `public/Arfazrll_light.svg`, `public/Arfazrll_dark.svg`, `public/favicon.svg` |
+| **Logo / favicon** | `public/Hazem_light.webp`, `public/Hazem_dark.webp`, `public/favicon.svg` |
 | **Profile photo** | `public/about/profile.jpg` |
 | **Resume PDF** | `public/resume.pdf` |
 | **Loading screen** | `src/components/layout/LoadingScreen.tsx` |

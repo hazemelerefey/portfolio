@@ -29,12 +29,12 @@ const GITHUB_USER = "hazemelerefey";
 
 const PINNED_REPOS = [
   {
-    name: "PersonalBlog",
-    desc: "Professional portfolio built with Next.js 15, TypeScript, and Tailwind CSS. Features 3D physics (R3F), GSAP animations, and real-time coding stats via WakaTime and GitHub APIs. Support EN/ID.",
+    name: "portfolio",
+    desc: "Personal portfolio built with Next.js 15, TypeScript, and Tailwind CSS. Features smooth animations, real-time GitHub stats, multilingual support (EN/AR), and an AI-powered chatbot.",
     stars: 67,
     forks: 12,
     lang: "TypeScript",
-    url: "https://github.com/hazemelerefey/PersonalBlog"
+    url: "https://github.com/hazemelerefey/portfolio"
   },
   {
     name: "Browser-Automation-Agent",
