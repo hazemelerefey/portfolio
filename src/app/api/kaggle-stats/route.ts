@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const username = process.env.KAGGLE_USERNAME || "Arfazrll";
+  const username = process.env.KAGGLE_USERNAME || "hazemelerefey";
   const apiToken = process.env.KAGGLE_API_TOKEN;
 
   if (!apiToken) {

@@ -36,7 +36,7 @@
     },
     "hero": {
         "greeting": "Selamat datang di ruang digital saya",
-        "subtitle": "Full Stack Developer • AI Engineer • Data Scientist",
+        "subtitle": "AI & Data Analyst • Deep Learning Specialist • Frontend Developer",
         "cta": {
             "primary": "Jelajahi Proyek",
             "secondary": "Hubungi Saya",
@@ -44,15 +44,15 @@
         },
         "badge": "Terbuka untuk peluang",
         "scroll": "Gulir ke Bawah",
-        "role": "Software Engineer",
+        "role": "AI & Data Analyst",
         "description": "Membangun sistem cerdas di persimpangan <span class='text-primary font-semibold'>AI</span>, <span class='text-secondary font-semibold'>Rekayasa</span>, dan <span class='text-accent font-semibold'>Arsitektur Skalabel</span>."
     },
     "about": {
         "title": "Tentang Saya",
-        "subtitle": "Tech Explorer & Problem Solver",
-        "description": "Seorang tech explorer yang bersemangat dengan spesialisasi dalam Full Stack Development, Artificial Intelligence, dan Data Science. Saat ini sedang mendalami AI Agents dan teknologi Blockchain.",
+        "subtitle": "AI & Data Analyst | Deep Learning Specialist",
+        "description": "Seorang AI dan Data Analyst yang mengkhususkan diri dalam Deep Learning dan Frontend Development. Saya mengubah dataset kompleks menjadi wawasan yang dapat ditindaklanjuti dan menciptakan pengalaman web modern yang interaktif.",
         "stats": {
-            "experience": "Tahun Belajar",
+            "experience": "Tahun Pengalaman",
             "projects": "Proyek Selesai",
             "certifications": "Sertifikasi",
             "competitions": "Kompetisi"
@@ -64,14 +64,14 @@
             "label": "APA YANG SAYA LAKUKAN",
             "tagline": "FOKUS INTI",
             "headlineAI": "AI Terapan.",
-            "headlineData": "Data Skalabel.",
-            "headlineSoftware": "Rekayasa Perangkat Lunak Tangguh",
-            "thesis": "Saya membangun sistem cerdas dan <span class='text-primary italic font-serif-elegant font-normal'>infrastruktur data</span> yang membuatnya handal dalam skala besar.",
-            "scope": "Berfokus pada model prediktif, pemrosesan data yang dioptimalkan, dan pipeline RAG yang dirancang untuk lingkungan produksi dan performa terukur.",
-            "bridging": "Menghubungkan lab dan sistem langsung.",
-            "integration": "Selain model, saya merancang ekosistem full-stack: backend yang aman, arsitektur data yang kuat, dan pipeline yang skalabel.",
-            "signature": "Azril",
-            "role": "AI, Data & Software Engineer",
+            "headlineData": "Wawasan Mendalam.",
+            "headlineSoftware": "Frontend Modern",
+            "thesis": "Saya menganalisis dataset kompleks dan membangun <span class='text-primary italic font-serif-elegant font-normal'>model deep learning</span> yang mengubah data mentah menjadi dampak nyata — lalu merancang antarmuka yang membuatnya mudah diakses.",
+            "scope": "Berfokus pada pipeline analisis data, pengembangan model deep learning, dan dashboard interaktif yang dirancang untuk kejelasan, performa, dan wawasan yang dapat ditindaklanjuti.",
+            "bridging": "Dari data ke keputusan, piksel demi piksel.",
+            "integration": "Selain model, saya merancang sistem frontend yang responsif: arsitektur UI modern, desain berbasis komponen, dan pengalaman pengguna yang mulus menggunakan React, Next.js, dan Tailwind.",
+            "signature": "Hazem",
+            "role": "AI & Data Analyst | Deep Learning Specialist | Frontend Developer",
             "aboutMe": "Tentang Saya",
             "scroll": "Scroll untuk Jelajah",
             "shortStory": "Cerita Singkat Saya"
@@ -99,10 +99,10 @@
             }
         },
         "profile": {
-            "title": "Membangun <br class='hidden lg:block' /> Sistem Skalabel <br /> Tempat <span class='text-primary italic font-serif font-light lowercase'>Kecerdasan</span> <br /> Bertemu Rekayasa.",
+            "title": "Mengubah Data <br class='hidden lg:block' /> Menjadi Keputusan <br /> Tempat <span class='text-primary italic font-serif font-light lowercase'>Deep Learning</span> <br /> Bertemu Desain.",
             "narrativeLabel": "Narasi Inti",
-            "narrative": "Sebagai mahasiswa Teknologi Informasi yang berfokus pada Kecerdasan Buatan dan Rekayasa Perangkat Lunak, saya membangun sistem yang menjembatani fondasi riset dengan implementasi siap produksi.",
-            "narrative2": "Pekerjaan saya memadukan pemikiran algoritmik, rekayasa backend, dan arsitektur yang skalabel untuk menghadirkan solusi yang cerdas, andal, dan siap digunakan di dunia nyata.",
+            "narrative": "Sebagai AI & Data Analyst dan Deep Learning Specialist dengan minat di Frontend Development, saya mengubah data mentah menjadi wawasan yang dapat ditindaklanjuti dan membangun model cerdas yang menyelesaikan masalah nyata.",
+            "narrative2": "Pekerjaan saya memadukan analisis statistik, rekayasa deep learning, dan keahlian frontend modern untuk menghadirkan solusi yang informatif, cerdas, dan indah.",
             "pillars": {
                 "reliable": {
                     "title": "Robust by Design",
@@ -137,51 +137,51 @@
             },
             "experiencesList": [
                 {
-                    "company": "Dicoding Academy",
-                    "role": "PENGULAS KODE MACHINE LEARNING",
-                    "desc": "Evaluasi teknis dan penjaminan kualitas pengajuan proyek ML. Memvalidasi kebenaran logis, efisiensi, dan menegakkan praktik terbaik industri bagi peserta."
+                    "company": "Proyek Kelulusan DigiSteel",
+                    "role": "PENELITI UTAMA & ML ENGINEER",
+                    "desc": "Melakukan evaluasi sistematik pertama terhadap ketahanan detektor YOLO terhadap degradasi gambar dunia nyata dalam inspeksi cacat baja industri."
                 },
                 {
-                    "company": "Advanced Software Engineering Laboratory",
-                    "role": "MAGANG ANALIS SISTEM",
-                    "desc": "Menerjemahkan persyaratan kompleks ke dalam dokumentasi SRS dan merancang arsitektur sistem menggunakan diagram UML. Rekayasa kolaboratif yang berfokus pada desain perangkat lunak yang kuat."
+                    "company": "Analitik E-Commerce Global",
+                    "role": "ANALIS BI & PERANCANG DASHBOARD",
+                    "desc": "Membangun dashboard Power BI interaktif untuk melacak pendapatan, laba, dan kinerja penjualan regional lintas dataset multi-negara."
                 },
                 {
-                    "company": "Cyber Physical System Laboratory",
-                    "role": "ASISTEN PENELITI (KONTRAK)",
-                    "desc": "Mengembangkan produk riset berbasis AI dan merancang materi pembelajaran untuk Deep Learning and Computer Vision. Berkontribusi dalam inisiatif riset kolaboratif dalam sistem cerdas."
+                    "company": "Analitik Operasi Kesehatan",
+                    "role": "ANALIS DATA & PERANCANG DASHBOARD",
+                    "desc": "Merancang dashboard intelijen operasi untuk tekanan daftar tunggu, hambatan layanan, dan visibilitas kinerja."
                 },
                 {
-                    "company": "Pusat Riset HUMIC Engineering",
-                    "role": "MAGANG PENGEMBANG AI",
-                    "desc": "Membangun model deteksi serangan berbasis Transformer untuk aplikasi keamanan siber. Mengelola dataset skala besar melalui pipeline ML penuh — dari prapemprosesan hingga optimasi hiperparameter."
+                    "company": "JobPulse Intelijen Pasar",
+                    "role": "PENGEMBANG FULL STACK & ANALIS DATA",
+                    "desc": "Membangun pusat intelijen pasar yang mengubah data postingan pekerjaan menjadi sinyal yang dapat ditindaklanjuti menggunakan Next.js dan TypeScript."
                 },
                 {
-                    "company": "Cyber Physical System Laboratory",
-                    "role": "MAGANG PENELITI COMPUTER VISION",
-                    "desc": "Pengembangan model cerdas end-to-end menggunakan arsitektur Deep Learning terkini. Menerapkan algoritma ML untuk aplikasi AIoT dunia nyata termasuk sistem estimasi pose manusia."
+                    "company": "Azzar Otomasi Konten",
+                    "role": "INSINYUR AI & OTOMASI",
+                    "desc": "Mengembangkan agen konten sosial bertenaga AI dengan otomasi alur kerja n8n untuk pengumpulan intelijen dan publikasi."
                 }
             ],
             "projectsList": [
                 {
-                    "title": "Creative Portfolio Website",
-                    "desc": "Portofolio modern dan beranimasi dengan elemen 3D, interaksi simulasi fisika, dan efek warp berbasis shader. Direkayasa untuk performa tinggi dan pengalaman pengguna yang imersif."
+                    "title": "JobPulse",
+                    "desc": "Pusat intelijen pasar yang mengubah data postingan pekerjaan menjadi sinyal yang dapat ditindaklanjuti seputar permintaan peran, kecepatan keterampilan, dan kompensasi."
                 },
                 {
-                    "title": "SNBTIn - Platform Persiapan SNBT 2025",
-                    "desc": "Platform EdTech terkemuka di Indonesia untuk persiapan ujian. Menampilkan ekosistem pembelajaran komprehensif dengan video interaktif, latihan soal, dan analitik real-time."
+                    "title": "DigiSteel-YOLO",
+                    "desc": "Studi ketahanan komprehensif detektor YOLO ringan untuk deteksi cacat permukaan baja dengan modul perhatian WFCA novel."
                 },
                 {
-                    "title": "TerraFlow Platform",
-                    "desc": "Solusi IoT perusahaan untuk pertanian presisi. Node sensor ESP32 berkomunikasi langsung dengan Firebase melalui backend Go (Gin), dengan dashboard Next.js untuk monitoring real-time dan kontrol aktuator."
+                    "title": "Dasbor Operasi Kesehatan",
+                    "desc": "Dasbor intelijen operasi untuk tekanan daftar tunggu, hambatan layanan, dan visibilitas kinerja dalam sistem kesehatan."
                 },
                 {
-                    "title": "DocsInsight Engine",
-                    "desc": "Platform RAG privat untuk analisis dokumen cerdas. Didukung oleh LLM lokal melalui Ollama, dengan orkestrasi LangChain dan ChromaDB vector search — sepenuhnya self-hosted untuk privasi data."
+                    "title": "Pelacak Penjualan E-Commerce Global",
+                    "desc": "Dasbor Power BI interaktif untuk melacak pendapatan, laba, pesanan, dan kinerja penjualan regional lintas dataset multi-negara."
                 },
                 {
-                    "title": "Manajemen Dental POLABDC",
-                    "desc": "SaaS klinik gigi bertenaga AI dengan prediksi penyakit, manajemen antrean real-time, dan arsitektur Monorepo yang menghubungkan Next.js, Express.js, dan microservice AI Python."
+                    "title": "Azzar Auto Content Creation",
+                    "desc": "Agen konten sosial bertenaga AI dengan otomasi alur kerja n8n untuk pengumpulan intelijen dan publikasi lintas platform."
                 }
             ],
             "discoverMore": "Temukan Lebih Lanjut"
@@ -336,23 +336,23 @@
         "faqData": [
             {
                 "q": "Apa bidang keahlian utama Anda?",
-                "a": "Sebagai mahasiswa Teknologi Informasi di Telkom University dan Asisten Peneliti di Laboratorium Cyber Physical System, saya berspesialisasi dalam persimpangan Kecerdasan Buatan (Computer Vision & Deep Learning), Full-stack Development (Next.js & Node.js), dan teknologi Blockchain/Web3 yang sedang berkembang."
+                "a": "Saya berspesialisasi dalam Applied AI & Data Analytics — membangun model machine learning, dashboard Power BI interaktif, dan workflow AI agentic menggunakan Python, SQL, dan TensorFlow. Saya juga membuat antarmuka web modern dan responsif dengan React dan Next.js."
             },
             {
-                "q": "Apakah Anda tersedia untuk kolaborasi riset atau freelance?",
-                "a": "Tentu saja. Saat ini saya aktif dalam riset AI di CPS Lab dan Pusat Riset HUMIC, tetapi saya selalu terbuka untuk proyek freelance inovatif, magang, atau kolaborasi teknis yang menjembatani inovasi dengan eksekusi strategis."
+                "q": "Apakah Anda tersedia untuk kolaborasi atau proyek freelance?",
+                "a": "Tentu saja. Saya terbuka untuk proyek freelance, magang, dan kolaborasi di bidang data analytics, pengembangan AI/ML, dan frontend development. Baik membangun dashboard, melatih model, atau membuat web — saya siap membantu."
             },
             {
-                "q": "Apa tech stack tipikal Anda untuk produksi?",
-                "a": "Untuk proyek AI, saya menggunakan Python dengan TensorFlow, PyTorch, dan YOLO. Untuk aplikasi web, andalan saya adalah stack T3: Next.js, TypeScript, dan Tailwind CSS, sering kali diintegrasikan dengan Agen AI atau Smart Contracts jika sesuai."
+                "q": "Apa tech stack tipikal Anda?",
+                "a": "Untuk data dan AI: Python, SQL, Power BI, Scikit-learn, TensorFlow, dan Pandas. Untuk web: React, Next.js, TypeScript, dan Tailwind CSS. Saya juga menggunakan Docker untuk containerization dan Git untuk version control."
             },
             {
-                "q": "Apakah Anda memiliki pengalaman dengan proyek enterprise atau lab?",
-                "a": "Ya, saya pernah menjabat sebagai System Analyst dan Pengembang AI di berbagai lingkungan berbasis riset. Saya telah merancang mulai dari platform AIoT dan sistem deteksi serangan hingga modul praktikum siswa untuk audiens global."
+                "q": "Apakah Anda punya pengalaman proyek nyata?",
+                "a": "Ya. Saya telah membangun proyek seperti DigiSteel-YOLO (deteksi cacat baja), Dashboard Operasi Kesehatan, Global E-Commerce Sales Tracker, dan Azzar Auto Content Creation — masing-masing memecahkan masalah nyata dengan pendekatan data-driven."
             },
             {
-                "q": "Bagaimana cara memulai kemitraan atau proyek?",
-                "a": "Cara paling efisien adalah menggunakan formulir kontak di atas atau menghubungi langsung melalui email di azril4974@gmail.com. Saya biasanya dapat merespons dalam waktu 24 jam untuk mendiskusikan bagaimana keterampilan teknis saya dapat memberikan nilai tambah bagi inisiatif Anda."
+                "q": "Bagaimana cara mulai bekerja sama?",
+                "a": "Cara termudah adalah menggunakan formulir kontak di atas atau email langsung ke hazemelerefy@gmail.com. Saya biasanya merespons dalam 24 jam dan senang mendiskusikan bagaimana saya bisa memberikan nilai pada proyek atau tim Anda."
             }
         ]
     },
@@ -482,7 +482,7 @@
     },
     "chatbot": {
         "title": "Asisten AI",
-        "subtitle": "Tanya saya tentang Azril",
+        "subtitle": "Tanya saya tentang Hazem",
         "placeholder": "Ketik pesan...",
         "greeting": "Halo! Saya asisten AI untuk **{name}**. 👋\n\nSaya bisa menjawab pertanyaan seputar:\n- Skill & keahlian teknis\n- Project dan karya\n- Pengalaman kerja\n- Pendidikan\n- Dan info lainnya!\n\nAda yang ingin kamu tanyakan?",
         "suggestions": [

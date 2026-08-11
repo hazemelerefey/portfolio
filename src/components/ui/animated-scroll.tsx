@@ -26,9 +26,9 @@ const pages = [
         leftComponent: null,
         rightComponent: <Loader type="software" />,
         leftContent: {
-            heading: 'Scalable Systems',
-            description: 'Building the foundation for resilient digital ecosystems. I engineer full-stack solutions with a focus on system architecture, modular design, and high-performance backends using Go, Next.js, and Python.',
-            skills: ["System Architecture", "Full-Stack Dev", "Docker & K8s", "API Design", "DevOps", "Software Design"],
+            heading: 'Modern Frontend',
+            description: 'Crafting pixel-perfect, responsive interfaces that users love. Specializing in React, Next.js, and component-driven architecture with smooth animations and accessible design systems.',
+            skills: ["React & Next.js", "Responsive Design", "Tailwind CSS", "Animation & Motion", "Component Systems", "Accessibility"],
             hoverColor: "bg-blue-600/10"
         },
         rightContent: null,

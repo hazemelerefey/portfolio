@@ -26,21 +26,16 @@ export default function StatsSection({ scrollYProgress, showOnly }: { scrollYPro
 
     useEffect(() => {
         const galleryImages = [
-            { src: '/gallery/Foto Utama.webp', alt: 'Foto Utama' },
-            { src: '/gallery/FotoSC1.webp', alt: 'Foto SC1' },
-            { src: '/gallery/FotoSC2.webp', alt: 'Foto SC2' },
-            { src: '/gallery/FotoSC3.webp', alt: 'Foto SC3' },
+            { src: '/gallery/Hazem.webp', alt: 'Hazem' },
+            { src: '/gallery/AIDA.webp', alt: 'AIDA' },
+            { src: '/gallery/cast.webp', alt: 'Cast' },
+            { src: '/gallery/project.webp', alt: 'Project' },
             { src: '/gallery/FotoSC4.webp', alt: 'Foto SC4' },
-            { src: '/gallery/FotoSC5.webp', alt: 'Foto SC5' },
-            { src: '/gallery/academicaffairsdivision1.webp', alt: 'Academic Affairs' },
-            { src: '/gallery/computernetworkpracticumassistant2.webp', alt: 'Computer Network' },
-            { src: '/gallery/dataentryassistant1.webp', alt: 'Data Entry' },
-            { src: '/gallery/delegateaiesecfutureleaders20241.webp', alt: 'AIESEC' },
-            { src: '/gallery/environmentalhygieneteam1.webp', alt: 'Hygiene Team 1' },
-            { src: '/gallery/environmentalhygieneteam2.webp', alt: 'Hygiene Team 2' },
-            { src: '/gallery/logisticsoperatorcampusexpo20242.webp', alt: 'Logistics' },
-            { src: '/gallery/researchassistant1.webp', alt: 'Research Assistant 1' },
-            { src: '/gallery/researchassistant2.webp', alt: 'Research Assistant 2' },
+            { src: '/gallery/Hazem Sea.webp', alt: 'Hazem Sea' },
+            { src: '/gallery/Club.webp', alt: 'Club' },
+            { src: '/gallery/match.webp', alt: 'Match' },
+            { src: '/gallery/sea.webp', alt: 'Sea' },
+            { src: '/gallery/sea1.webp', alt: 'Sea 1' },
         ];
         // Shuffle images randomly
         const shuffledImages = [...galleryImages].sort(() => 0.5 - Math.random());

@@ -12,11 +12,11 @@ const calculateMetrics = () => {
     const totalTechStack = portfolioData.techStack?.length || 0;
     const totalTools = portfolioData.tools?.length || 0;
 
-    // Calculate years of experience (assuming earliest project start date)
-    const yearsExp = 2; // Hardcoded based on resume/experience
+    // Calculate years of experience
+    const yearsExp = 5;
 
     return {
-        projects: totalProjects,
+        projects: 15,
         completed: completedProjects,
         techCount: totalTechStack + totalTools,
         yearsExp,

@@ -14,14 +14,14 @@ const INITIAL_CHIPS = [
   },
   {
     id: 2,
-    title: "Data Engineer",
-    description: "Building scalable pipelines",
+    title: "Data Analyst",
+    description: "Transforming data into insights",
     icon: Database,
   },
   {
     id: 3,
-    title: "Software Engineer",
-    description: "Crafting robust applications",
+    title: "Frontend Developer",
+    description: "Crafting beautiful interfaces",
     icon: Code2,
   },
 ];

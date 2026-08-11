@@ -10,21 +10,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslations } from 'next-intl';
 
 const GALLERY_IMAGES = [
-    '/gallery/Foto Utama.webp',
-    '/gallery/FotoSC1.webp',
-    '/gallery/FotoSC2.webp',
-    '/gallery/FotoSC3.webp',
+    '/gallery/Hazem.webp',
+    '/gallery/AIDA.webp',
+    '/gallery/cast.webp',
+    '/gallery/project.webp',
     '/gallery/FotoSC4.webp',
-    '/gallery/FotoSC5.webp',
-    '/gallery/academicaffairsdivision1.webp',
-    '/gallery/computernetworkpracticumassistant2.webp',
-    '/gallery/dataentryassistant1.webp',
-    '/gallery/delegateaiesecfutureleaders20241.webp',
-    '/gallery/environmentalhygieneteam1.webp',
-    '/gallery/environmentalhygieneteam2.webp',
-    '/gallery/logisticsoperatorcampusexpo20242.webp',
-    '/gallery/researchassistant1.webp',
-    '/gallery/researchassistant2.webp',
+    '/gallery/Hazem Sea.webp',
+    '/gallery/Club.webp',
+    '/gallery/match.webp',
+    '/gallery/sea.webp',
+    '/gallery/sea1.webp',
 ];
 
 export const NavigationShortcuts = () => {

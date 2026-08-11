@@ -37,16 +37,16 @@ interface CertificateHeroScrollProps {
 }
 
 const CERTIFICATE_POOL = [
-    "Data Analytics on Google Cloud.webp",
-    "Deep Learning Beginner.webp",
-    "Docker, Kubernetes dan DevOps.webp",
-    "Fullstack Programming Untuk Pemula.webp",
-    "Introduction to Generative AI.webp",
-    "Machine Learning Foundations.webp",
-    "Mastering Smart Contract.webp",
-    "Started with Databases.webp",
-    "Supervised Machine Learning Regression and Classification.webp",
-    "elevAIte with Dicoding Program 2025.webp"
+    "AI agent fundamentals with Azure AI Foundry.jpg",
+    "Data Analysis with R Programming.jpg",
+    "Foundations Data Data Everywhere.jpg",
+    "Foundations of Business Intelligence.jpg",
+    "Generative AI Prompt Engineering Basics.jpg",
+    "Google Data Analytics.jpg",
+    "Introduction to Deep Learning and Neural Networks with Keras.jpg",
+    "Introduction to Sales and AI Fundamentals.jpg",
+    "Introduction to Social Media Marketing.jpg",
+    "Microsoft Certified Power BI Data Analyst Associate.jpg"
 ];
 
 const CertificateHeroScroll: FC<CertificateHeroScrollProps> = ({ onDownloadClick, isLowPowerMode: isLowPowerModeProp }) => {

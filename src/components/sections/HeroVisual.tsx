@@ -176,7 +176,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[10px] md:text-xs text-muted-foreground text-start md:text-right leading-relaxed max-w-[200px] md:max-w-[220px] font-medium uppercase tracking-[0.2em]"
             >
-              Hi, I'm {personal.name}. I build scalable systems powered by intelligence.
+              Hi, I'm {personal.name}. I transform data into insights and designs into experiences.
             </motion.p>
             <div className="relative">
               <div ref={githubRef} className="absolute -top-4 right-0 md:right-2 text-primary/60 hover:text-primary z-20 opacity-0">
@@ -199,7 +199,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
             </div>
           </div>
 
-          {/* Line 2: SOFT [ICON] WARE */}
+          {/* Line 2: DEEP [ICON] LEARNING */}
           <div className="md:flex gap-8 items-center relative">
             <div className="relative">
               <div ref={linkedinRef} className="absolute -top-8 left-4 text-primary/60 hover:text-primary z-20 opacity-0">
@@ -226,11 +226,11 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
                 transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="text-[clamp(3rem,11vw,13rem)] md:flex items-center font-black leading-[0.85] tracking-tighter text-shiny will-change-transform px-4"
               >
-                <span className="">SOFT</span>
+                <span className="">DEEP</span>
                 <div
                   ref={zapRef}
                   className="hidden lg:block mx-[0.05em] relative cursor-pointer group"
-                  onClick={() => window.open('https://arfazrllworkspace.vercel.app/', '_blank')}
+                  onClick={() => window.open('https://hazemelerefy.vercel.app/', '_blank')}
                   onMouseEnter={(e) => setTooltip({ show: true, text: "Go to Workspace", icon: 'zap', x: e.clientX, y: e.clientY })}
                   onMouseMove={(e) => setTooltip(prev => ({ ...prev, x: e.clientX, y: e.clientY }))}
                   onMouseLeave={() => setTooltip(prev => ({ ...prev, show: false }))}
@@ -240,19 +240,19 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
                 <div
                   ref={zapSmallRef}
                   className="block lg:hidden mx-[0.02em] relative cursor-pointer group"
-                  onClick={() => window.open('https://arfazrllworkspace.vercel.app/', '_blank')}
+                  onClick={() => window.open('https://hazemelerefy.vercel.app/', '_blank')}
                   onMouseEnter={(e) => setTooltip({ show: true, text: "Go to Workspace", icon: 'zap', x: e.clientX, y: e.clientY })}
                   onMouseMove={(e) => setTooltip(prev => ({ ...prev, x: e.clientX, y: e.clientY }))}
                   onMouseLeave={() => setTooltip(prev => ({ ...prev, show: false }))}
                 >
                   <Zap className="w-[0.8em] h-[0.8em] text-sky-400 group-hover:text-sky-300 transition-colors" strokeWidth={2} />
                 </div>
-                <span className="">WARE</span>
+                <span className="">LEARNING</span>
               </motion.h1>
             </div>
           </div>
 
-          {/* Line 3: EN [ICON] GINEER */}
+          {/* Line 3: FRONT [ICON] DEV */}
           <div className="md:flex gap-8 items-center relative">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -260,7 +260,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
               transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="text-[clamp(3rem,11vw,13rem)] md:flex items-center font-black leading-[0.85] tracking-tighter text-shiny will-change-transform px-4"
             >
-              <span className="">EN</span>
+              <span className="">FRONT</span>
               <div
                 ref={botRef}
                 className="mx-[0.05em] relative cursor-pointer group"
@@ -276,7 +276,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
               >
                 <Bot className="w-[0.85em] h-[0.85em] text-yellow-500 fill-yellow-500/10 group-hover:text-yellow-400 group-hover:fill-yellow-400/20 transition-colors" />
               </div>
-              <span className="">GINEER</span>
+              <span className="">DEV</span>
             </motion.h1>
 
             <motion.p
@@ -295,7 +295,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
           <div className="flex items-center gap-6">
             <Separator className="flex-1 h-[1px] bg-foreground/10 hidden md:block" />
             <div className="text-[10px] md:text-xs whitespace-nowrap font-bold tracking-[0.3em] text-muted-foreground uppercase">
-              JAKARTA, ID — 2026
+              CAIRO, EG — 2026
             </div>
             <Link
               href="/resume"
@@ -347,8 +347,8 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
             >
               <ProfileCard
                 name={personal.name}
-                title="AI Engineer & Software Engineer"
-                description={`${personal.name} is a dedicated AI & Software Engineer focused on building scalable, intelligent systems and robust software architectures. He specializes in bridging technical innovation with high-performance execution to deliver meaningful and impactful digital solutions.`}
+                title="Data Analyst | Frontend Developer"
+                description={`${personal.name} is an AI & Data Analyst and Deep Learning Specialist with a passion for Frontend Development. He transforms complex datasets into actionable insights and crafts intelligent, user-centric interfaces that bridge data science with modern web experiences.`}
                 imageUrl={personal.avatar}
                 githubUrl={personal.socialLinks.find(s => s.platform === 'GitHub')?.url}
                 linkedinUrl={personal.socialLinks.find(s => s.platform === 'LinkedIn')?.url}

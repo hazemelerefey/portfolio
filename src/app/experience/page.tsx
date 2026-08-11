@@ -41,12 +41,12 @@ const highlightContent = {
     education: {
         title: "Building the Future",
         highlight: "Through Knowledge",
-        description: "Every line of code starts with understanding. My academic journey at Telkom University shapes how I approach complex problems with systematic thinking."
+        description: "Every skill starts with understanding. My academic journey — from law at Port Said University to AI & Data Analytics at Digilians — shapes how I approach complex problems with systematic thinking."
     },
     journey: {
         title: "Crafting Experiences",
         highlight: "That Matter",
-        description: "From internships to leadership roles, each step has been a lesson in collaboration, innovation, and pushing boundaries."
+        description: "From football fields to frontend code, each step has been a lesson in creativity, innovation, and pushing boundaries."
     },
     experience: {
         title: "Turning Ideas",
@@ -99,7 +99,7 @@ function ExperienceTabSlider({ isLowPowerMode }: { isLowPowerMode: boolean }) {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
     const tabs: TabItem[] = [
-        { id: 'education', label: 'Education', description: 'Building strong foundations through academic excellence at Telkom University and SMAN 88 Jakarta.' },
+        { id: 'education', label: 'Education', description: 'Building strong foundations through learning and development.' },
         { id: 'journey', label: 'Journey', description: 'A timeline of roles, responsibilities, and professional growth across various organizations.' },
         { id: 'experience', label: 'Experience', description: 'Detailed breakdown of work experiences with project highlights and achievements.' },
     ];
@@ -876,19 +876,10 @@ function ExperienceTimeline({ isLowPowerMode }: { isLowPowerMode: boolean }) {
             <div className="space-y-12">
                 {group.experiences.map((exp) => {
                     const logoSrc = exp.logo || "";
-                    const needsInvertInDarkMode = logoSrc.includes("McKinsey") || 
-                                                logoSrc.includes("TelkomUniversity") || 
-                                                logoSrc.includes("softagelogo") || 
-                                                logoSrc.includes("dinas-pangan") ||
-                                                logoSrc.includes("yotlogo") ||
-                                                logoSrc.includes("youth-ranger") ||
-                                                logoSrc.includes("aiesec") ||
-                                                logoSrc.includes("microsot") ||
-                                                logoSrc.includes("dicoding") ||
-                                                logoSrc.includes("cisometric");
-                    
-                    const needsWhiteBgRemovalInDarkMode = logoSrc.includes("logobei") || logoSrc.includes("birulangit");
-                    const needsInvertInLightMode = logoSrc.includes("flyrank") || logoSrc.includes("FlyRank");
+                    // Generic logo styling - no special handling needed for current images
+                    const needsInvertInDarkMode = false;
+                    const needsWhiteBgRemovalInDarkMode = false;
+                    const needsInvertInLightMode = false;
 
                     let specificClasses = "";
                     if (needsInvertInDarkMode) specificClasses = "dark:invert";

@@ -2,18 +2,13 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Download, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
 import { usePerformance } from '@/hooks/usePerformance';
 import { PdfViewer } from '@/components/ui/pdf-viewer';
 
 export default function ResumePage() {
     const { isLowPowerMode } = usePerformance();
-    // File ID: 1mfYs2MOHpwEFLe-Ld4OCcgS1Lbo6wW7O
-    const fileId = "1mfYs2MOHpwEFLe-Ld4OCcgS1Lbo6wW7O";
+    const fileId = "1p9F8an24Mk8UH_ioOAfhTQ3n7IU42fhF";
     const resumeUrl = `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
-
-    // Standard preview URL with sharing context
-    const previewUrl = `https://drive.google.com/file/d/${fileId}/preview?usp=sharing`;
 
     return (
         <div className="h-screen bg-background relative flex flex-col pt-24 pb-4 overflow-hidden">

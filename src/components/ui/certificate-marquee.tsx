@@ -7,16 +7,16 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 const certificates = [
-  "/certificate/Data Analytics on Google Cloud.webp",
-  "/certificate/Deep Learning Beginner.webp",
-  "/certificate/Docker, Kubernetes dan DevOps.webp",
-  "/certificate/Fullstack Programming Untuk Pemula.webp",
-  "/certificate/Introduction to Generative AI.webp",
-  "/certificate/Machine Learning Foundations.webp",
-  "/certificate/Mastering Smart Contract.webp",
-  "/certificate/Started with Databases.webp",
-  "/certificate/Supervised Machine Learning Regression and Classification.webp",
-  "/certificate/elevAIte with Dicoding Program 2025.webp",
+  "/certificate/AI agent fundamentals with Azure AI Foundry.jpg",
+  "/certificate/Data Analysis with R Programming.jpg",
+  "/certificate/Foundations Data Data Everywhere.jpg",
+  "/certificate/Foundations of Business Intelligence.jpg",
+  "/certificate/Generative AI Prompt Engineering Basics.jpg",
+  "/certificate/Google Data Analytics.jpg",
+  "/certificate/Introduction to Deep Learning and Neural Networks with Keras.jpg",
+  "/certificate/Introduction to Sales and AI Fundamentals.jpg",
+  "/certificate/Introduction to Social Media Marketing.jpg",
+  "/certificate/Microsoft Certified Power BI Data Analyst Associate.jpg",
 ];
 
 function ScrambleButton({ href }: { href: string }) {

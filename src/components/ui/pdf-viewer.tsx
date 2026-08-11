@@ -38,11 +38,8 @@ import { Document, Page, pdfjs, Thumbnail } from "react-pdf";
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
-// We'll use a reliable CDN link for pdfjs worker that matches the installed version.
-// Using unpkg directly may have issues if the version is not strictly matched.
-// However, the provided code uses `pdfjs.version`.
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
-// To ensure it works even without legacy worker if not needed, we'll keep the legacy one as it has better compatibility.
+// pdfjs worker - use cdnjs which is reliable and matches all versions
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
 
 const ZOOM_OPTIONS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 4, 8];
 

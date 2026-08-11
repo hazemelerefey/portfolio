@@ -19,7 +19,7 @@ export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isL
         <div className="w-full max-w-6xl mx-auto p-4 md:p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
-                {/* Telkom University Box (Left) - Hover Effect: Translate Y & Blue Glow */}
+                {/* University Box (Left) - Hover Effect: Translate Y & Blue Glow */}
                 <motion.div 
                     initial={isLowPowerMode ? {} : { opacity: 0, y: 20 }}
                     whileInView={isLowPowerMode ? {} : { opacity: 1, y: 0 }}
@@ -31,11 +31,11 @@ export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isL
                     {/* Text Section (Top) */}
                     <div className="p-8 relative z-10 transition-transform duration-500 group-hover:translate-x-1">
                         <div className="flex items-center gap-2 mb-4">
-                            <span className="text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Higher Education • Current</span>
+                            <span className="text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Higher Education • 2020 – 2024</span>
                         </div>
-                        <h3 className="text-3xl font-black text-neutral-900 dark:text-white mb-4">Telkom University</h3>
+                        <h3 className="text-3xl font-black text-neutral-900 dark:text-white mb-4">Port Said University</h3>
                         <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                            Information Technology major with a GPV of 3.8/4.0. Focused on AI Engineering and Systems Research. Active in multiple high-impact research laboratories and national competitions.
+                            Bachelor of Laws (LLB). Studied civil, commercial, and criminal law with active participation in legal seminars and moot court sessions.
                         </p>
                     </div>
 
@@ -44,8 +44,8 @@ export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isL
                         {/* Background Logo */}
                         <div className="absolute inset-0">
                             <Image
-                                src="/assets/TelkomUniversityLogo.webp?v=3"
-                                alt="Telkom University"
+                                src="/journey/portsaid.webp"
+                                alt="Port Said University"
                                 fill
                                 className="object-cover opacity-20 dark:opacity-30 blur-[2px] scale-125 group-hover:scale-110 transition-transform duration-700"
                                 unoptimized
@@ -65,13 +65,13 @@ export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isL
                             </div>
 
                             <div className="flex flex-wrap gap-2 justify-center mb-4">
-                                {["GPA 3.8", "AI Researcher", "IT Major"].map(s => (
+                                {["Law", "Legal Research", "Public Speaking"].map(s => (
                                     <span key={s} className="px-3 py-1 rounded-full text-[10px] bg-black/40 dark:bg-white/10 text-white border border-white/20 font-mono font-bold backdrop-blur-md shadow-lg group-hover:bg-blue-600/50 transition-colors">
                                         {s}
                                     </span>
                                 ))}
                             </div>
-                            <p className="text-[10px] font-mono text-white/90 uppercase tracking-widest bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-white/10 group-hover:border-blue-500/50 transition-colors">Digital Innovation Hub</p>
+                            <p className="text-[10px] font-mono text-white/90 uppercase tracking-widest bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-white/10 group-hover:border-blue-500/50 transition-colors">Legal Foundation</p>
                         </div>
 
                         {/* Holographic Scan Effect */}
@@ -81,23 +81,23 @@ export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isL
                     </div>
                 </motion.div>
 
-                {/* SMAN 88 Box (Right) - Hover Effect: Scale & Orange Glow */}
+                {/* High School Box (Right) - Hover Effect: Scale & Orange Glow */}
                 <motion.div 
                     initial={isLowPowerMode ? {} : { opacity: 0, y: 20 }}
                     whileInView={isLowPowerMode ? {} : { opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="col-span-1 border border-black/10 dark:border-white/10 bg-neutral-100 dark:bg-[#0a0a0a] overflow-hidden relative group flex flex-col min-h-[450px] transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.3)] hover:border-orange-500/50 hover:z-10"
+                    className="col-span-1 border border-black/10 dark:border-white/10 bg-neutral-100 dark:bg-[#0a0a0a] overflow-hidden relative group flex flex-col min-h-[450px] transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.3)] hover:border-emerald-500/50 hover:z-10"
                 >
                     <CornerAccents hoverClass="group-hover:border-orange-500 dark:group-hover:border-orange-400" />
                     {/* Text Section (Top) */}
                     <div className="p-8 relative z-10 transition-transform duration-500">
                         <div className="flex items-center gap-2 mb-4">
-                            <span className="text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Foundation • High School</span>
+                            <span className="text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Specialization • Dec 2025 – Present</span>
                         </div>
-                        <h3 className="text-3xl font-black text-neutral-900 dark:text-white mb-4">SMAN 88 Jakarta</h3>
+                        <h3 className="text-3xl font-black text-neutral-900 dark:text-white mb-4">Digilians Initiative</h3>
                         <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                            Science Major (IPA). Developed strong analytical foundations in Mathematics and Physics, shaping a logical approach to problem-solving and technical engineering.
+                            MCIT-backed program in Applied AI & Data Analytics. Building ML models, Power BI dashboards, and agentic AI workflows.
                         </p>
                     </div>
 
@@ -106,13 +106,13 @@ export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isL
                          {/* Background Logo */}
                          <div className="absolute inset-0">
                             <Image
-                                src="/assets/sman88logo.webp"
-                                alt="SMAN 88 Jakarta"
+                                src="/journey/digilians.webp"
+                                alt="Digilians Initiative"
                                 fill
                                 className="object-cover opacity-10 dark:opacity-15 blur-sm scale-125 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-700"
                                 unoptimized
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-orange-950/70 via-black/40 to-black/10 dark:from-orange-950/90 dark:via-black/50 dark:to-transparent mix-blend-multiply dark:mix-blend-normal transition-opacity duration-500 group-hover:opacity-80" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-blue-950/70 via-black/40 to-black/10 dark:from-blue-950/90 dark:via-black/50 dark:to-transparent mix-blend-multiply dark:mix-blend-normal transition-opacity duration-500 group-hover:opacity-80" />
                         </div>
 
                         <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -126,13 +126,13 @@ export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isL
                             </div>
 
                             <div className="flex flex-wrap gap-2 justify-center mb-4">
-                                {["Science Major", "Jakarta", "Foundation"].map(s => (
+                                {["Python & SQL", "Power BI", "Machine Learning"].map(s => (
                                     <span key={s} className="px-3 py-1 rounded-full text-[10px] bg-black/40 dark:bg-white/10 text-white border border-white/20 font-mono font-bold backdrop-blur-md shadow-lg group-hover:bg-orange-600/50 transition-colors">
                                         {s}
                                     </span>
                                 ))}
                             </div>
-                            <p className="text-[10px] font-mono text-white/90 uppercase tracking-widest bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-white/10 group-hover:border-orange-500/50 transition-colors">Logical Foundation</p>
+                            <p className="text-[10px] font-mono text-white/90 uppercase tracking-widest bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-white/10 group-hover:border-emerald-500/50 transition-colors">AI & Data Analytics</p>
                         </div>
                     </div>
                 </motion.div>

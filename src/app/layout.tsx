@@ -32,27 +32,27 @@ const signature = Alex_Brush({
 
 export const metadata: Metadata = {
     title: {
-        default: 'Arfazrll | AI & Software Engineer',
+        default: 'Hazem | AI & Data Analyst ',
         template: '%s | Portfolio',
     },
-    description: 'A passionate developer building digital experiences that inspire. Explore my projects, skills, and professional journey.',
+    description: 'AI & Data Analyst and Deep Learning Specialist crafting intelligent systems and modern web experiences. Explore my projects, skills, and journey.',
     keywords: ['developer', 'portfolio', 'web development', 'full stack', 'react', 'nextjs'],
-    authors: [{ name: 'Your Name' }],
-    creator: 'Your Name',
-    metadataBase: new URL('https://your-domain.com'),
+    authors: [{ name: 'Hazem Elerefy' }],
+    creator: 'Hazem Elerefy',
+    metadataBase: new URL('https://hazemelerefy.com'),
     openGraph: {
         type: 'website',
         locale: 'en_US',
-        url: 'https://your-domain.com',
-        title: 'Arfazrll | AI & Software Engineer',
-        description: 'A passionate developer building digital experiences that inspire.',
+        url: 'https://hazemelerefy.com',
+        title: 'Hazem Elerefy | AI & Data Analyst',
+        description: 'AI & Data Analyst and Deep Learning Specialist crafting intelligent systems and modern web experiences.',
         siteName: 'Portfolio',
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Arfazrll | AI & Software Engineer',
-        description: 'A passionate developer building digital experiences that inspire.',
-        creator: '@yourusername',
+        title: 'Hazem Elerefy | AI & Data Analyst',
+        description: 'AI & Data Analyst and Deep Learning Specialist crafting intelligent systems and modern web experiences.',
+        creator: '@hazemelerefy',
     },
     robots: {
         index: true,
@@ -67,8 +67,8 @@ export const metadata: Metadata = {
     },
     icons: {
         icon: [
-            { url: '/Arfazrll_light.svg', media: '(prefers-color-scheme: light)' },
-            { url: '/Arfazrll_dark.svg', media: '(prefers-color-scheme: dark)' },
+            { url: '/Hazem_light.webp', media: '(prefers-color-scheme: light)' },
+            { url: '/Hazem_dark.webp', media: '(prefers-color-scheme: dark)' },
         ],
     },
 };

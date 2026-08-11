@@ -1,7 +1,7 @@
 import { getRequestConfig } from 'next-intl/server';
 import { cookies, headers } from 'next/headers';
 
-export const locales = ['en', 'id'] as const;
+export const locales = ['en'] as const;
 export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = 'en';
@@ -28,6 +28,6 @@ export default getRequestConfig(async () => {
     return {
         locale,
         messages: (await import(`../../messages/${locale}.json`)).default,
-        timeZone: 'Asia/Jakarta'
+        timeZone: 'Africa/Cairo'
     };
 });

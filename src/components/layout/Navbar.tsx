@@ -71,7 +71,7 @@ export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [mounted, setMounted] = useState(false);
-    const [currentLocale, setCurrentLocale] = useState('en');
+    const [showLangNotice, setShowLangNotice] = useState(false);
     
     // Consume preload state directly from context
     const { isPreloading: isPreloadActive } = usePreloadState();
@@ -80,8 +80,6 @@ export function Navbar() {
 
     useEffect(() => {
         setMounted(true);
-        const locale = document.cookie.split('; ').find(row => row.startsWith('locale='))?.split('=')[1] || 'en';
-        setCurrentLocale(locale);
     }, []);
 
     // Lock body scroll when menu is open
@@ -119,13 +117,6 @@ export function Navbar() {
     const toggleMenu = useCallback(() => {
         setIsMenuOpen((prev) => !prev);
     }, []);
-
-    const toggleLocale = useCallback(() => {
-        const newLocale = currentLocale === 'en' ? 'id' : 'en';
-        document.cookie = `locale=${newLocale};path=/;max-age=31536000`;
-        setCurrentLocale(newLocale);
-        window.location.reload();
-    }, [currentLocale]);
 
     const closeMenu = useCallback(() => {
         setIsMenuOpen(false);
@@ -212,20 +203,35 @@ export function Navbar() {
                                 className="p-2 md:p-2.5 rounded-full bg-muted/80 hover:bg-muted transition-colors"
                                 aria-label="Focus mode"
                             >
-                                <Link href="https://arfazrllworkspace.vercel.app/" target="_blank" rel="noopener noreferrer">
+                                <Link href="https://hazemelerefy.vercel.app/" target="_blank" rel="noopener noreferrer">
                                     <Focus className="w-4 h-4" />
                                 </Link>
                             </motion.button>
 
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                onClick={toggleLocale}
-                                className="p-2 md:p-2.5 rounded-full bg-muted/80 hover:bg-muted transition-colors"
-                                aria-label="Toggle language"
-                            >
-                                <Globe className="w-4 h-4" />
-                            </motion.button>
+                            <motion.div className="relative">
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={() => { setShowLangNotice(true); setTimeout(() => setShowLangNotice(false), 2800); }}
+                                    className="p-2 md:p-2.5 rounded-full bg-muted/80 hover:bg-muted transition-colors"
+                                    aria-label="Language"
+                                >
+                                    <Globe className="w-4 h-4" />
+                                </motion.button>
+                                <AnimatePresence>
+                                    {showLangNotice && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                                            exit={{ opacity: 0, y: -4, scale: 0.97 }}
+                                            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                            className="absolute top-full right-0 mt-3 px-4 py-2.5 rounded-xl bg-black/80 dark:bg-white/90 backdrop-blur-xl text-xs font-medium text-white dark:text-black whitespace-nowrap shadow-2xl border border-white/10 dark:border-black/10 pointer-events-none z-50"
+                                        >
+                                            More languages coming soon
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </motion.div>
 
                             {mounted && (
                                 <AnimatedThemeToggler />
@@ -323,12 +329,27 @@ export function Navbar() {
                                     transition={{ delay: 0.5 }}
                                     className="flex items-center gap-4 mt-12"
                                 >
-                                    <button
-                                        onClick={toggleLocale}
-                                        className="px-6 py-3 rounded-full glass-card text-sm font-medium hover:bg-muted/50 transition-colors"
-                                    >
-                                        {currentLocale === 'en' ? 'English' : 'Indonesia'}
-                                    </button>
+                                    <div className="relative">
+                                        <button
+                                            onClick={() => { setShowLangNotice(true); setTimeout(() => setShowLangNotice(false), 2800); }}
+                                            className="px-6 py-3 rounded-full glass-card text-sm font-medium hover:bg-muted/50 transition-colors flex items-center gap-2"
+                                        >
+                                            <Globe className="w-4 h-4" /> Languages
+                                        </button>
+                                        <AnimatePresence>
+                                            {showLangNotice && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                    exit={{ opacity: 0, y: -4, scale: 0.97 }}
+                                                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 px-4 py-2.5 rounded-xl bg-black/80 dark:bg-white/90 backdrop-blur-xl text-xs font-medium text-white dark:text-black whitespace-nowrap shadow-2xl border border-white/10 dark:border-black/10 pointer-events-none z-50"
+                                                >
+                                                    More languages coming soon
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
                                     {mounted && (
                                         <AnimatedThemeToggler
                                             className="px-6 py-6 glass-card text-sm font-medium hover:bg-muted/50 flex items-center gap-2"

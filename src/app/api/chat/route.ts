@@ -3,7 +3,7 @@ import { portfolioData } from '@/data/portfolio';
 
 // ─── Build system prompt from portfolio data ─────────────────────────────────
 function buildSystemPrompt(locale: string = 'en'): string {
-    const { personal, projects, experience, education, skills, achievements, softSkills, tools } = portfolioData as any;
+    const { personal, projects, experiences, education, hardSkills, achievements, softSkills, tools } = portfolioData as any;
 
     const projectList = (projects ?? [])
         .map((p: any) =>
@@ -11,7 +11,7 @@ function buildSystemPrompt(locale: string = 'en'): string {
         )
         .join('\n');
 
-    const expList = (experience ?? [])
+    const expList = (experiences ?? [])
         .map((e: any) =>
             `- ${e.role ?? e.position} at ${e.company} (${e.period ?? e.duration}): ${e.description ?? (e.responsibilities ?? []).join('; ')}`
         )
@@ -23,7 +23,7 @@ function buildSystemPrompt(locale: string = 'en'): string {
         )
         .join('\n');
 
-    const skillList = (skills ?? [])
+    const skillList = (hardSkills ?? [])
         .map((s: any) => `${s.name} (${s.level ?? s.proficiency ?? ''})`)
         .join(', ');
 
@@ -59,16 +59,16 @@ ${projectList}
 ${expList || 'See portfolio for details.'}
 
 ## Education
-${eduList || 'Information Technology, Telkom University.'}
+${eduList || 'See portfolio for details.'}
 
 ## Technical Skills
-${skillList || 'AI, Machine Learning, Full Stack Development, Blockchain.'}
+${skillList || 'See portfolio for details.'}
 
 ## Soft Skills
-${softSkillList || 'Leadership, Communication, Problem Solving.'}
+${softSkillList || 'See portfolio for details.'}
 
 ## Tools & Technologies
-${toolList || 'VS Code, Docker, GitHub, Figma.'}
+${toolList || 'See portfolio for details.'}
 
 ## Achievements & Certifications
 ${achievementList || 'See portfolio for details.'}

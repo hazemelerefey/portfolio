@@ -36,7 +36,7 @@
     },
     "hero": {
         "greeting": "Welcome to my digital space",
-        "subtitle": "Full Stack Developer • AI Engineer • Data Scientist",
+        "subtitle": "AI & Data Analyst • Deep Learning Specialist • Frontend Developer",
         "cta": {
             "primary": "Explore Projects",
             "secondary": "Get in Touch",
@@ -44,16 +44,16 @@
         },
         "badge": "Available for opportunities",
         "scroll": "Scroll Down",
-        "role": "Software Engineer",
-        "description": "Building intelligent systems at the intersection of <span class='text-primary font-semibold'>AI</span>, <span class='text-secondary font-semibold'>Engineering</span>, and <span class='text-accent font-semibold'>Scalable Architecture</span>."
+        "role": "AI & Data Analyst",
+        "description": "Building intelligent systems at the intersection of <span class='text-primary font-semibold'>Data</span>, <span class='text-secondary font-semibold'>Deep Learning</span>, and <span class='text-accent font-semibold'>Modern Frontend</span>."
     },
     "about": {
         "title": "About Me",
-        "subtitle": "Tech Explorer & Problem Solver",
-        "description": "A passionate tech explorer specializing in Full Stack Development, Artificial Intelligence, and Data Science. Currently diving deep into AI Agents and Blockchain technology.",
+        "subtitle": "AI & Data Analyst | Deep Learning Specialist",
+        "description": "An AI and Data Analyst specializing in Deep Learning and Frontend Development. I transform complex datasets into actionable insights and craft modern, interactive web experiences.",
         "stats": {
-            "experience": "Years Learning",
-            "projects": "Projects Done",
+            "experience": "Years of Experience",
+            "projects": "Projects Completed",
             "certifications": "Certifications",
             "competitions": "Competitions"
         },
@@ -64,14 +64,14 @@
             "label": "WHAT I DO",
             "tagline": "CORE FOCUS",
             "headlineAI": "Applied AI.",
-            "headlineData": "Scalable Data.",
-            "headlineSoftware": "Robust software engineering",
-            "thesis": "I build intelligent systems and the <span class='text-primary italic font-serif-elegant font-normal'>data infrastructure</span> that makes them reliable at scale.",
-            "scope": "Focusing on predictive models, optimized data processing, and RAG pipelines designed for production environments and measurable performance.",
-            "bridging": "Bridging labs and live systems.",
-            "integration": "Beyond models, I architect full-stack ecosystems: secure backends, robust data architectures, and scalable pipelines.",
-            "signature": "Azril",
-            "role": "AI, Data & Software Engineer",
+            "headlineData": "Deep Insights.",
+            "headlineSoftware": "Clean Frontend",
+            "thesis": "I analyze complex datasets and build <span class='text-primary italic font-serif-elegant font-normal'>deep learning models</span> that turn raw data into real impact — then craft the interfaces that make it all accessible.",
+            "scope": "Focusing on data analysis pipelines, deep learning model development, and interactive dashboards designed for clarity, performance, and actionable insights.",
+            "bridging": "From data to decisions, pixel by pixel.",
+            "integration": "Beyond the model, I design responsive front-end systems: modern UI architectures, component-driven design, and seamless user experiences using React, Next.js, and Tailwind.",
+            "signature": "Hazem",
+            "role": "AI & Data Analyst | Deep Learning Specialist | Frontend Developer",
             "aboutMe": "About Me",
             "scroll": "Scroll to Explore",
             "shortStory": "My Short Story"
@@ -99,10 +99,10 @@
             }
         },
         "profile": {
-            "title": "Architecting Scalable Systems <br /> Where Intelligence Meets Engineering.",
+            "title": "Transforming Data into Decisions <br /> Where Deep Learning Meets Design.",
             "narrativeLabel": "Core Narrative",
-            "narrative": "As an Information Technology student specializing in Artificial Intelligence and Software Engineering, I focus on building systems that bridge research foundations with production-ready implementation.",
-            "narrative2": "My work combines algorithmic thinking, backend engineering, and scalable architecture to deliver solutions that are intelligent, reliable, and built for real-world impact.",
+            "narrative": "As an AI & Data Analyst and Deep Learning Specialist with a passion for Frontend Development, I turn raw data into actionable insights and build intelligent models that solve real problems.",
+            "narrative2": "My work combines statistical analysis, deep learning engineering, and modern frontend craft to deliver solutions that are insightful, intelligent, and beautifully presented.",
             "pillars": {
                 "reliable": {
                     "title": "Robust by Design",
@@ -137,51 +137,51 @@
             },
             "experiencesList": [
                 {
-                    "company": "Dicoding Academy",
-                    "role": "MACHINE LEARNING CODE REVIEWER",
-                    "desc": "Technical evaluation and quality assurance of ML project submissions. Validating logical correctness, efficiency, and enforcing industry best practices for learners."
+                    "company": "DigiSteel Graduation Project",
+                    "role": "LEAD RESEARCHER & ML ENGINEER",
+                    "desc": "Conducted the first systematic evaluation of YOLO detector robustness to real-world image degradations in industrial steel inspection."
                 },
                 {
-                    "company": "Advanced Software Engineering Laboratory",
-                    "role": "SYSTEM ANALYST INTERN",
-                    "desc": "Translating complex requirements into SRS documentation and designing system architectures using UML diagrams. focused on software design."
+                    "company": "Global E-Commerce Analytics",
+                    "role": "BI ANALYST & DASHBOARD DESIGNER",
+                    "desc": "Built interactive Power BI dashboards for tracking revenue, profit, and regional sales performance across multi-country datasets."
                 },
                 {
-                    "company": "Cyber Physical System Laboratory",
-                    "role": "RESEARCH ASSISTANT (CONTRACT)",
-                    "desc": "Developing AI-driven research products and designing learning materials for Deep Learning and Computer Vision. Contributing to intelligent systems."
+                    "company": "Healthcare Operations Analytics",
+                    "role": "DATA ANALYST & DASHBOARD DESIGNER",
+                    "desc": "Designed operations intelligence dashboard for waitlist pressure, service bottlenecks, and performance visibility."
                 },
                 {
-                    "company": "HUMIC Engineering Research Center",
-                    "role": "AI DEVELOPER INTERN",
-                    "desc": "Built Transformer-based attack detection models for cybersecurity applications. Managed large-scale datasets through the full ML pipeline."
+                    "company": "JobPulse Market Intelligence",
+                    "role": "FULL STACK DEVELOPER & DATA ANALYST",
+                    "desc": "Built market intelligence command center that turns job-posting data into actionable signals using Next.js and TypeScript."
                 },
                 {
-                    "company": "Cyber Physical System Laboratory",
-                    "role": "COMPUTER VISION RESEARCHER INTERN",
-                    "desc": "End-to-end development of intelligent models using state-of-the-art Deep Learning architectures. Implemented ML algorithms for real-world applications."
+                    "company": "Azzar Content Automation",
+                    "role": "AI & AUTOMATION ENGINEER",
+                    "desc": "Developed AI-powered social content agent with n8n workflow automation for automated intelligence gathering and publishing."
                 }
             ],
             "projectsList": [
                 {
-                    "title": "Creative Portfolio Website",
-                    "desc": "Modern, animated portfolio with 3D elements, physics-simulated interactions, and shader-based warp effects. Engineered for high performance & optimization."
+                    "title": "JobPulse",
+                    "desc": "Market intelligence command center that turns job-posting data into actionable signals around role demand, skill velocity, and compensation."
                 },
                 {
-                    "title": "SNBTIn - Platform Persiapan SNBT 2025",
-                    "desc": "Leading EdTech platform in Indonesia for exam preparation. Featuring a comprehensive learning ecosystem with interactive and real-time analytics."
+                    "title": "DigiSteel-YOLO",
+                    "desc": "Comprehensive robustness study of lightweight YOLO detectors for steel surface defect detection with novel WFCA attention module."
                 },
                 {
-                    "title": "TerraFlow Platform",
-                    "desc": "Enterprise IoT solution for precision agriculture. ESP32 sensor nodes communicate with Firebase via a Go (Gin), with a Next.js dashboard for real-time monitoring"
+                    "title": "Healthcare Operations Dashboard",
+                    "desc": "Operations intelligence dashboard for waitlist pressure, service bottlenecks, and performance visibility in healthcare systems."
                 },
                 {
-                    "title": "DocsInsight Engine",
-                    "desc": "Private RAG platform for intelligent document analysis. Powered by local LLMs through Ollama, with LangChain orchestration and ChromaDB vector search."
+                    "title": "Global E-Commerce Sales Tracker",
+                    "desc": "Interactive Power BI dashboard for tracking revenue, profit, orders, and regional sales performance across multi-country datasets."
                 },
                 {
-                    "title": "POLABDC Dental Management",
-                    "desc": "AI-powered dental clinic SaaS with disease prediction, real-time queue management, and a Monorepo architecture Next.js, Express.js, and Python"
+                    "title": "Azzar Auto Content Creation",
+                    "desc": "AI-powered social content agent with n8n workflow automation for automated intelligence gathering and cross-platform publishing."
                 }
             ],
             "discoverMore": "Discover More"
@@ -351,23 +351,23 @@
         "faqData": [
             {
                 "q": "What is your main area of expertise?",
-                "a": "As an Information Technology student at Telkom University and a Research Assistant at the Cyber Physical System Laboratory, I specialize in the intersection of Artificial Intelligence (Computer Vision & Deep Learning), Full-stack Development (Next.js & Node.js), and emerging Blockchain/Web3 technologies."
+                "a": "I specialize in Applied AI & Data Analytics — building machine learning models, interactive Power BI dashboards, and agentic AI workflows using Python, SQL, and TensorFlow. I also craft modern, responsive web interfaces with React and Next.js."
             },
             {
-                "q": "Are you available for research or freelance collaborations?",
-                "a": "Absolutely. I am currently active in AI research at the CPS Lab and HUMIC Research Center, but I'm always open to innovative freelance projects, internships, or technical collaborations that bridge innovation with strategic execution."
+                "q": "Are you available for collaborations or freelance projects?",
+                "a": "Absolutely. I'm open to freelance projects, internships, and collaborations in data analytics, AI/ML development, and frontend development. Whether it's building dashboards, training models, or crafting web experiences — I'd love to help."
             },
             {
-                "q": "What is your typical tech stack for production?",
-                "a": "For AI projects, I primarily use Python with TensorFlow, PyTorch, and YOLO. For web applications, my go-to is the T3-style stack: Next.js, TypeScript, and Tailwind CSS, often integrated with AI Agents or Smart Contracts where appropriate."
+                "q": "What is your typical tech stack?",
+                "a": "For data and AI: Python, SQL, Power BI, Scikit-learn, TensorFlow, and Pandas. For web development: React, Next.js, TypeScript, and Tailwind CSS. I also use Docker for containerization and Git for version control."
             },
             {
-                "q": "Do you have experience with enterprise or lab projects?",
-                "a": "Yes, I've served as a System Analyst and AI Developer in various research-driven environments. I've architected everything from AIoT platforms and attack detection systems to student practicum modules for global audiences."
+                "q": "Do you have experience with real-world projects?",
+                "a": "Yes. I've built projects like DigiSteel-YOLO (steel defect detection), a Healthcare Operations Dashboard, a Global E-Commerce Sales Tracker, and Azzar Auto Content Creation — each solving real problems with data-driven approaches."
             },
             {
-                "q": "How can we start a partnership or project?",
-                "a": "The most efficient way is to use the contact form above or reach out directly via email at azril4974@gmail.com. I'm usually able to respond within 24 hours to discuss how my technical skill set can add value to your initiatives."
+                "q": "How can we start working together?",
+                "a": "The easiest way is to use the contact form above or email me directly at hazemelerefy@gmail.com. I typically respond within 24 hours and am happy to discuss how I can add value to your project or team."
             }
         ]
     },
@@ -497,7 +497,7 @@
     },
     "chatbot": {
         "title": "AI Assistant",
-        "subtitle": "Ask me about Azril",
+        "subtitle": "Ask me about Hazem",
         "placeholder": "Type a message...",
         "greeting": "Hi! I'm an AI assistant for **{name}**. 👋\n\nI can answer questions about:\n- Skills & technical expertise\n- Projects and work\n- Experience\n- Education\n- And more!\n\nAnything you'd like to ask?",
         "suggestions": [

@@ -20,12 +20,12 @@ export const ParallaxScrollFeatureSection = () => {
         },
         {
             id: 2,
-            title: "Scalable Systems",
-            subtitle: "SOFTWARE DEVELOPMENT",
-            description: "Building the foundation for resilient digital ecosystems. I engineer full-stack solutions with a focus on system architecture, modular design, and high-performance backends using Go, Next.js, and Python.",
+            title: "Modern Frontend",
+            subtitle: "FRONTEND DEVELOPMENT",
+            description: "Crafting pixel-perfect, responsive interfaces that users love. Specializing in React, Next.js, and component-driven architecture with smooth animations and accessible design systems.",
             imageUrl: '/feature/feature2.webp',
             reverse: true,
-            skills: ["System Architecture", "Full-Stack Dev", "Docker & K8s", "API Design", "DevOps", "Software Design"]
+            skills: ["React & Next.js", "Responsive Design", "Tailwind CSS", "Animation & Motion", "Component Systems", "Accessibility"]
         },
         {
             id: 3,

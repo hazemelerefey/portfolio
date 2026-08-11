@@ -32,57 +32,47 @@ import { WakaTimeShowcase } from "@/components/ui/wakatime-showcase";
 import { ShowcaseStack } from "@/components/ui/showcase-stack";
 
 const showcaseMembers = [
-    // 1. Cyber Physical Systems Laboratory
-    ...portfolioData.experiences.filter(exp => exp.id === 'prof-7').map(exp => ({
+    // 1. Al-Nasr Club - Football
+    ...portfolioData.experiences.filter(exp => exp.id === 'story-1').map(exp => ({
         id: exp.id,
-        name: "Cyber Physical Systems Laboratory",
-        role: exp.position.replace(' (Contract-Based)', ''),
-        description: exp.description,
-        period: "August 2025 - Present",
-        image: "/journey/researchassistant2.webp",
-        social: exp.externalLink ? { website: Array.isArray(exp.externalLink) ? exp.externalLink[0] : exp.externalLink } : undefined
-    })),
-    // 2. HUMIC Engineering
-    ...portfolioData.experiences.filter(exp => exp.id === 'prof-3').map(exp => ({
-        id: exp.id,
-        name: "HUMIC Engineering",
+        name: "Al-Nasr Club",
         role: exp.position,
         description: exp.description,
-        period: "September 2025 - December 2025",
-        image: "/journey/aideveloperintern1.webp",
-        social: exp.externalLink ? { website: Array.isArray(exp.externalLink) ? exp.externalLink[0] : exp.externalLink } : undefined
+        period: "2018 - 2020",
+        image: "/journey/football.webp",
+        social: undefined
     })),
-    // 3. Informatics Laboratory, Telkom University
-    ...portfolioData.experiences.filter(exp => exp.id === 'prof-6').map(exp => ({
+    // 2. Frontend Developer - FWD Initiative (ITIDA)
+    ...portfolioData.experiences.filter(exp => exp.id === 'story-2').map(exp => ({
         id: exp.id,
-        name: exp.company,
-        role: exp.position.replace(' (Contract-Based)', ''),
+        name: "FWD Initiative (ITIDA)",
+        role: "Frontend Developer",
         description: exp.description,
-        period: "September 2025 - January 2026",
-        image: "/journey/computernetworkpracticumassistant2.webp",
-        social: exp.externalLink ? { website: Array.isArray(exp.externalLink) ? exp.externalLink[0] : exp.externalLink } : undefined
+        period: "2021 - 2022",
+        image: "/journey/frontend.webp",
+        social: undefined
     })),
-    // 4. Digistar Club by Telkom Indonesia
-    ...portfolioData.experiences.filter(exp => exp.id === 'lead-2').map(exp => ({
+    // 3. Graphic Designer - Theatre Team
+    ...portfolioData.experiences.filter(exp => exp.id === 'story-3').map(exp => ({
         id: exp.id,
-        name: exp.company,
+        name: "University Theatre Team",
         role: exp.position,
         description: exp.description,
-        period: "October 2025 - December 2025",
-        image: "/journey/chiefcommittee1.webp",
-        social: exp.externalLink ? { website: Array.isArray(exp.externalLink) ? exp.externalLink[0] : exp.externalLink } : undefined
+        period: "2022 - 2024",
+        image: "/journey/design.webp",
+        social: undefined
     })),
-    // 5. Food and Agriculture Office of Bandung City
-    ...portfolioData.experiences.filter(exp => exp.id === 'prof-8').map(exp => ({
+    // 4. Applied AI & Data Analytics - Digilians
+    ...portfolioData.experiences.filter(exp => exp.id === 'story-4').map(exp => ({
         id: exp.id,
-        name: "Food and Agriculture Office of Bandung City",
-        role: exp.position,
+        name: "Digilians (MCIT)",
+        role: "Applied AI & Data Analytics",
         description: exp.description,
-        period: "July - September 2025",
-        image: "/journey/dataentryassistant1.webp",
-        social: exp.externalLink ? { website: Array.isArray(exp.externalLink) ? exp.externalLink[0] : exp.externalLink } : undefined
+        period: "Dec 2025 - Jun 2026",
+        image: "/journey/digilians.webp",
+        social: undefined
     })),
-    // 6. View more
+    // 5. View more
     {
         id: 'view-more',
         name: 'View more',
@@ -93,21 +83,16 @@ const showcaseMembers = [
 ];
 
 const GALLERY_IMAGES = [
-    "/gallery/Foto Utama.webp",
-    "/gallery/FotoSC1.webp",
-    "/gallery/FotoSC2.webp",
-    "/gallery/FotoSC3.webp",
+    "/gallery/Hazem.webp",
+    "/gallery/AIDA.webp",
+    "/gallery/cast.webp",
+    "/gallery/project.webp",
     "/gallery/FotoSC4.webp",
-    "/gallery/FotoSC5.webp",
-    "/gallery/academicaffairsdivision1.webp",
-    "/gallery/computernetworkpracticumassistant2.webp",
-    "/gallery/dataentryassistant1.webp",
-    "/gallery/delegateaiesecfutureleaders20241.webp",
-    "/gallery/environmentalhygieneteam1.webp",
-    "/gallery/environmentalhygieneteam2.webp",
-    "/gallery/logisticsoperatorcampusexpo20242.webp",
-    "/gallery/researchassistant1.webp",
-    "/gallery/researchassistant2.webp"
+    "/gallery/Hazem Sea.webp",
+    "/gallery/Club.webp",
+    "/gallery/match.webp",
+    "/gallery/sea.webp",
+    "/gallery/sea1.webp"
 ];
 
 const AboutLeadInImageStack = () => {

@@ -104,11 +104,11 @@ export function Footer() {
                 hour: 'numeric',
                 minute: '2-digit',
                 hour12: true,
-                timeZone: 'Asia/Jakarta'
+                timeZone: 'Africa/Cairo'
             };
             const timeString = new Intl.DateTimeFormat('en-US', options).format(now);
-            // Jakarta is UTC+7
-            setLocalTime(`${timeString} UTC+7`);
+            // Cairo is UTC+2
+            setLocalTime(`${timeString} UTC+2`);
         };
 
         updateTime();
@@ -222,7 +222,7 @@ export function Footer() {
                                             <Fragment key={social.platform}>
                                                 {social.platform === 'Twitter' && (
                                                     <motion.a
-                                                        href="https://arfazrllworkspace.vercel.app/"
+                                                        href="https://hazemelerefy.vercel.app/"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         className="p-1.5 rounded-full hover:bg-foreground/5 transition-all text-muted-foreground hover:text-foreground hover:scale-110 active:scale-95"
@@ -386,12 +386,12 @@ export function Footer() {
                                                 {localTime}
                                             </p>
                                             <a
-                                                href="https://www.google.com/maps/place/Jakarta,+Indonesia"
+                                                href="https://www.google.com/maps/place/Cairo,+Egypt"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-zinc-900 dark:text-white text-[1.2vw] min-text-[14px] font-medium tracking-tight hover:text-zinc-500 dark:hover:text-zinc-400 transition-colors inline-block"
                                             >
-                                                Jakarta, Indonesia
+                                                Cairo, Egypt
                                             </a>
                                         </FooterColumn>
 
@@ -407,11 +407,11 @@ export function Footer() {
                                 <div className="mt-auto overflow-hidden flex-shrink-0 relative">
                                     <motion.h2
                                         initial={{ opacity: 0, y: "100%" }}
-                                        animate={isAboutExpanded ? { opacity: 0, y: "120%" } : { opacity: 1, y: "38%" }}
+                                        animate={isAboutExpanded ? { opacity: 0, y: "120%" } : { opacity: 1, y: "25%" }}
                                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                                         className="text-[18vw] font-black leading-none text-zinc-900 dark:text-white tracking-tighter select-none text-center"
                                     >
-                                        ARFAZRLL
+                                        HAZEM
                                     </motion.h2>
                                 </div>
                             </div>

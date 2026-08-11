@@ -16,44 +16,44 @@ interface ProjectData {
 
 const PROJECT_DATA: ProjectData[] = [
   {
-    title: "Browser Automation Agent",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&fm=webp",
+    title: "Azzar Auto Content Creation",
+    image: "/project/azzar-content-creation.webp",
     category: "AI & Automation",
     year: "2026",
-    description: "AI-driven browser interaction & testing engine.",
-    slug: "browser-automation-agent"
+    description: "AI-powered social content agent with n8n workflow automation.",
+    slug: "azzar-content-creation"
   },
   {
-    title: "Swarm AI Blog Writer",
-    image: "/project/swarmaiblogwriter1.webp",
-    category: "AI & Content",
-    year: "2025",
-    description: "Multi-agent orchestration for research-backed content.",
-    slug: "swarm-ai-blog-writer"
+    title: "DigiSteel-YOLO",
+    image: "/project/digisteel-yolo.webp",
+    category: "AI & Machine Learning",
+    year: "2026",
+    description: "Robustness study of lightweight YOLO detectors for steel defect detection.",
+    slug: "digisteel-yolo"
   },
   {
-    title: "Creative Portfolio Website",
-    image: "/project/creativeportfoliowebsite1.webp",
-    category: "Creative Tech",
-    year: "2025",
-    description: "Immersive 3D portfolio with WebGL shaders.",
-    slug: "creative-portfolio-website"
+    title: "Global E-Commerce Sales Tracker",
+    image: "/project/global-sales-tracker.webp",
+    category: "Data Science",
+    year: "2026",
+    description: "Interactive Power BI dashboard for regional sales performance.",
+    slug: "global-sales-tracker"
   },
   {
-    title: "SNBTIn Platform",
-    image: "/project/snbtinplatformpersiapansnbt20251.webp",
-    category: "EdTech",
-    year: "2025",
-    description: "Leading e-learning platform for SNBT preparation.",
-    slug: "snbtin-platform"
+    title: "NeuroScope",
+    image: "/project/neuroscope.webp",
+    category: "AI & Machine Learning",
+    year: "2026",
+    description: "AI-powered neuroscience analysis platform for brain imaging and neural pattern recognition.",
+    slug: "neuroscope"
   },
   {
-    title: "Terraflow Platform",
-    image: "/project/terraflowplatform1.webp",
-    category: "IoT & Embedded",
-    year: "2025",
-    description: "Enterprise IoT solution for precision agriculture.",
-    slug: "terraflow-platform"
+    title: "JobPulse",
+    image: "/project/jobpulse.webp",
+    category: "Data Science",
+    year: "2026",
+    description: "Market intelligence command center for job-posting data signals.",
+    slug: "jobpulse"
   },
 ];
 
@@ -354,7 +354,7 @@ export function ArgentLoopInfiniteSlider() {
                 <div className="flex items-center gap-4 pointer-events-auto">
                   <MagneticEffect>
                     <a 
-                      href="https://github.com/Arfazrll" 
+                      href="https://github.com/hazemelerefey" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="custom-btn-github hover:scale-110 active:scale-95 transition-transform shadow-xl block"

@@ -142,21 +142,8 @@ function ParallaxText({ children, baseVelocity = 100, isLowPowerMode = false }: 
 }
 
 const GalleryItem = ({ logoSrc }: { logoSrc: string }) => {
-    // Only invert logos that are purely black text on transparent backgrounds in dark mode.
-    const needsInvertInDarkMode = logoSrc.includes("McKinsey") ||
-        logoSrc.includes("TelkomUniversity") ||
-        logoSrc.includes("softagelogo") ||
-        logoSrc.includes("dinas-pangan");
-
-    const needsWhiteBgRemovalInDarkMode = logoSrc.includes("logobei") || logoSrc.includes("birulangit");
-
-    // FlyRank is a white text logo, so it's invisible on light backgrounds. We invert it in Light Mode.
-    const needsInvertInLightMode = logoSrc.includes("flyrank") || logoSrc.includes("FlyRank");
-
+    // Generic logo styling - no special handling needed for current journey images
     let specificClasses = "";
-    if (needsInvertInDarkMode) specificClasses = "dark:invert";
-    if (needsWhiteBgRemovalInDarkMode) specificClasses = "dark:invert dark:hue-rotate-180";
-    if (needsInvertInLightMode) specificClasses = "invert dark:invert-0";
 
     return (
         <div className="relative shrink-0 w-[clamp(140px,30vw,200px)] h-[clamp(80px,15vw,120px)] md:w-[280px] md:h-[160px] flex items-center justify-center group cursor-pointer transition-all duration-300 hover:scale-105">
@@ -176,29 +163,10 @@ const GalleryItem = ({ logoSrc }: { logoSrc: string }) => {
 export default function ExperienceMarquee() {
     const { isLowPowerMode } = usePerformance();
     const allLogos = [
-        "/assets/DBSLogo.webp",
-        "/assets/HMITlogo.webp",
-        "/assets/HumicLogo.webp",
-        "/assets/McKinseylogo.webp",
-        "/assets/TelkomUniversityLogo.webp",
-        "/assets/aieseclogo.webp",
-        "/assets/aselablogo.webp",
-        "/assets/birulangitlogo.webp",
-        "/assets/cisometriclogo.webp",
-        "/assets/dicodinglogo.webp",
-        "/assets/dinas-pangan-dan-pertanian-kota-bandung.webp",
-        "/assets/flyrankailogo.webp",
-        "/assets/iflablogo.webp",
-        "/assets/indosat-ooredoo-hutchison-digital-camp.webp",
-        "/assets/logobei.webp",
-        "/assets/logocps.webp",
-        "/assets/logodigistar.webp",
-        "/assets/logogdsc.webp",
-        "/assets/microsotlogo.webp",
-        "/assets/sman88logo.webp",
-        "/assets/softagelogo.webp",
-        "/assets/yotlogo.webp",
-        "/assets/youth-ranger-indonesia.webp"
+        "/journey/football.webp",
+        "/journey/frontend.webp",
+        "/journey/design.webp",
+        "/journey/digilians.webp",
     ];
 
     // Balance rows: 12 in row 1, 11 in row 2
@@ -206,6 +174,7 @@ export default function ExperienceMarquee() {
     const row2 = allLogos.slice(12);
 
     const ensureLength = (items: string[]) => {
+        if (items.length === 0) items = [...allLogos];
         let repeated = [...items];
         while (repeated.length < 12) {
             repeated = [...repeated, ...items];
