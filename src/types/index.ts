@@ -52,7 +52,7 @@ export interface Education {
     institution: string;
     degree: string;
     major: string;
-    startDate: string;
+    startDate?: string;
     endDate?: string;
     isOngoing: boolean;
     gpa?: string;

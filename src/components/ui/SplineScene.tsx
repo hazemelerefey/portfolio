@@ -79,19 +79,6 @@ export const SplineScene: FC<SplineSceneProps> = ({ scene, className }) => {
     return (
         <div ref={containerRef} className={`relative w-full h-full overflow-hidden ${className || ''}`}>
 
-            {/* Global style to hide the react-spline watermark (not in shadow DOM) */}
-            <style dangerouslySetInnerHTML={{
-                __html: `
-                .spline-watermark,
-                div[style*="bottom: 16px"],
-                div[style*="bottom: 10px"],
-                a[href*="spline.design"] {
-                    display: none !important;
-                    opacity: 0 !important;
-                    pointer-events: none !important;
-                    visibility: hidden !important;
-                }
-            `}} />
 
             <div className="w-full h-full pt-20 relative">
 

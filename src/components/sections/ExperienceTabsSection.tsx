@@ -45,7 +45,7 @@ function TabButton({ label, isActive, onClick, icon }: TabButtonProps) {
 
 function EducationContent() {
     const [showTimeline, setShowTimeline] = useState(false);
-    const education = portfolioData.education[0];
+    const education = portfolioData.education.find((entry) => entry.id === 'edu-university') ?? portfolioData.education[0];
 
     return (
         <motion.div
@@ -73,7 +73,7 @@ function EducationContent() {
                     </h2>
 
                     <p className="text-muted-foreground leading-relaxed max-w-md">
-                        {education.major} major with a GPA of {education.gpa}. Focused on AI Engineering and Systems Research. Active in multiple high-impact research laboratories and national competitions.
+                        {education.degree} in {education.major}. Built a strong foundation in legal research, structured analysis, and professional communication.
                     </p>
                 </div>
 
@@ -94,18 +94,18 @@ function EducationContent() {
 
                         <div className="flex flex-wrap justify-center gap-2">
                             <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
-                                GPA {education.gpa}
+                                Law
                             </span>
                             <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-secondary/50 text-foreground border border-secondary/30">
-                                AI Researcher
+                                Legal Research
                             </span>
                             <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-secondary/50 text-foreground border border-secondary/30">
-                                IT Major
+                                Public Speaking
                             </span>
                         </div>
 
                         <p className="text-xs font-mono text-muted-foreground tracking-widest uppercase">
-                            Digital Innovation Hub
+                            Port Said University
                         </p>
                     </div>
                 </motion.div>
@@ -149,7 +149,9 @@ function EducationContent() {
                                         <h4 className="font-semibold text-foreground">{edu.institution}</h4>
                                         <p className="text-sm text-muted-foreground">{edu.degree} - {edu.major}</p>
                                         <p className="text-xs text-muted-foreground mt-1">
-                                            {formatDate(edu.startDate)} - {edu.endDate ? formatDate(edu.endDate) : 'Present'}
+                                            {edu.startDate
+                                                ? `${formatDate(edu.startDate)} - ${edu.endDate ? formatDate(edu.endDate) : edu.isOngoing ? 'Present' : 'Date not listed'}`
+                                                : 'Dates not listed'}
                                         </p>
                                     </div>
                                     {edu.gpa && (

@@ -49,15 +49,9 @@ export async function GET() {
         { title: "Transformer Based SQLi Detection", category: "Notebook", updated: "2 months ago", msg: "0 comments", votes: 0 }
     ];
 
-    const competitions = [
-        { title: "Predict Customer Churn", msg: "Playground Series - Season 6 Episode 3", type: "Playground", teams: "4142 Teams", time: "a month ago" },
-        { title: "Tugas 2 Machine learning", msg: "Eksplorasi data cuaca BMKG berbasis API", type: "Community", teams: "6 Teams", time: "2 months ago" },
-        { title: "March Machine Learning Mania 2026", msg: "Forecast the 2026 NCAA Basketball Tournaments", type: "Featured", teams: "3462 Teams", time: "a month ago" },
-        { title: "ADIKARA 2025 - Indonesian Credit Score", msg: "ADIKARA 2025 - Indonesian Credit Score", type: "Community", teams: "49 Teams", time: "5 months ago" },
-        { title: "Seleksi Data Science Academy COMPFEST 17", msg: "Seleksi Data Science Academy COMPFEST 17", type: "Community", teams: "260 Teams", time: "10 months ago" },
-        { title: "Penyisihan Data Mining Adikara 2024", msg: "Kompetisi Data Mining ADIKARA", type: "Community", teams: "23 Teams", time: "a year ago" },
-        { title: "Housing Prices Competition", msg: "Apply what you learned in the Machine Learning course", type: "Getting Started", teams: "4433 Teams", time: "Ongoing" }
-    ];
+    // Competition records are intentionally empty until they can be sourced from the authenticated Kaggle profile.
+    // This avoids presenting unverified or unrelated competitions as part of Hazem's portfolio.
+    const competitions: { title: string; msg: string; type: string; teams: string; time: string }[] = [];
 
     return NextResponse.json({
       stats: {

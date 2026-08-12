@@ -61,7 +61,7 @@ export default function CreditsFooter() {
                     className="pt-24"
                 >
                     <p className="text-[10px] font-mono uppercase tracking-widest text-white/20 mb-8">
-                        Production © 2024
+                        © 2026 Hazem Elerefey
                     </p>
 
                     <button

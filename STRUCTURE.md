@@ -207,7 +207,7 @@ ThemeProvider (next-themes, dark default)
 
 ## 5. i18n Translation Map
 
-**Locales**: `en` (English, default), `id` (Indonesian)  
+**Locales**: `en` (English, default)
 **Framework**: `next-intl`  
 **Config files**: `src/i18n/settings.ts`, `src/i18n/request.ts`, `src/lib/i18n.ts`
 
@@ -356,7 +356,7 @@ public/
 | Chat route destructured `experience` (should be `experiences`) and `skills` (should be `hardSkills`) — chatbot had empty knowledge | 🔴 CRITICAL | ✅ Fixed |
 | STRUCTURE.md documented `LLM_API_KEY`/`LLM_API_URL` — actual vars are `GROQ_API_KEY`/`GEMINI_API_KEY` | 🔴 CRITICAL | ✅ Fixed |
 | proxy.ts exported `proxy` instead of `middleware`, was never invoked | 🔴 CRITICAL | ✅ Fixed (renamed to middleware.ts) |
-| Chat route hardcoded fallbacks referenced "Telkom University" | ⚠️ WARNING | ✅ Fixed (now generic "See portfolio for details") |
+| Chat route references portfolio data as the source of truth for education details | ⚠️ WARNING | ✅ Fixed (uses verified portfolio data) |
 
 ### Remaining Issues
 

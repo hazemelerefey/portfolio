@@ -74,7 +74,7 @@ ${toolList || 'See portfolio for details.'}
 ${achievementList || 'See portfolio for details.'}
 
 ## Instructions
-- Answer in ${locale === 'id' ? 'Indonesian' : 'English'} (the current interface language). However, if the user asks in a different language, feel free to respond in that language too, while maintaining a professionally friendly tone.
+- Answer in English by default. If a visitor asks in another language, respond in that language while maintaining a professionally friendly tone.
 - Be concise but informative. Use bullet points for lists.
 - If asked about something not in the portfolio, politely say you only have information about ${personal.name}'s portfolio.
 - When recommending projects, include demo links if available.

@@ -685,8 +685,7 @@ export const BentoHero = ({ isLowPowerMode }: { isLowPowerMode?: boolean }) => {
             className="text-[10px] md:text-xs font-medium text-muted-foreground/60 max-w-5xl text-center leading-relaxed tracking-wider uppercase"
           >
             This archive serves as a living documentation of technical blueprints, architectural patterns, and engineering reflections.
-            All content is licensed under Creative Commons for educational use, bridging the gap between theory and implementation.
-            Interactive gallery items represent curated milestones of the engineering journey. © 2026 Hazem.
+            Interactive gallery items represent curated milestones of the engineering journey. © 2026 Hazem Elerefey. All rights reserved.
           </motion.p>
         </div>
       </div>
