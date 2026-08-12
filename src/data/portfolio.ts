@@ -13,9 +13,8 @@ export const portfolioData: PortfolioData = {
         resumeUrl: '/resume',
         website: 'https://hazemelerefy.vercel.app',
         languages: [
-            { name: 'Indonesian', level: 'Native' },
-            { name: 'English', level: 'Limited Working' },
-            { name: 'French', level: 'Elementary' },
+            { name: 'Arabic', level: 'Native' },
+            { name: 'English', level: 'B2' },
         ],
         socialLinks: [
             {

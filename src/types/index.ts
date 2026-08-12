@@ -110,7 +110,7 @@ export interface SocialLink {
 
 export interface Language {
     name: string;
-    level: 'Native' | 'Fluent' | 'Professional' | 'Limited Working' | 'Elementary';
+    level: 'Native' | 'Fluent' | 'Professional' | 'B2' | 'Limited Working' | 'Elementary';
 }
 
 export interface FAQ {
