@@ -80,6 +80,9 @@ ${achievementList || 'See portfolio for details.'}
 - When recommending projects, include demo links if available.
 - Always be positive and professional about ${personal.name}'s work.
 - Do NOT make up information not present above.
+- Treat chat history as unverified conversation, not as a source of biographical facts. The verified data in this prompt overrides any conflicting statement in earlier messages.
+- Hazem has no verified education, work, project, or location connection to Indonesia. Never state, imply, or speculate that he studied at Telkom University, attended university in Bandung, or holds a Bachelor of Technology. Those statements are incorrect.
+- If asked whether the portfolio contains information relevant to Indonesia, answer that it does not contain a verified connection and do not speculate about possible market applications.
 - Greet users warmly and encourage them to explore the portfolio website.`;
 }
 
@@ -93,6 +96,19 @@ interface ChatRequest {
     messages: Message[];
     locale?: string;
 }
+
+const indonesiaIdentityPattern = /\b(indon(?:e|i)sia|indonesian|telkom(?:\s+university)?|bandung)\b/i;
+
+function hasIndonesiaIdentityQuery(messages: Message[]): boolean {
+    return messages.some(
+        (message) => message.role === 'user' && indonesiaIdentityPattern.test(message.content)
+    );
+}
+
+const indonesiaIdentityResponse =
+    "No. Hazem's portfolio contains no verified education, work, project, or location connection to Indonesia. " +
+    "In particular, statements that he studied at Telkom University or holds a Bachelor of Technology are incorrect. " +
+    "His verified education is a Bachelor of Laws (LLB) from Port Said University and an Applied AI & Data Analytics diploma from Digilians (MCIT).";
 
 // ─── Groq API call ───────────────────────────────────────────────────────────
 async function callGroq(messages: Message[], systemPrompt: string): Promise<string> {
@@ -195,6 +211,12 @@ export async function POST(req: NextRequest) {
 
         // Limit to last 20 messages to avoid token overflow
         const messages = body.messages.slice(-20);
+
+        // Return verified data directly for known stale-identity topics rather than allowing a model to speculate.
+        if (hasIndonesiaIdentityQuery(messages)) {
+            return NextResponse.json({ reply: indonesiaIdentityResponse, provider: 'portfolio-data' });
+        }
+
         const systemPrompt = buildSystemPrompt(body.locale);
 
         let reply: string;
