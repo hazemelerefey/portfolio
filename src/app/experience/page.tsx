@@ -41,7 +41,7 @@ const highlightContent = {
     education: {
         title: "Building the Future",
         highlight: "Through Knowledge",
-        description: "My education began at Emad El Din Ayoub Secondary School in Al Arish, continued with a Bachelor of Laws at Port Said University, and expanded through Applied AI & Data Analytics at Digilians. Together, these experiences shape a structured, analytical approach to complex problems."
+        description: "My education journey began with a Bachelor of Laws at Port Said University and expanded through Applied AI & Data Analytics at Digilians. Together, these experiences shape a structured, analytical approach to complex problems."
     },
     journey: {
         title: "Crafting Experiences",

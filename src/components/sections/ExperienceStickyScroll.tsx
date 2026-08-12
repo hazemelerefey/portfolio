@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import { GraduationCap, BookOpen, Binary, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -21,50 +20,14 @@ const Badge = ({ children }: { children: React.ReactNode }) => (
 
 export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isLowPowerMode?: boolean }) {
     return (
-        <div className="w-full max-w-7xl mx-auto p-4 md:p-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="w-full max-w-6xl mx-auto p-4 md:p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <motion.div
                     initial={isLowPowerMode ? {} : { opacity: 0, y: 20 }}
                     whileInView={isLowPowerMode ? {} : { opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="border border-black/10 dark:border-white/10 bg-neutral-100 dark:bg-[#0a0a0a] overflow-hidden relative group flex flex-col min-h-[430px] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(16,185,129,0.3)] hover:border-emerald-500/50"
-                >
-                    <CornerAccents hoverClass="group-hover:border-emerald-500 dark:group-hover:border-emerald-400" />
-                    <div className="p-8 relative z-10 transition-transform duration-500 group-hover:translate-x-1">
-                        <div className="flex items-center gap-2 mb-4">
-                            <span className="text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Secondary Education • Al Arish, North Sinai</span>
-                        </div>
-                        <h3 className="text-3xl font-black text-neutral-900 dark:text-white mb-4">Emad El Din Ayoub Secondary School</h3>
-                        <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                            Completed general secondary education in Al Arish City, North Sinai, Egypt.
-                        </p>
-                    </div>
-
-                    <div className="flex-1 flex items-center justify-center relative p-8 mt-auto border-t border-black/10 dark:border-white/10 bg-gradient-to-b from-emerald-500/10 to-black/5 dark:to-white/5 overflow-hidden">
-                        <div className="absolute inset-0 opacity-10 pointer-events-none">
-                            <div className="absolute inset-0 bg-[radial-gradient(#10b98122_1px,transparent_1px)] [background-size:18px_18px]" />
-                        </div>
-                        <div className="relative z-10 flex flex-col items-center transition-transform duration-500 group-hover:scale-105">
-                            <div className="relative mb-6">
-                                <GraduationCap className={cn("w-20 h-20 text-emerald-600 dark:text-emerald-400 drop-shadow-xl", !isLowPowerMode && "animate-pulse")} />
-                                <BookOpen className={cn("w-7 h-7 text-emerald-400 absolute -bottom-1 -right-2 opacity-80", !isLowPowerMode && "animate-bounce")} />
-                            </div>
-                            <div className="flex flex-wrap gap-2 justify-center mb-4">
-                                <Badge>Secondary Education</Badge>
-                                <Badge>Academic Foundation</Badge>
-                            </div>
-                            <p className="text-[10px] font-mono text-white/90 uppercase tracking-widest bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-white/10">North Sinai, Egypt</p>
-                        </div>
-                    </div>
-                </motion.div>
-
-                <motion.div
-                    initial={isLowPowerMode ? {} : { opacity: 0, y: 20 }}
-                    whileInView={isLowPowerMode ? {} : { opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="border border-black/10 dark:border-white/10 bg-neutral-100 dark:bg-[#0a0a0a] overflow-hidden relative group flex flex-col min-h-[430px] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)] hover:border-blue-500/50"
+                    className="border border-black/10 dark:border-white/10 bg-neutral-100 dark:bg-[#0a0a0a] overflow-hidden relative group flex flex-col min-h-[450px] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)] hover:border-blue-500/50"
                 >
                     <CornerAccents hoverClass="group-hover:border-blue-500 dark:group-hover:border-blue-400" />
                     <div className="p-8 relative z-10 transition-transform duration-500 group-hover:translate-x-1">
@@ -110,8 +73,8 @@ export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isL
                     initial={isLowPowerMode ? {} : { opacity: 0, y: 20 }}
                     whileInView={isLowPowerMode ? {} : { opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="border border-black/10 dark:border-white/10 bg-neutral-100 dark:bg-[#0a0a0a] overflow-hidden relative group flex flex-col min-h-[430px] transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.3)] hover:border-orange-500/50 hover:z-10"
+                    transition={{ duration: 0.5, delay: 0.15 }}
+                    className="border border-black/10 dark:border-white/10 bg-neutral-100 dark:bg-[#0a0a0a] overflow-hidden relative group flex flex-col min-h-[450px] transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.3)] hover:border-orange-500/50 hover:z-10"
                 >
                     <CornerAccents hoverClass="group-hover:border-orange-500 dark:group-hover:border-orange-400" />
                     <div className="p-8 relative z-10 transition-transform duration-500">

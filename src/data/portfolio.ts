@@ -454,15 +454,6 @@ export const portfolioData: PortfolioData = {
     ],
     education: [
         {
-            id: 'edu-high-school',
-            institution: 'Emad El Din Ayoub Secondary School',
-            degree: 'High School Diploma',
-            major: 'General Secondary Education',
-            isOngoing: false,
-            activities: [],
-            achievements: [],
-        },
-        {
             id: 'edu-university',
             institution: 'Port Said University',
             degree: 'Bachelor of Laws (LLB)',
