@@ -222,7 +222,7 @@ export function Footer() {
                                             <Fragment key={social.platform}>
                                                 {social.platform === 'Twitter' && (
                                                     <motion.a
-                                                        href="https://hazemelerefy.vercel.app/"
+                                                        href="https://hazemspace-74jau9zu.manus.space/"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         className="p-1.5 rounded-full hover:bg-foreground/5 transition-all text-muted-foreground hover:text-foreground hover:scale-110 active:scale-95"
