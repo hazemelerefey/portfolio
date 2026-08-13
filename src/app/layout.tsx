@@ -67,8 +67,8 @@ export const metadata: Metadata = {
     },
     icons: {
         icon: [
-            { url: '/Hazem_light.webp', media: '(prefers-color-scheme: light)' },
-            { url: '/Hazem_dark.webp', media: '(prefers-color-scheme: dark)' },
+            { url: '/Hazem_dark.webp', media: '(prefers-color-scheme: light)', type: 'image/webp', sizes: '192x192' },
+            { url: '/Hazem_light.webp', media: '(prefers-color-scheme: dark)', type: 'image/webp', sizes: '192x192' },
         ],
     },
 };
