@@ -483,7 +483,7 @@ export const portfolioData: PortfolioData = {
             issuer: 'Microsoft',
             date: '2026-01-01',
             category: 'certification',
-            image: '/certificate/AI agent fundamentals with Azure AI Foundry.jpg',
+            image: '/certificate/AI agent fundamentals with Azure AI Foundry.webp',
         },
         {
             id: 'cert-2',
@@ -491,7 +491,7 @@ export const portfolioData: PortfolioData = {
             issuer: 'Google',
             date: '2026-01-01',
             category: 'certification',
-            image: '/certificate/Data Analysis with R Programming.jpg',
+            image: '/certificate/Data Analysis with R Programming.webp',
         },
         {
             id: 'cert-3',
@@ -499,7 +499,7 @@ export const portfolioData: PortfolioData = {
             issuer: 'Google',
             date: '2026-01-01',
             category: 'certification',
-            image: '/certificate/Foundations Data Data Everywhere.jpg',
+            image: '/certificate/Foundations Data Data Everywhere.webp',
         },
         {
             id: 'cert-4',
@@ -507,7 +507,7 @@ export const portfolioData: PortfolioData = {
             issuer: 'Google',
             date: '2026-01-01',
             category: 'certification',
-            image: '/certificate/Foundations of Business Intelligence.jpg',
+            image: '/certificate/Foundations of Business Intelligence.webp',
         },
         {
             id: 'cert-5',
@@ -515,7 +515,7 @@ export const portfolioData: PortfolioData = {
             issuer: 'Google',
             date: '2026-01-01',
             category: 'certification',
-            image: '/certificate/Generative AI Prompt Engineering Basics.jpg',
+            image: '/certificate/Generative AI Prompt Engineering Basics.webp',
         },
         {
             id: 'cert-6',
@@ -523,7 +523,7 @@ export const portfolioData: PortfolioData = {
             issuer: 'Google',
             date: '2026-01-01',
             category: 'certification',
-            image: '/certificate/Google Data Analytics.jpg',
+            image: '/certificate/Google Data Analytics.webp',
         },
         {
             id: 'cert-7',
@@ -531,7 +531,7 @@ export const portfolioData: PortfolioData = {
             issuer: 'IBM',
             date: '2026-01-01',
             category: 'certification',
-            image: '/certificate/Introduction to Deep Learning and Neural Networks with Keras.jpg',
+            image: '/certificate/Introduction to Deep Learning and Neural Networks with Keras.webp',
         },
         {
             id: 'cert-8',
@@ -539,7 +539,7 @@ export const portfolioData: PortfolioData = {
             issuer: 'IBM',
             date: '2026-01-01',
             category: 'certification',
-            image: '/certificate/Introduction to Sales and AI Fundamentals.jpg',
+            image: '/certificate/Introduction to Sales and AI Fundamentals.webp',
         },
         {
             id: 'cert-9',
@@ -547,7 +547,7 @@ export const portfolioData: PortfolioData = {
             issuer: 'Meta',
             date: '2026-01-01',
             category: 'certification',
-            image: '/certificate/Introduction to Social Media Marketing.jpg',
+            image: '/certificate/Introduction to Social Media Marketing.webp',
         },
         {
             id: 'cert-10',
@@ -555,7 +555,7 @@ export const portfolioData: PortfolioData = {
             issuer: 'Microsoft',
             date: '2026-01-01',
             category: 'certification',
-            image: '/certificate/Microsoft Certified Power BI Data Analyst Associate.jpg',
+            image: '/certificate/Microsoft Certified Power BI Data Analyst Associate.webp',
         },
     ],
     techStack: [

@@ -14,7 +14,6 @@ interface ImageItem {
     id: string;
     src: string;
     alt: string;
-    isPdf: boolean;
 }
 
 interface Position {
@@ -37,16 +36,16 @@ interface CertificateHeroScrollProps {
 }
 
 const CERTIFICATE_POOL = [
-    "AI agent fundamentals with Azure AI Foundry.jpg",
-    "Data Analysis with R Programming.jpg",
-    "Foundations Data Data Everywhere.jpg",
-    "Foundations of Business Intelligence.jpg",
-    "Generative AI Prompt Engineering Basics.jpg",
-    "Google Data Analytics.jpg",
-    "Introduction to Deep Learning and Neural Networks with Keras.jpg",
-    "Introduction to Sales and AI Fundamentals.jpg",
-    "Introduction to Social Media Marketing.jpg",
-    "Microsoft Certified Power BI Data Analyst Associate.jpg"
+    "AI agent fundamentals with Azure AI Foundry.webp",
+    "Data Analysis with R Programming.webp",
+    "Foundations Data Data Everywhere.webp",
+    "Foundations of Business Intelligence.webp",
+    "Generative AI Prompt Engineering Basics.webp",
+    "Google Data Analytics.webp",
+    "Introduction to Deep Learning and Neural Networks with Keras.webp",
+    "Introduction to Sales and AI Fundamentals.webp",
+    "Introduction to Social Media Marketing.webp",
+    "Microsoft Certified Power BI Data Analyst Associate.webp"
 ];
 
 const CertificateHeroScroll: FC<CertificateHeroScrollProps> = ({ onDownloadClick, isLowPowerMode: isLowPowerModeProp }) => {
@@ -64,7 +63,6 @@ const CertificateHeroScroll: FC<CertificateHeroScrollProps> = ({ onDownloadClick
         id: filename.replace(/\s+/g, '-').toLowerCase(),
         src: `/certificate/${filename}`,
         alt: filename.replace(/\.(pdf|jpg|jpeg|png|webp)$/i, ''),
-        isPdf: /\.pdf$/i.test(filename)
     }), []);
 
     useEffect(() => {
@@ -301,30 +299,17 @@ const CertificateHeroScroll: FC<CertificateHeroScrollProps> = ({ onDownloadClick
                             zIndex: 1 // Base z-index
                         }}
                     >
-                        {cert.isPdf ? (
-                            <div className="relative w-full h-full bg-white">
-                                <iframe
-                                    src={`${cert.src}#toolbar=0&navpanes=0&scrollbar=0&view=Fit`}
-                                    className="w-full h-full object-cover opacity-90 pointer-events-none"
-                                    title={cert.alt}
-                                    loading="lazy"
-                                />
-                                {/* Overlay to ensure no interaction */}
-                                <div className="absolute inset-0 bg-transparent z-10" />
-                            </div>
-                        ) : (
-                            <>
-                                <Image
-                                    src={cert.src}
-                                    alt={cert.alt}
-                                    fill
-                                    priority={index < 2} // Priority loading for first few
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    className="object-cover opacity-90 hover:opacity-100 transition-opacity"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 pointer-events-none" />
-                            </>
-                        )}
+                        <>
+                            <Image
+                                src={cert.src}
+                                alt={cert.alt}
+                                fill
+                                priority={index < 2} // Priority loading for first few
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                className="object-cover opacity-90 hover:opacity-100 transition-opacity"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 pointer-events-none" />
+                        </>
                     </div>
                 ))}
             </div>
