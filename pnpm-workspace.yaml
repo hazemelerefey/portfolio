@@ -1,5 +1,5 @@
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - '@swc/core'
-  - '@tsparticles/engine'
-  - 'unrs-resolver'
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
+  '@tsparticles/engine': true
+  'unrs-resolver': true
