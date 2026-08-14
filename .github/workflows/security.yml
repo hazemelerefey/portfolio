@@ -1,0 +1,122 @@
+name: Security safeguards
+
+
+
+on:
+
+  push:
+  
+  pull_request:
+  
+  workflow_dispatch:
+  
+
+
+permissions:
+
+  contents: read
+  
+
+
+jobs:
+
+  security:
+  
+    name: Dependency and credential checks
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+      - name: Check out source
+      
+        uses: actions/checkout@v4
+        
+
+
+      - name: Set up Node.js
+      
+        uses: actions/setup-node@v4
+        
+        with:
+        
+          node-version: 22
+          
+          cache: pnpm
+          
+
+
+      - name: Enable Corepack
+      
+        run: corepack enable
+        
+
+
+      - name: Install locked dependencies
+      
+        run: pnpm install --frozen-lockfile
+        
+
+
+      - name: Run security regression tests
+      
+        run: pnpm test
+        
+
+
+      - name: Audit production dependencies
+      
+        run: pnpm audit --prod --audit-level high
+        
+
+
+      - name: Block current-tree credential signatures
+      
+        shell: bash
+        
+        run: |
+        
+          set -euo pipefail
+          
+          SECRET_PATTERN='g(ithub_pat_|hp_)|gsk[_]|sk[-][A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN (RSA|EC|OPENSSH|PRIVATE) KEY-----'
+          
+          if git grep -nEI "$SECRET_PATTERN" -- ':!pnpm-lock.yaml' ':!run.txt'; then
+          
+            echo 'Potential credential signature detected.'
+            
+            exit 1
+            
+          fi
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
