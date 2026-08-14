@@ -11,12 +11,10 @@ describe("GitHub ecosystem identity", () => {
   it("uses Hazem’s account and verified featured repositories only", () => {
     expect(GITHUB_ACCOUNT).toBe("hazemelerefey");
     expect(FEATURED_GITHUB_REPOSITORIES.map((repository) => repository.name)).toEqual([
-      "AutoAnalyst-AI",
       "DigiSteel-YOLO",
       "NeuroScope",
       "n8n-projects",
       "jobpulse",
-      "DigiSteel-World",
     ]);
   });
 
@@ -32,6 +30,8 @@ describe("GitHub ecosystem identity", () => {
       "POLABDC",
       "Digilibzx",
       "Swarm-Agent-Orchestrator",
+      "AutoAnalyst-AI",
+      "DigiSteel-World",
     ]) {
       expect(source).not.toContain(unrelatedRepository);
     }

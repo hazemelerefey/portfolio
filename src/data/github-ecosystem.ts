@@ -2,10 +2,6 @@ export const GITHUB_ACCOUNT = "hazemelerefey";
 
 export const FEATURED_GITHUB_REPOSITORIES = [
   {
-    name: "AutoAnalyst-AI",
-    fallbackDescription: "Hazem’s Python project for automated analysis experiments.",
-  },
-  {
     name: "DigiSteel-YOLO",
     fallbackDescription:
       "Robustness study of lightweight YOLO detectors for steel surface defect detection.",
@@ -25,9 +21,4 @@ export const FEATURED_GITHUB_REPOSITORIES = [
     fallbackDescription:
       "Market intelligence dashboard for role demand, skill velocity, compensation signals, and remote-work leverage.",
   },
-  {
-    name: "DigiSteel-World",
-    fallbackDescription: "Hazem’s DigiSteel World TypeScript project.",
-  },
 ] as const;
-
