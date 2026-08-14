@@ -4,7 +4,7 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 export async function GET() {
   if (!GITHUB_TOKEN) {
-    return NextResponse.json({ error: 'GitHub Token not found' }, { status: 500 });
+    return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
   }
 
   const query = `
@@ -55,7 +55,7 @@ export async function GET() {
 
     if (json.errors) {
       console.error('GitHub API Errors:', json.errors);
-      return NextResponse.json({ error: json.errors[0].message }, { status: 500 });
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 502 });
     }
 
     const data = json.data.viewer;

@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { portfolioData } from '@/data/portfolio';
+import { applyRateLimit, hasJsonContentType, requestIsTooLarge } from '@/lib/server-security';
+
+const MAX_CHAT_REQUEST_BYTES = 48_000;
+const MAX_CHAT_MESSAGES = 12;
+const MAX_MESSAGE_LENGTH = 2_000;
 
 // ─── Build system prompt from portfolio data ─────────────────────────────────
 function buildSystemPrompt(locale: string = 'en'): string {
@@ -184,9 +189,25 @@ async function callGemini(messages: Message[], systemPrompt: string): Promise<st
 // ─── POST handler ─────────────────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
     try {
+        if (!hasJsonContentType(req)) {
+            return NextResponse.json({ error: 'Unsupported content type' }, { status: 415 });
+        }
+
+        if (requestIsTooLarge(req, MAX_CHAT_REQUEST_BYTES)) {
+            return NextResponse.json({ error: 'Request is too large' }, { status: 413 });
+        }
+
+        const rateLimit = applyRateLimit(req, 'chat');
+        if (!rateLimit.allowed) {
+            return NextResponse.json(
+                { error: 'Too many requests. Please try again later.' },
+                { status: 429, headers: { 'Retry-After': String(rateLimit.retryAfterSeconds) } }
+            );
+        }
+
         const body: ChatRequest = await req.json();
 
-        if (!body?.messages || !Array.isArray(body.messages) || body.messages.length === 0) {
+        if (!body?.messages || !Array.isArray(body.messages) || body.messages.length === 0 || body.messages.length > MAX_CHAT_MESSAGES) {
             return NextResponse.json(
                 { error: 'Invalid request: messages array is required.' },
                 { status: 400 }
@@ -195,7 +216,7 @@ export async function POST(req: NextRequest) {
 
         // Validate each message
         for (const msg of body.messages) {
-            if (!msg.role || !msg.content || typeof msg.content !== 'string') {
+            if (!msg.role || !msg.content || typeof msg.content !== 'string' || msg.content.length > MAX_MESSAGE_LENGTH) {
                 return NextResponse.json(
                     { error: 'Invalid message format.' },
                     { status: 400 }
@@ -209,8 +230,7 @@ export async function POST(req: NextRequest) {
             }
         }
 
-        // Limit to last 20 messages to avoid token overflow
-        const messages = body.messages.slice(-20);
+        const messages = body.messages.slice(-MAX_CHAT_MESSAGES);
 
         // Return verified data directly for known stale-identity topics rather than allowing a model to speculate.
         if (hasIndonesiaIdentityQuery(messages)) {
@@ -236,10 +256,6 @@ export async function POST(req: NextRequest) {
                 return NextResponse.json(
                     {
                         error: 'Both AI providers are currently unavailable. Please try again later.',
-                        details: {
-                            groq: groqError instanceof Error ? groqError.message : String(groqError),
-                            gemini: geminiError instanceof Error ? geminiError.message : String(geminiError),
-                        },
                     },
                     { status: 503 }
                 );
@@ -254,14 +270,4 @@ export async function POST(req: NextRequest) {
             { status: 500 }
         );
     }
-}
-
-// ─── GET health check ─────────────────────────────────────────────────────────
-export async function GET() {
-    const hasGroq = !!process.env.GROQ_API_KEY;
-    const hasGemini = !!process.env.GEMINI_API_KEY;
-    return NextResponse.json({
-        status: 'ok',
-        providers: { groq: hasGroq, gemini: hasGemini },
-    });
 }

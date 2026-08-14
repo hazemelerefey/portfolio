@@ -4,16 +4,19 @@ export async function GET() {
     const apiKey = process.env.WAKATIME_API_KEY;
 
     if (!apiKey) {
-        return NextResponse.json({ error: 'API key not configured' }, { status: 500 });
+        return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
     }
 
     try {
-        const response = await fetch(`https://wakatime.com/api/v1/users/current/stats/last_7_days?api_key=${apiKey}`, {
-            next: { revalidate: 3600 }
+        const response = await fetch('https://wakatime.com/api/v1/users/current/stats/last_7_days', {
+            headers: {
+                Authorization: `Basic ${Buffer.from(apiKey + ':').toString('base64')}`,
+            },
+            next: { revalidate: 3600 },
         });
 
         if (!response.ok) {
-            return NextResponse.json({ error: 'Failed to fetch from WakaTime' }, { status: response.status });
+            return NextResponse.json({ error: 'Service unavailable' }, { status: 502 });
         }
 
         const data = await response.json();

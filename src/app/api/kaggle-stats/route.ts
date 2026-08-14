@@ -5,7 +5,7 @@ export async function GET() {
   const apiToken = process.env.KAGGLE_API_TOKEN;
 
   if (!apiToken) {
-    return NextResponse.json({ error: "Kaggle API token not found" }, { status: 500 });
+    return NextResponse.json({ error: "Service unavailable" }, { status: 503 });
   }
 
   try {
