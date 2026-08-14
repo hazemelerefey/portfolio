@@ -24,59 +24,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
 import { useIsInStack } from './showcase-stack';
 import { useLenis } from 'lenis/react';
-
-const GITHUB_USER = "hazemelerefey";
-
-const PINNED_REPOS = [
-  {
-    name: "portfolio",
-    desc: "Personal portfolio built with Next.js 15, TypeScript, and Tailwind CSS. Features smooth animations, real-time GitHub stats, multilingual support (EN/AR), and an AI-powered chatbot.",
-    stars: 67,
-    forks: 12,
-    lang: "TypeScript",
-    url: "https://github.com/hazemelerefey/portfolio"
-  },
-  {
-    name: "Browser-Automation-Agent",
-    desc: "A robust CLI powering autonomous web agents. Seamlessly integrate Playwright, browser-use, and LangChain to automate your daily web workflows.",
-    stars: 10,
-    forks: 2,
-    lang: "Python",
-    url: "https://github.com/hazemelerefey/Browser-Automation-Agent"
-  },
-  {
-    name: "Security-Automation-GenAI",
-    desc: "Deep Learning and Generative AI (Transformers & Attention Mechanisms) for automated cybersecurity threat detection, covering SQL Injection, DDoS, Network Intrusion, and Malware analysis.",
-    stars: 9,
-    forks: 2,
-    lang: "Jupyter Notebook",
-    url: "https://github.com/hazemelerefey/Security-Automation-GenAI"
-  },
-  {
-    name: "POLABDC",
-    desc: "POLABDC (Pondok Labu Dental Care) Dental Clinic Management System (SaaS) powered by AI. Built with Typescript Next.js, Express, Prisma, Supabase, and Google Gemini AI for assistance.",
-    stars: 8,
-    forks: 15,
-    lang: "TypeScript",
-    url: "https://github.com/hazemelerefey/POLABDC"
-  },
-  {
-    name: "Digilibzx",
-    desc: "Modern Full-Stack Digital Library System built with Java Spring Boot and TypeScript Next.js . Features AI-powered book summarization (Gemini), smart borrowing cart, and Dockerized deployment.",
-    stars: 12,
-    forks: 2,
-    lang: "TypeScript",
-    url: "https://github.com/hazemelerefey/Digilibzx"
-  },
-  {
-    name: "Swarm-Agent-Orchestrator",
-    desc: "Autonomous multi-agent content orchestration system for high-performance blog drafting and research. Powered by OpenAI Swarm architecture.",
-    stars: 10,
-    forks: 5,
-    lang: "Vue",
-    url: "https://github.com/hazemelerefey/Swarm-Agent-Orchestrator"
-  }
-];
+import { FEATURED_GITHUB_REPOSITORIES, GITHUB_ACCOUNT } from '@/data/github-ecosystem';
 
 const Counter = ({ value, duration = 1.5, trigger = true }: { value: number, duration?: number, trigger?: boolean }) => {
   const [count, setCount] = useState(0);
@@ -119,6 +67,15 @@ interface GitHubActivity {
   count?: number;
 }
 
+interface GitHubRepository {
+  name: string;
+  desc: string;
+  stars: number;
+  forks: number;
+  lang: string;
+  url: string;
+}
+
 export const GitHubShowcase = () => {
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -143,12 +100,12 @@ export const GitHubShowcase = () => {
     };
   }, [isExpanded, lenis]);
 
-  const [pinnedIndex, setPinnedIndex] = useState(0);
   const [data, setData] = useState<{
     user: any;
     activity: GitHubActivity[];
     stats: GitHubStats;
     topLanguages: LanguageStat[];
+    featuredRepos: GitHubRepository[];
   }>({
     user: null,
     activity: [],
@@ -158,28 +115,39 @@ export const GitHubShowcase = () => {
       totalRepos: 0,
       stars: 0
     },
-    topLanguages: []
+    topLanguages: [],
+    featuredRepos: []
   });
-
-  useEffect(() => {
-    if (isExpanded) {
-      const interval = setInterval(() => {
-        setPinnedIndex((prev) => (prev + 1) % PINNED_REPOS.length);
-      }, 3000);
-      return () => clearInterval(interval);
-    }
-  }, [isExpanded]);
 
   useEffect(() => {
     setMounted(true);
     const fetchData = async () => {
       try {
-        const userRes = await fetch(`https://api.github.com/users/${GITHUB_USER}`);
+        const userRes = await fetch(`https://api.github.com/users/${GITHUB_ACCOUNT}`);
         const userData = await userRes.json();
-        const reposRes = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`);
+        const reposRes = await fetch(`https://api.github.com/users/${GITHUB_ACCOUNT}/repos?per_page=100&sort=updated`);
         const reposData = await reposRes.json();
-        const eventsRes = await fetch(`https://api.github.com/users/${GITHUB_USER}/events?per_page=15`);
+        const eventsRes = await fetch(`https://api.github.com/users/${GITHUB_ACCOUNT}/events?per_page=15`);
         const eventsData = await eventsRes.json();
+
+        const featuredResponses = await Promise.all(
+          FEATURED_GITHUB_REPOSITORIES.map(async (featured) => {
+            const response = await fetch(
+              `https://api.github.com/repos/${GITHUB_ACCOUNT}/${featured.name}`,
+            );
+            if (!response.ok) return null;
+
+            const repository = await response.json();
+            return {
+              name: repository.name,
+              desc: repository.description || featured.fallbackDescription,
+              stars: repository.stargazers_count || 0,
+              forks: repository.forks_count || 0,
+              lang: repository.language || "Not specified",
+              url: repository.html_url,
+            } satisfies GitHubRepository;
+          }),
+        );
 
         let totalStars = 0;
         const languagesMap: Record<string, number> = {};
@@ -203,7 +171,10 @@ export const GitHubShowcase = () => {
 
         const validEvents = Array.isArray(eventsData) ? eventsData : [];
         const parsedActivity = validEvents
-          .filter((e: any) => e.type === "PushEvent" || e.type === "PullRequestEvent" || e.type === "CreateEvent")
+          .filter((e: any) =>
+            (e.type === "PushEvent" || e.type === "PullRequestEvent" || e.type === "CreateEvent") &&
+            e.repo?.name?.startsWith(`${GITHUB_ACCOUNT}/`),
+          )
           .slice(0, 15)
           .map((e: any) => {
             let type: "Commit" | "Repo" | "PR" | "Other" = "Other";
@@ -245,9 +216,6 @@ export const GitHubShowcase = () => {
                   add: e.payload.pull_request.additions || 0,
                   del: e.payload.pull_request.deletions || 0
                 };
-                if (stats.add === 0 && stats.del === 0) {
-                  stats = { add: Math.floor(Math.random() * 500) + 100, del: Math.floor(Math.random() * 200) + 50 };
-                }
               }
             } else if (e.type === "CreateEvent") {
               type = e.payload.ref_type === "repository" ? "Repo" : "Other";
@@ -267,12 +235,15 @@ export const GitHubShowcase = () => {
           user: userData,
           activity: parsedActivity as GitHubActivity[],
           stats: {
-            followers: userData.followers || 33,
-            totalCommits: 1469,
-            totalRepos: userData.public_repos || 49,
+            followers: userData.followers || 0,
+            totalCommits: 0,
+            totalRepos: validRepos.length,
             stars: totalStars
           },
-          topLanguages: sortedLangs
+          topLanguages: sortedLangs,
+          featuredRepos: featuredResponses.filter(
+            (repository): repository is GitHubRepository => repository !== null,
+          ),
         });
         setLoading(false);
       } catch (error) {
@@ -297,8 +268,6 @@ export const GitHubShowcase = () => {
     light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
     dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
   };
-
-  const currentRepo = PINNED_REPOS[pinnedIndex];
 
   // REVERT TO STABLE SPRING TRANSITION (v29)
   const springTransition = { type: "spring", damping: 25, stiffness: 120 };
@@ -375,9 +344,9 @@ export const GitHubShowcase = () => {
             <motion.div layout className='flex flex-row gap-8 items-center'>
               <div className="flex flex-col">
                 <span className="text-3xl font-black text-[#39d353] tabular-nums tracking-tighter">
-                  <Counter value={1469} trigger={!loading} />
+                  <Counter value={data.stats.stars} trigger={!loading} />
                 </span>
-                <span className="text-[10px] font-black uppercase opacity-40 tracking-widest">Total Contributions</span>
+                <span className="text-[10px] font-black uppercase opacity-40 tracking-widest">Stars Earned</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-3xl font-black text-[#39d353] tabular-nums tracking-tighter">
@@ -462,7 +431,7 @@ export const GitHubShowcase = () => {
                         </motion.h3>
                       </div>
                       <div className="w-full overflow-x-auto py-4 scrollbar-hide relative github-calendar-wrapper">
-                        <GithubCalendar username={GITHUB_USER} cellSize={15} cellGap={4} />
+                        <GithubCalendar username={GITHUB_ACCOUNT} cellSize={15} cellGap={4} />
                       </div>
 
                     </div>
@@ -526,11 +495,11 @@ export const GitHubShowcase = () => {
                           whileTap={{ scale: 0.9 }}
                           className="bg-white text-black px-10 py-3 rounded-full text-xl font-black -rotate-1 shadow-xl hover:shadow-white/50 hover:shadow-2xl transition-all cursor-pointer"
                         >
-                          Pinned Repositories
+                          Featured Repositories
                         </motion.h3>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {PINNED_REPOS.map((repo, idx) => (
+                        {data.featuredRepos.map((repo, idx) => (
                           <Link key={idx} href={repo.url} target="_blank" className="p-5 rounded-2xl bg-white dark:bg-black border border-black/5 dark:border-white/5 flex flex-col gap-3 group/repo hover:border-[#39d353]/50 transition-all">
                             <div className="flex items-center gap-2">
                               <BookOpen size={14} className="text-[#39d353]" />
@@ -606,4 +575,3 @@ export const GitHubShowcase = () => {
     </section>
   );
 };
-
