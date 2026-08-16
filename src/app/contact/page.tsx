@@ -7,31 +7,10 @@ import { Send, CheckCircle, AlertCircle, Loader2, Disc, Music, ArrowUpRight, Spa
 import { cn } from '@/lib/utils';
 import { portfolioData } from '@/data/portfolio';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
-
-import { ViewportMount } from '@/components/ui/ViewportMount';
-
-function LanyardPoster() {
-    return (
-        <div className="w-full h-full flex items-center justify-center p-8" aria-label="Loading interactive identity card">
-            <div className="relative w-56 sm:w-64 md:w-72 aspect-[0.89] rounded-[1.65rem] overflow-hidden border border-white/15 bg-black/40 shadow-[0_25px_90px_rgba(0,0,0,0.32)]">
-                <Image
-                    src="/lanyard/desain-kartu.webp"
-                    alt="Hazem Khaled Ezzat identity card"
-                    fill
-                    sizes="(max-width: 768px) 224px, 288px"
-                    priority
-                    className="object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/45 to-transparent pointer-events-none" />
-            </div>
-        </div>
-    );
-}
 
 const Lanyard = dynamic<{ position?: [number, number, number], gravity?: [number, number, number], isLowPowerMode?: boolean }>(() => import('@/components/three/Lanyard').then(mod => mod.Lanyard), {
     ssr: false,
-    loading: () => <LanyardPoster />
+    loading: () => <div className="w-full h-full flex items-center justify-center bg-transparent"><Loader2 className="w-10 h-10 animate-spin text-primary" /></div>
 });
 
 const DynamicScrollVelocity = dynamic(() => import('@/components/ui/ScrollVelocity'), { ssr: false });
@@ -410,25 +389,23 @@ export default function ContactPage() {
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 md:w-64 lg:w-96 h-2 bg-gradient-to-r from-transparent via-foreground/20 to-transparent blur-[2px] rounded-full z-30 mt-[-1px]" />
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 md:w-32 lg:w-48 h-[3px] bg-gradient-to-r from-transparent via-foreground/40 to-transparent rounded-full z-30" />
 
-                            <ViewportMount minHeight="100%" rootMargin="500px">
-                                <DeferredMount fallback={<LanyardPoster />}>
-                                    <div className="w-full h-full pointer-events-auto overflow-visible">
-                                        {!isLowPowerMode ? (
-                                            <ErrorBoundary fallback={<LanyardPoster />}>
-                                                <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} isLowPowerMode={isLowPowerMode} />
-                                            </ErrorBoundary>
-                                        ) : (
-                                            <div className="w-full h-full flex items-center justify-center p-8">
-                                                <div className="relative w-full max-w-sm aspect-[3/4] rounded-3xl overflow-hidden border border-white/10 bg-primary/5">
-                                                    <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/20 italic font-serif">
-                                                        Archive ID // Static
-                                                    </div>
+                            <DeferredMount fallback={<div className="w-full h-full flex items-center justify-center opacity-50"><Loader2 className="w-8 h-8 animate-spin" /></div>}>
+                                <div className="w-full h-full pointer-events-auto overflow-visible">
+                                    {!isLowPowerMode ? (
+                                        <ErrorBoundary fallback={<div className="w-full h-full flex items-center justify-center opacity-50">Interactive Card Unavailable</div>}>
+                                            <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} isLowPowerMode={isLowPowerMode} />
+                                        </ErrorBoundary>
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center p-8">
+                                            <div className="relative w-full max-w-sm aspect-[3/4] rounded-3xl overflow-hidden border border-white/10 bg-primary/5">
+                                                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/20 italic font-serif">
+                                                    Archive ID // Static
                                                 </div>
                                             </div>
-                                        )}
-                                    </div>
-                                </DeferredMount>
-                            </ViewportMount>
+                                        </div>
+                                    )}
+                                </div>
+                            </DeferredMount>
                         </div>
 
                         {/* RIGHT COLUMN: Content Stack */}

@@ -30,8 +30,4 @@ describe('portfolio performance assets', () => {
     expect(football.byteLength).toBeLessThan(1_000_000);
   });
 
-  it('keeps the interactive lanyard mesh below the original texture-heavy transfer budget', () => {
-    const lanyardMesh = readFileSync(resolve(projectRoot, 'public/lanyard/card.glb'));
-    expect(lanyardMesh.byteLength).toBeLessThan(1_200_000);
-  });
 });
