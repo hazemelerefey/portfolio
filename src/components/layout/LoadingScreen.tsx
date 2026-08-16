@@ -11,17 +11,18 @@ interface LoadingScreenProps {
 }
 
 export function LoadingScreen({ onComplete, onExitStart, duration }: LoadingScreenProps) {
-    const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-    const handleAnimationComplete = () => {
-        // Small pause at the end for impact before exiting
-        setTimeout(() => {
-            setIsLoading(false);
-            onExitStart?.();
-            setTimeout(() => {
-                onComplete?.();
-            }, 1200); // Increased slightly for smoother overlap
-        }, 300);
+  const handleAnimationComplete = () => {
+    // Preserve the introduction's visual signature without extending the
+    // period during which the useful portfolio content is hidden.
+    setTimeout(() => {
+      setIsLoading(false);
+      onExitStart?.();
+      setTimeout(() => {
+        onComplete?.();
+      }, 300);
+    }, 80);
     };
 
     return (
@@ -32,7 +33,7 @@ export function LoadingScreen({ onComplete, onExitStart, duration }: LoadingScre
                     exit={{
                         y: "-100%",
                         transition: {
-                            duration: 1.2,
+                            duration: 0.7,
                             ease: [0.7, 0, 0.3, 1]
                         }
                     }}
@@ -48,7 +49,7 @@ export function LoadingScreen({ onComplete, onExitStart, duration }: LoadingScre
                         }}
                         className="relative flex flex-col items-center justify-center w-full max-w-[400px] will-change-transform"
                     >
-                        <AppleHelloEnglishEffect speed={1.2} onAnimationComplete={handleAnimationComplete} className="text-foreground h-16 sm:h-20 md:h-24 will-change-transform" />
+                        <AppleHelloEnglishEffect speed={0.45} onAnimationComplete={handleAnimationComplete} className="text-foreground h-16 sm:h-20 md:h-24 will-change-transform" />
                     </motion.div>
 
                     {/* Subtle aesthetic dot */}

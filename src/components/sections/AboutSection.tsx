@@ -25,11 +25,25 @@ import ScrollAdventure from "@/components/ui/animated-scroll";
 import Bucket from "@/components/ui/bucket";
 import { ArgentLoopInfiniteSlider } from "@/components/ui/argent-loop-infinite-slider";
 import { HorizontalTimeline } from "@/components/ui/horizontal-timeline";
-import { CertificateShowcase } from "@/components/ui/certificate-marquee";
-import { GitHubShowcase } from "@/components/ui/github-showcase";
-import KaggleShowcase from "@/components/ui/kaggle-showcase";
-import { WakaTimeShowcase } from "@/components/ui/wakatime-showcase";
 import { ShowcaseStack } from "@/components/ui/showcase-stack";
+import { ViewportMount } from "@/components/ui/ViewportMount";
+
+const CertificateShowcase = dynamic(
+    () => import("@/components/ui/certificate-marquee").then((module) => module.CertificateShowcase),
+    { ssr: false, loading: () => <div className="min-h-[42rem]" aria-hidden="true" /> },
+);
+const GitHubShowcase = dynamic(
+    () => import("@/components/ui/github-showcase").then((module) => module.GitHubShowcase),
+    { ssr: false },
+);
+const KaggleShowcase = dynamic(
+    () => import("@/components/ui/kaggle-showcase"),
+    { ssr: false },
+);
+const WakaTimeShowcase = dynamic(
+    () => import("@/components/ui/wakatime-showcase").then((module) => module.WakaTimeShowcase),
+    { ssr: false },
+);
 
 const showcaseMembers = [
     // 1. Al-Nasr Club - Football
@@ -652,11 +666,22 @@ export default function AboutSection() {
                                             )}
 
                                             <div className="w-full mt-4 rounded-xl border border-neutral-200 dark:border-neutral-800 overflow-hidden relative group/card h-32">
-                                                <img
-                                                    src={member.image}
-                                                    alt={member.name}
-                                                    className="w-full h-full object-cover opacity-90 group-hover/card:opacity-100 transition-opacity duration-500 group-hover/card:scale-105"
-                                                />
+                                                {member.image.startsWith('/') ? (
+                                                    <Image
+                                                        src={member.image}
+                                                        alt={member.name}
+                                                        fill
+                                                        sizes="(max-width: 768px) 90vw, 400px"
+                                                        className="object-cover opacity-90 group-hover/card:opacity-100 transition-opacity duration-500 group-hover/card:scale-105"
+                                                    />
+                                                ) : (
+                                                    <img
+                                                        src={member.image}
+                                                        alt={member.name}
+                                                        loading="lazy"
+                                                        className="w-full h-full object-cover opacity-90 group-hover/card:opacity-100 transition-opacity duration-500 group-hover/card:scale-105"
+                                                    />
+                                                )}
                                                 {member.social?.website && (
                                                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
                                                         <Link href={member.social.website} target="_blank" className="px-5 py-2.5 bg-white text-black text-xs font-bold rounded-full hover:scale-105 transition-transform">
@@ -673,19 +698,27 @@ export default function AboutSection() {
 
                         {/* Certificate Showcase Section */}
                         <div className="w-full mt-8 md:mt-12">
-                            <CertificateShowcase />
+                            <ViewportMount minHeight="42rem">
+                                <CertificateShowcase />
+                            </ViewportMount>
                         </div>
 
                         {/* Stacking Card Showcases */}
                         <ShowcaseStack>
                             <div className="w-full">
-                                <GitHubShowcase />
+                                <ViewportMount>
+                                    <GitHubShowcase />
+                                </ViewportMount>
                             </div>
                             <div className="w-full">
-                                <KaggleShowcase />
+                                <ViewportMount>
+                                    <KaggleShowcase />
+                                </ViewportMount>
                             </div>
                             <div className="w-full">
-                                <WakaTimeShowcase />
+                                <ViewportMount>
+                                    <WakaTimeShowcase />
+                                </ViewportMount>
                             </div>
                         </ShowcaseStack>
                     </div>
@@ -695,4 +728,3 @@ export default function AboutSection() {
         </section >
     );
 };
-

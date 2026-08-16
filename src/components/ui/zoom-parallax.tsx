@@ -2,6 +2,7 @@
 
 import { useScroll, useTransform, motion, MotionValue } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 interface Image {
 	src: string;
@@ -51,10 +52,12 @@ export function ZoomParallax({ images, children }: ZoomParallaxProps) {
 							<div className="relative h-[25vh] w-[25vw] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-muted/20 flex items-center justify-center pointer-events-auto">
 								{index === 0 && children ? (
 									<div className="relative h-full w-full flex flex-col items-center justify-center overflow-hidden group">
-										<img
+										<Image
 											src={src || '/placeholder.svg'}
 											alt={alt || `Parallax image ${index + 1}`}
-											className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+											fill
+											sizes="(max-width: 768px) 100vw, 50vw"
+											className="object-cover transition-transform duration-700 group-hover:scale-105"
 										/>
 										<div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-500 pointer-events-none" />
 										
@@ -63,10 +66,12 @@ export function ZoomParallax({ images, children }: ZoomParallaxProps) {
 										</div>
 									</div>
 								) : (
-									<img
+									<Image
 										src={src || '/placeholder.svg'}
 										alt={alt || `Parallax image ${index + 1}`}
-										className="h-full w-full object-cover"
+										fill
+										sizes="(max-width: 768px) 100vw, 50vw"
+										className="object-cover"
 									/>
 								)}
 							</div>

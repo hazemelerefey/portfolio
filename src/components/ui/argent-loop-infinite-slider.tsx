@@ -2,6 +2,7 @@ import * as React from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, ChevronDown, Github, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import MagneticEffect from "@/components/ui/MagneticEffect";
 
@@ -287,7 +288,16 @@ export function ArgentLoopInfiniteSlider() {
           <motion.div className="project-list" style={{ y: currentY }}>
             {PROJECT_DATA.map((data, i) => (
               <div key={i} className="project" style={{ top: `${i * 100}vh` }}>
-                <motion.img src={data.image} alt={data.title} style={{ y: imageY }} />
+                <motion.div style={{ y: imageY }} className="absolute inset-0">
+                  <Image
+                    src={data.image}
+                    alt={data.title}
+                    fill
+                    priority={i === 0}
+                    sizes="100vw"
+                    className="object-cover"
+                  />
+                </motion.div>
               </div>
             ))}
           </motion.div>
@@ -304,7 +314,13 @@ export function ArgentLoopInfiniteSlider() {
                   <motion.div style={{ y: contentInternalY }} className="w-full h-full relative">
                     {PROJECT_DATA.map((data, i) => (
                       <div key={i} className="minimap-img-item" style={{ top: `${i * 250}px` }}>
-                        <img src={data.image} alt={data.title} className="block w-full h-full object-cover" />
+                        <Image
+                          src={data.image}
+                          alt={data.title}
+                          fill
+                          sizes="(max-width: 768px) 36vw, 160px"
+                          className="object-cover"
+                        />
                       </div>
                     ))}
                   </motion.div>

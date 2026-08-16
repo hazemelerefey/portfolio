@@ -119,7 +119,7 @@ export default function HomePage() {
 
     return (
         <>
-            {isLoading && <LoadingScreen onComplete={handleLoadingComplete} onExitStart={handleExitStart} duration={2500} />}
+            {isLoading && <LoadingScreen onComplete={handleLoadingComplete} onExitStart={handleExitStart} />}
             <motion.main
                 initial={skipAnimation ? false : { opacity: 0, y: 40 }}
                 animate={skipAnimation ? { opacity: 1, y: 0 } : (isReadyToAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 })}
@@ -132,12 +132,14 @@ export default function HomePage() {
             >
                 <HeroVisual isExiting={isReadyToAnimate} />
 
-                <DeferredMount>
-                    <ExpertiseSection />
-                    <AboutSection />
-                    <MetricCTAHijack />
-                    <SocialCorner className="fixed bottom-12 right-12 z-[30]" />
-                </DeferredMount>
+                {!isLoading && (
+                    <DeferredMount>
+                        <ExpertiseSection />
+                        <AboutSection />
+                        <MetricCTAHijack />
+                        <SocialCorner className="fixed bottom-12 right-12 z-[30]" />
+                    </DeferredMount>
+                )}
             </motion.main>
         </>
     );
