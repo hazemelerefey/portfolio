@@ -22,11 +22,6 @@ import { portfolioData } from '@/data/portfolio';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
-// Preload assets for faster startup
-useGLTF.preload('/lanyard/card.glb');
-useTexture.preload('/lanyard/lanyard.webp');
-useTexture.preload('/lanyard/desain-kartu.webp');
-
 interface LanyardProps {
     position?: [number, number, number];
     gravity?: [number, number, number];
@@ -97,7 +92,7 @@ export function Lanyard({
         <div className="relative z-0 w-full h-full flex justify-center items-center transform scale-100 origin-center">
             <Canvas
                 camera={{ position, fov }}
-                dpr={[1, isMobile ? 1.5 : 2]}
+                dpr={[1, isMobile ? 1.25 : 1.5]}
                 gl={{ alpha: transparent, antialias: false, powerPreference: 'high-performance' }}
                 onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
             >
@@ -271,7 +266,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, isDark = false }:
             curve.points[1].copy(j2.current.lerped);
             curve.points[2].copy(j1.current.lerped);
             curve.points[3].copy(fixed.current.translation());
-            band.current.geometry.setPoints(curve.getPoints(isMobile ? 16 : 32));
+            band.current.geometry.setPoints(curve.getPoints(isMobile ? 16 : 24));
             ang.copy(card.current.angvel());
             rot.copy(card.current.rotation());
             card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z });
@@ -318,7 +313,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, isDark = false }:
                         <mesh geometry={nodes.card.geometry}>
                             <meshBasicMaterial
                                 map={cardTexture}
-                                map-anisotropy={16}
+                                map-anisotropy={8}
                                 color="#ffffff"
                                 toneMapped={false}
                             />
