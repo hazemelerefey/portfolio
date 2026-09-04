@@ -7,7 +7,7 @@ import { PdfViewer } from '@/components/ui/pdf-viewer';
 
 export default function ResumePage() {
     const { isLowPowerMode } = usePerformance();
-    const fileId = "1p9F8an24Mk8UH_ioOAfhTQ3n7IU42fhF";
+    const fileId = "1_ZJP1LHOCmgcHX7fx1MMMrjUubF1ftuV";
     const resumeUrl = `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
 
     return (
