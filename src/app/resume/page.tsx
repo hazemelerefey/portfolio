@@ -1,14 +1,8 @@
 'use client';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Download, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { usePerformance } from '@/hooks/usePerformance';
-
-const PdfViewer = dynamic(
-    () => import('@/components/ui/pdf-viewer').then((module) => module.PdfViewer),
-    { ssr: false, loading: () => <div className="w-full h-full bg-muted/30 animate-pulse" /> }
-);
 
 export default function ResumePage() {
     const { isLowPowerMode } = usePerformance();
@@ -53,7 +47,11 @@ export default function ResumePage() {
                 className="flex-1 w-full max-w-[1400px] mx-auto px-4 md:px-6 min-h-0 pb-4 relative"
             >
                 <div className="w-full h-full bg-muted/30 rounded-2xl border border-border/50 overflow-hidden relative group">
-                    <PdfViewer url="/resume.pdf" />
+                    <iframe
+                        src="/resume.pdf"
+                        title="Hazem Elerefy resume"
+                        className="w-full h-full border-0"
+                    />
                 </div>
             </motion.div>
         </div>
