@@ -2,8 +2,13 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Download, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { usePerformance } from '@/hooks/usePerformance';
-import { PdfViewer } from '@/components/ui/pdf-viewer';
+
+const PdfViewer = dynamic(
+    () => import('@/components/ui/pdf-viewer').then((module) => module.PdfViewer),
+    { ssr: false, loading: () => <div className="w-full h-full bg-muted/30 animate-pulse" /> }
+);
 
 export default function ResumePage() {
     const { isLowPowerMode } = usePerformance();
