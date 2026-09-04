@@ -58,6 +58,7 @@ function Component({ url }: { url: string }) {
   const [zoom, setZoom] = useState(1);
   const [rotation, setRotation] = useState(0);
   const viewportRef = useRef<HTMLDivElement>(null);
+  const [pageWidth, setPageWidth] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
   const textRenderer = useCallback(
@@ -72,6 +73,15 @@ function Component({ url }: { url: string }) {
 
   useEffect(() => {
     if (!viewportRef.current) return;
+
+    const updatePageWidth = () => {
+      if (!viewportRef.current) return;
+      setPageWidth(Math.max(240, Math.min(600, viewportRef.current.clientWidth - 64)));
+    };
+
+    updatePageWidth();
+    const resizeObserver = new ResizeObserver(updatePageWidth);
+    resizeObserver.observe(viewportRef.current);
 
     const options = {
       root: viewportRef.current,
@@ -113,6 +123,7 @@ function Component({ url }: { url: string }) {
     return () => {
       observer.disconnect();
       mutationObserver.disconnect();
+      resizeObserver.disconnect();
     };
   }, [numPages]);
 
@@ -266,7 +277,7 @@ function Component({ url }: { url: string }) {
                     data-page-number={index + 1}
                     renderAnnotationLayer={false}
                     renderTextLayer={true}
-                    scale={zoom}
+                    width={pageWidth ? pageWidth * zoom : undefined}
                     rotate={rotation}
                     loading={<div className="h-[800px] w-[600px] bg-white animate-pulse rounded-sm" />}
                     customTextRenderer={textRenderer}
