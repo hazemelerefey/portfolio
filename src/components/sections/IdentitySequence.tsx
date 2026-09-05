@@ -71,12 +71,12 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
 
     // 2. Internal Content Scroll
     const contentY = useTransform(localProgress, [0.35, 1], ["0%", "-70%"], { ease: easeInOut });
-    const imageParallaxY = useTransform(localProgress, [0.35, 1], ["-5%", "5%"], { ease: easeInOut });
+    const imageParallaxY = useTransform(localProgress, [0.35, 1], ["-10%", "10%"], { ease: easeInOut });
 
     // 3. Elements specific animations
     const phase0Opacity = useTransform(localProgress, [0, 0.15], [1, 0]);
     const cardContentOpacity = useTransform(localProgress, [0.1, 0.3], [0, 1]);
-    const photoScale = useTransform(localProgress, [0.3, 0.8], [1.08, 1], { ease: easeInOut });
+    const photoScale = useTransform(localProgress, [0.3, 0.8], [1.15, 1], { ease: easeInOut });
     const textOpacity = useTransform(localProgress, [0.85, 1], [0, 1]);
 
     useMotionValueEvent(localProgress, "change", (latest) => {
@@ -213,18 +213,20 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                     </div>
 
                     {/* Phase 2: The Large Portrait (The "Explore" area) */}
-                    <div className="relative w-full h-[100vh] flex flex-col items-center flex-shrink-0 px-2 sm:px-6 md:px-10 lg:px-20">
-                        {/* Sizing wrapper - not clipped, vault frame sits on top */}
+                    <div className="relative w-full h-[100vh] flex flex-col items-center flex-shrink-0 px-4 md:px-10 lg:px-20">
+                        {/* Sizing wrapper - not clipped */}
                         <div
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
                             onClick={() => setIsHovered(prev => !prev)}
-                            className="relative w-full h-full max-w-[1500px] rounded-2xl md:rounded-3xl overflow-hidden group/photo cursor-pointer"
+                            className="relative w-full h-full max-w-[1500px] group/photo cursor-pointer"
                         >
-                            {/* Image area - clipped by overflow-hidden */}
+                            {/* Image area - THIS is what clips. Vault frame is OUTSIDE this. */}
                             <div className="absolute inset-0 overflow-hidden">
                                 <motion.div
-                                    style={{ scale: photoScale }}
+                                    style={{
+                                        scale: photoScale,
+                                    }}
                                     animate={{
                                         filter: (isHovered || isMobileDevice) ? "grayscale(0%) contrast(1)" : "grayscale(100%) contrast(1.1)",
                                     }}
@@ -232,10 +234,10 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                                     className="relative w-full h-full"
                                 >
                                     <div className="absolute inset-0">
-                                        {/* Parallax wrapper: slightly oversized to allow subtle movement */}
-                                        <div className="absolute w-full md:w-[calc(100%+60px)] h-[110%] -top-[5%] left-0 md:-left-[30px]">
-                                            <motion.div
-                                                className="relative h-full w-full"
+                                        {/* Parallax wrapper */}
+                                        <div className="absolute w-[calc(100%+100px)] h-[130vh] -top-[15vh] -left-[50px]">
+                                            <motion.div 
+                                                className="relative h-full w-full" 
                                                 style={{ y: imageParallaxY }}
                                             >
                                                 <Image
@@ -252,19 +254,18 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                                 </motion.div>
                             </div>
 
-                            {/* Vault frame - top/bottom covering bars that seamlessly blend into the card background */}
+                            {/* Vault frame - OUTSIDE overflow-hidden, extends 1px beyond clip edge to cover it */}
                             <div className="absolute inset-0 pointer-events-none z-20">
-                                {/* Top bar */}
-                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -top-px left-0 w-full h-4 sm:h-8 md:h-[52px]" />
-                                <motion.div style={{ background: vaultGradientDown }} className="absolute top-[14px] sm:top-[30px] md:top-[50px] left-0 w-full h-10 sm:h-20 md:h-32" />
-
-                                {/* Bottom bar */}
-                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -bottom-px left-0 w-full h-4 sm:h-8 md:h-[52px]" />
-                                <motion.div style={{ background: vaultGradientUp }} className="absolute bottom-[14px] sm:bottom-[30px] md:bottom-[50px] left-0 w-full h-10 sm:h-20 md:h-32" />
+                                {/* Top bar: -top-px + h-[52px] covers the clip edge by 1px */}
+                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -top-px left-0 w-full h-[52px]" />
+                                <motion.div style={{ background: vaultGradientDown }} className="absolute top-[50px] left-0 w-full h-32" />
+                                
+                                {/* Bottom bar: -bottom-px + h-[52px] covers the clip edge by 1px */}
+                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -bottom-px left-0 w-full h-[52px]" />
+                                <motion.div style={{ background: vaultGradientUp }} className="absolute bottom-[50px] left-0 w-full h-32" />
                             </div>
                         </div>
                     </div>
-
 
                     {/* Phase 3: Final Layout Text */}
                     <motion.div
