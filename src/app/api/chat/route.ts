@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { portfolioData } from '@/data/portfolio';
-import { applyRateLimit, hasJsonContentType, requestIsTooLarge } from '@/lib/server-security';
+import { applyRateLimit, hasJsonContentType, requestIsTooLarge, readBoundedJson, RequestBodyError } from '@/lib/server-security';
 
 const MAX_CHAT_REQUEST_BYTES = 48_000;
 const MAX_CHAT_MESSAGES = 12;
@@ -205,7 +205,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        const body: ChatRequest = await req.json();
+        const body = await readBoundedJson(req, MAX_CHAT_REQUEST_BYTES) as ChatRequest | null;
 
         if (!body?.messages || !Array.isArray(body.messages) || body.messages.length === 0 || body.messages.length > MAX_CHAT_MESSAGES) {
             return NextResponse.json(
@@ -216,7 +216,7 @@ export async function POST(req: NextRequest) {
 
         // Validate each message
         for (const msg of body.messages) {
-            if (!msg.role || !msg.content || typeof msg.content !== 'string' || msg.content.length > MAX_MESSAGE_LENGTH) {
+            if (!msg || typeof msg !== 'object' || !msg.role || !msg.content || typeof msg.content !== 'string' || msg.content.length > MAX_MESSAGE_LENGTH) {
                 return NextResponse.json(
                     { error: 'Invalid message format.' },
                     { status: 400 }
@@ -264,6 +264,9 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({ reply, provider });
     } catch (error) {
+        if (error instanceof RequestBodyError) {
+            return NextResponse.json({ error: error.message }, { status: error.status });
+        }
         console.error('[Chat] Unexpected error:', error);
         return NextResponse.json(
             { error: 'Internal server error.' },

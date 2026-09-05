@@ -45,3 +45,6 @@ next-env.d.ts
 
 # OS
 Thumbs.db
+
+# Generated from the installed PDF.js version before dev/build
+public/pdf.worker.*.min.mjs

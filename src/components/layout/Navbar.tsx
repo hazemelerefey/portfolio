@@ -150,16 +150,16 @@ export function Navbar() {
                 transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
                 className="fixed top-0 left-0 right-0 z-[100]"
             >
-                <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24 py-4 md:py-6">
+                <div className="max-w-[1600px] mx-auto px-3 sm:px-6 md:px-12 lg:px-24 py-4 md:py-6">
                     <motion.div
                         className={cn(
                             'flex items-center justify-between transition-all duration-500 rounded-full',
-                            isScrolled ? 'glass-strong px-6 py-3' : 'py-2'
+                            isScrolled ? 'glass-strong px-2 sm:px-6 py-3' : 'py-2'
                         )}
                         layout
                     >
                         {/* Make the Clock a Link to Home */}
-                        <Link href="/" className="relative group min-w-[120px]" onClick={handleHomeClick}>
+                        <Link href="/" className="relative group min-w-0 shrink-0" onClick={handleHomeClick}>
                             <Clock />
                         </Link>
 
@@ -196,17 +196,15 @@ export function Navbar() {
                         </div>
 
                         {/* Controls */}
-                        <div className="flex items-center gap-2 md:gap-3">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
+                        <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+                            <motion.a
+                                href="https://hazemelerefyspace.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                                 className="p-2 md:p-2.5 rounded-full bg-muted/80 hover:bg-muted transition-colors"
                                 aria-label="Focus mode"
                             >
-                                <Link href="https://hazemelerefyspace.vercel.app/" target="_blank" rel="noopener noreferrer">
-                                    <Focus className="w-4 h-4" />
-                                </Link>
-                            </motion.button>
+                                <Focus className="w-4 h-4" />
+                            </motion.a>
 
                             <motion.div className="relative">
                                 <motion.button

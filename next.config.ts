@@ -19,6 +19,7 @@ const contentSecurityPolicyReportOnly = [
 
 const nextConfig: NextConfig = {
     reactStrictMode: true,
+    poweredByHeader: false,
     transpilePackages: ['three'],
     images: {
         remotePatterns: [
@@ -38,6 +39,7 @@ const nextConfig: NextConfig = {
                     { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
                     { key: 'Permissions-Policy', value: 'camera=(), geolocation=(), microphone=(), payment=(), usb=()' },
                     { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+                    { key: 'Content-Security-Policy', value: "base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'" },
                     { key: 'Content-Security-Policy-Report-Only', value: contentSecurityPolicyReportOnly },
                 ],
             },

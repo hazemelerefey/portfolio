@@ -22,6 +22,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { highlightPdfText } from "@/lib/pdf-text";
 import { cn } from "@/lib/utils";
 import {
   MinusCircle,
@@ -37,18 +38,10 @@ import { Document, Page, pdfjs, Thumbnail } from "react-pdf";
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
-// pdfjs worker - use cdnjs which is reliable and matches all versions
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
+// Served by this app; generated from the exact installed PDF.js version.
+pdfjs.GlobalWorkerOptions.workerSrc = `/pdf.worker.${pdfjs.version}.min.mjs`;
 
 const ZOOM_OPTIONS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 4, 8];
-
-function highlightPattern(text: string, pattern: string, itemIndex: number) {
-  if (!pattern) return text;
-  return text.replace(
-    new RegExp(`(${pattern})`, "gi"),
-    (value: string) => `<mark id="search-result-${itemIndex}">${value}</mark>`
-  );
-}
 
 function Component({ url }: { url: string }) {
   const [numPages, setNumPages] = useState<number | null>(null);
@@ -61,7 +54,7 @@ function Component({ url }: { url: string }) {
 
   const textRenderer = useCallback(
     (textItem: { str: string; itemIndex: number }) =>
-      highlightPattern(textItem.str, searchQuery, textItem.itemIndex),
+      highlightPdfText(textItem.str, searchQuery),
     [searchQuery]
   );
 
@@ -75,12 +68,12 @@ function Component({ url }: { url: string }) {
     const updatePageWidth = () => {
       if (!viewportRef.current) return;
       const isMobile = window.innerWidth < 640;
-      const horizontalPadding = isMobile ? 24 : 64;
+      const horizontalPadding = isMobile ? 32 : window.innerWidth < 768 ? 48 : 64;
       const availableWidth = viewportRef.current.clientWidth - horizontalPadding;
       // Standard A4 / desktop PDF size is ~600px.
       // If available container width is smaller than 600px (mobile/tablet), scale down to fit available width.
       // On desktop and laptop, lock to standard 600px base width so it never blows up, cut off, or overflows!
-      setPageWidth(Math.min(600, Math.max(200, availableWidth)));
+      setPageWidth(Math.min(600, Math.max(1, availableWidth)));
     };
 
     updatePageWidth();
@@ -90,7 +83,7 @@ function Component({ url }: { url: string }) {
     const options = {
       root: viewportRef.current,
       rootMargin: "0px",
-      threshold: 0.5,
+      threshold: [0, 0.1, 0.25, 0.5],
     };
 
     const callback: IntersectionObserverCallback = (entries) => {
@@ -132,10 +125,16 @@ function Component({ url }: { url: string }) {
   }, [numPages]);
 
   return (
-    <SidebarProvider>
+    <SidebarProvider className="min-h-0 min-w-0">
       <Document
         file={url}
         onLoadSuccess={onDocumentLoadSuccess}
+        error={
+          <div role="alert" className="m-auto max-w-sm p-6 text-center">
+            <p className="mb-4">The resume preview could not load.</p>
+            <a href={url} target="_blank" rel="noopener noreferrer" className="underline">Open the PDF directly</a>
+          </div>
+        }
         className={"w-full flex flex-row h-full max-h-full overflow-hidden bg-background rounded-2xl border border-border"}
         loading={
           <div className="flex flex-col items-center justify-center w-full h-full p-4">
@@ -175,18 +174,18 @@ function Component({ url }: { url: string }) {
           </SidebarContent>
         </Sidebar>
         <div className="flex flex-col w-full flex-1 min-w-0 min-h-0 bg-muted/10 h-full overflow-hidden">
-            <div className="flex p-3 border-b border-border bg-background/50 backdrop-blur-md justify-between items-center z-10 shrink-0 gap-2">
+            <div className="flex flex-wrap p-3 border-b border-border bg-background/50 backdrop-blur-md justify-between items-center z-10 shrink-0 gap-2">
               <div className="flex flex-row gap-3 items-center shrink-0">
                 <SidebarTrigger className="hover:bg-muted size-8" />
                 <div className="text-sm font-medium text-foreground bg-muted px-3 py-1.5 rounded-md whitespace-nowrap">
                   {numPages ? `Page ${currentPage} of ${numPages}` : "Loading..."}
                 </div>
               </div>
-              <div className="flex flex-row gap-1 sm:gap-2 items-center shrink-0 overflow-x-auto no-scrollbar py-0.5">
+              <div className="flex flex-row flex-wrap gap-1 sm:gap-2 items-center min-w-0 py-0.5">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-8 rounded-full hover:bg-muted shrink-0"
+                  className="size-9 sm:size-8 rounded-full hover:bg-muted shrink-0"
                   onClick={() => setRotation(rotation - 90)}
                   title="Rotate Counter-Clockwise"
                 >
@@ -195,7 +194,7 @@ function Component({ url }: { url: string }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-8 rounded-full hover:bg-muted shrink-0"
+                  className="size-9 sm:size-8 rounded-full hover:bg-muted shrink-0"
                   onClick={() => setRotation(rotation + 90)}
                   title="Rotate Clockwise"
                 >
@@ -205,7 +204,7 @@ function Component({ url }: { url: string }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-8 rounded-full hover:bg-muted shrink-0"
+                  className="size-9 sm:size-8 rounded-full hover:bg-muted shrink-0"
                   disabled={zoom <= ZOOM_OPTIONS[0]}
                   onClick={() => setZoom(prev => Math.max(ZOOM_OPTIONS[0], Number((prev - 0.25).toFixed(2))))}
                   title="Zoom Out"
@@ -234,7 +233,7 @@ function Component({ url }: { url: string }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-8 rounded-full hover:bg-muted shrink-0"
+                  className="size-9 sm:size-8 rounded-full hover:bg-muted shrink-0"
                   disabled={zoom >= ZOOM_OPTIONS[ZOOM_OPTIONS.length - 1]}
                   onClick={() => setZoom(prev => Math.min(ZOOM_OPTIONS[ZOOM_OPTIONS.length - 1], Number((prev + 0.25).toFixed(2))))}
                   title="Zoom In"
@@ -245,7 +244,7 @@ function Component({ url }: { url: string }) {
                 <Separator orientation="vertical" className="h-6" />
                 <Popover>
                   <PopoverTrigger asChild>
-                    <Button variant="ghost" size="icon" className="size-8 rounded-full hover:bg-muted shrink-0" title="Search document">
+                    <Button variant="ghost" size="icon" className="size-9 sm:size-8 rounded-full hover:bg-muted shrink-0" title="Search document">
                       <Search className="size-4" />
                     </Button>
                   </PopoverTrigger>
@@ -253,6 +252,8 @@ function Component({ url }: { url: string }) {
                     <div className="flex gap-2">
                       <Search className="size-4 text-muted-foreground absolute ml-2.5 mt-2.5" />
                       <Input
+                        aria-label="Search document"
+                        maxLength={200}
                         placeholder="Search document..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -263,32 +264,31 @@ function Component({ url }: { url: string }) {
                 </Popover>
 
                 <Separator orientation="vertical" className="h-6" />
-                <a href={url} download title="Download Resume">
-                  <Button variant="ghost" size="icon" className="size-8 rounded-full hover:bg-muted shrink-0">
-                    <Download className="size-4" />
-                  </Button>
-                </a>
+                <Button asChild variant="ghost" size="icon" className="size-9 sm:size-8 rounded-full hover:bg-muted shrink-0">
+                  <a href={url} download title="Download Resume" aria-label="Download Resume"><Download className="size-4" /></a>
+                </Button>
               </div>
             </div>
 
-            <div 
-              className="flex-1 w-full h-full min-h-0 overflow-auto no-scrollbar bg-zinc-100/50 dark:bg-zinc-950/90" 
+            <div
+              className="flex-1 w-full h-full min-h-0 overflow-auto overscroll-contain bg-zinc-100/50 dark:bg-zinc-950/90"
               ref={viewportRef}
               data-lenis-prevent
             >
-              <div className="items-center flex p-4 sm:p-6 md:p-8 flex-col min-h-max w-full">
+              <div className="items-center flex p-4 sm:p-6 md:p-8 flex-col min-h-max min-w-full w-max">
                 {Array.from(new Array(numPages || 0), (el, index) => (
                   <Page
                     key={`page_${index + 1}`}
                     pageNumber={index + 1}
                     className="mb-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 rounded-sm overflow-hidden"
                     data-page-number={index + 1}
-                    renderAnnotationLayer={false}
+                    renderAnnotationLayer={true}
+                    devicePixelRatio={Math.min(2, window.devicePixelRatio || 1)}
                     renderTextLayer={true}
                     width={pageWidth ? pageWidth * zoom : undefined}
                     rotate={rotation}
                     loading={
-                      <div 
+                      <div
                         style={{ width: pageWidth ? `${Math.min(pageWidth * zoom, 600)}px` : '100%' }}
                         className="max-w-[600px] aspect-[1/1.414] bg-white animate-pulse rounded-sm shadow-md"
                       />

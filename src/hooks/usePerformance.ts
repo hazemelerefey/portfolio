@@ -17,22 +17,30 @@ export function usePerformance() {
 
     useEffect(() => {
         setHasMounted(true);
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         const checkPerformance = () => {
             const width = window.innerWidth;
             const isMobile = width < 768;
             const isTablet = width >= 768 && width < 1024;
 
-            setState({
+            const next = {
                 isMobile,
                 isTablet,
                 // On mobile and tablet, we generally want to avoid heavy 3D/Shaders
-                isLowPowerMode: isMobile || isTablet,
-            });
+                isLowPowerMode: isMobile || isTablet || reducedMotion.matches,
+            };
+            setState(previous => previous.isMobile === next.isMobile &&
+                previous.isTablet === next.isTablet && previous.isLowPowerMode === next.isLowPowerMode
+                ? previous : next);
         };
 
         checkPerformance();
         window.addEventListener('resize', checkPerformance);
-        return () => window.removeEventListener('resize', checkPerformance);
+        reducedMotion.addEventListener('change', checkPerformance);
+        return () => {
+            window.removeEventListener('resize', checkPerformance);
+            reducedMotion.removeEventListener('change', checkPerformance);
+        };
     }, []);
 
     // During SSR and until hydration is complete, return true (safe mode)

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import { applyRateLimit, hasJsonContentType, requestIsTooLarge } from '@/lib/server-security';
+import { applyRateLimit, hasJsonContentType, requestIsTooLarge, readBoundedJson, RequestBodyError } from '@/lib/server-security';
 
 const MAX_CONTACT_REQUEST_BYTES = 16_000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,7 +33,11 @@ export async function POST(req: Request) {
             );
         }
 
-        const { name, email, subject, message, website } = await req.json();
+        const body = await readBoundedJson(req, MAX_CONTACT_REQUEST_BYTES);
+        if (!body || typeof body !== 'object' || Array.isArray(body)) {
+            return NextResponse.json({ error: 'Invalid form submission' }, { status: 400 });
+        }
+        const { name, email, subject, message, website } = body as Record<string, unknown>;
 
         // Silent success makes this hidden bot-trap non-actionable to automated submitters.
         if (typeof website === 'string' && website.trim()) {
@@ -56,6 +60,10 @@ export async function POST(req: Request) {
             !EMAIL_PATTERN.test(email.trim())
         ) {
             return NextResponse.json({ error: 'Invalid form submission' }, { status: 400 });
+        }
+
+        if (!process.env.EMAIL_USER || !process.env.EMAIL_APP_PASSWORD) {
+            return NextResponse.json({ error: 'The contact form is temporarily unavailable. Please use the email link on this page.' }, { status: 503 });
         }
 
         const transporter = nodemailer.createTransport({
@@ -97,6 +105,9 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ message: 'Email sent successfully!' }, { status: 200 });
     } catch (error) {
+        if (error instanceof RequestBodyError) {
+            return NextResponse.json({ error: error.message }, { status: error.status });
+        }
         console.error('Error sending email:', error);
         return NextResponse.json({ error: 'Unable to send your message right now.' }, { status: 500 });
     }

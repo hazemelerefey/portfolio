@@ -55,7 +55,45 @@ export function applyRateLimit(request: Request, scope: RateLimitScope) {
 }
 
 export function hasJsonContentType(request: Request) {
-  return request.headers.get("content-type")?.toLowerCase().includes("application/json") ?? false;
+  return request.headers.get("content-type")?.split(';')[0].trim().toLowerCase() === "application/json";
+}
+
+export class RequestBodyError extends Error {
+  constructor(message: string, public readonly status: 400 | 413) {
+    super(message);
+  }
+}
+
+// Check actual streamed bytes as Content-Length can be absent or understated.
+export async function readBoundedJson(request: Request, maximumBytes: number): Promise<unknown> {
+  if (requestIsTooLarge(request, maximumBytes)) {
+    throw new RequestBodyError('Request is too large', 413);
+  }
+  const reader = request.body?.getReader();
+  if (!reader) throw new RequestBodyError('Invalid JSON body', 400);
+  const decoder = new TextDecoder();
+  let bytes = 0;
+  let text = '';
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      bytes += value.byteLength;
+      if (bytes > maximumBytes) {
+        await reader.cancel();
+        throw new RequestBodyError('Request is too large', 413);
+      }
+      text += decoder.decode(value, { stream: true });
+    }
+    text += decoder.decode();
+  } finally {
+    reader.releaseLock();
+  }
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new RequestBodyError('Invalid JSON body', 400);
+  }
 }
 
 export function requestIsTooLarge(request: Request, maximumBytes: number) {
