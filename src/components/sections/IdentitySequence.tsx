@@ -71,12 +71,10 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
 
     // 2. Internal Content Scroll
     const contentY = useTransform(localProgress, [0.35, 1], ["0%", "-70%"], { ease: easeInOut });
-    const imageParallaxY = useTransform(localProgress, [0.35, 1], ["-10%", "10%"], { ease: easeInOut });
 
     // 3. Elements specific animations
     const phase0Opacity = useTransform(localProgress, [0, 0.15], [1, 0]);
     const cardContentOpacity = useTransform(localProgress, [0.1, 0.3], [0, 1]);
-    const photoScale = useTransform(localProgress, [0.3, 0.8], [1.15, 1], { ease: easeInOut });
     const textOpacity = useTransform(localProgress, [0.85, 1], [0, 1]);
 
     useMotionValueEvent(localProgress, "change", (latest) => {
@@ -99,16 +97,6 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
 
     const { resolvedTheme } = useTheme();
     const cardBgValue = resolvedTheme === 'dark' ? cardBgDark : cardBg;
-
-    // Dynamic vault frame gradients that always match the card's transitioning background
-    const vaultGradientDown = useTransform(cardBgValue, (color: string) => {
-        const hex = color.replace('#', '');
-        return `linear-gradient(to bottom, #${hex}, #${hex}00)`;
-    });
-    const vaultGradientUp = useTransform(cardBgValue, (color: string) => {
-        const hex = color.replace('#', '');
-        return `linear-gradient(to top, #${hex}, #${hex}00)`;
-    });
 
     const marqueeItems = [
         <span key="1" className="text-6xl sm:text-8xl md:text-[12rem] lg:text-[16rem] font-black uppercase tracking-tighter mx-4 sm:mx-8 md:mx-12 text-black dark:text-white leading-none">
@@ -213,56 +201,36 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                     </div>
 
                     {/* Phase 2: The Large Portrait (The "Explore" area) */}
-                    <div className="relative w-full h-[100vh] flex flex-col items-center flex-shrink-0 px-2 sm:px-6 md:px-10 lg:px-20">
-                        {/* Sizing wrapper - not clipped */}
+                    <div className="relative w-full h-[100vh] flex flex-col items-center justify-center flex-shrink-0 px-3 sm:px-6 md:px-10 lg:px-20 py-4 sm:py-6">
+                        {/* Portrait Frame - perfectly sized to the 3:4 portrait shape, fully responsive across all screens */}
                         <div
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
                             onClick={() => setIsHovered(prev => !prev)}
-                            className="relative w-full h-full max-w-[1500px] rounded-2xl md:rounded-3xl overflow-hidden group/photo cursor-pointer"
+                            style={{
+                                width: "min(calc(82vh * 0.75), calc(100vw - 2.5rem), 660px)",
+                                aspectRatio: "3 / 4",
+                            }}
+                            className="relative rounded-2xl md:rounded-3xl overflow-hidden group/photo cursor-pointer shadow-2xl ring-1 ring-black/10 dark:ring-white/15 bg-zinc-950 transition-all duration-500 hover:shadow-[0_25px_60px_rgba(0,0,0,0.35)] dark:hover:shadow-[0_25px_60px_rgba(209,255,77,0.12)] hover:scale-[1.01] active:scale-[0.99]"
                         >
-                            {/* Image area - THIS is what clips. Vault frame is OUTSIDE this. */}
-                            <div className="absolute inset-0 overflow-hidden">
+                            {/* Image area: full uncropped portrait */}
+                            <div className="relative w-full h-full overflow-hidden">
                                 <motion.div
-                                    style={{
-                                        scale: photoScale,
-                                    }}
                                     animate={{
                                         filter: (isHovered || isMobileDevice) ? "grayscale(0%) contrast(1)" : "grayscale(100%) contrast(1.1)",
                                     }}
                                     transition={{ duration: 0.8, ease: "easeOut" }}
                                     className="relative w-full h-full"
                                 >
-                                    <div className="absolute inset-0">
-                                        {/* Parallax wrapper: centered without asymmetric horizontal offsets */}
-                                        <div className="absolute w-full md:w-[calc(100%+60px)] h-[120%] -top-[10%] left-0 md:-left-[30px]">
-                                            <motion.div 
-                                                className="relative h-full w-full" 
-                                                style={{ y: imageParallaxY }}
-                                            >
-                                                <Image
-                                                    src={portfolioData.personal.avatar}
-                                                    alt="Profile"
-                                                    fill
-                                                    className="object-cover object-[center_35%] md:object-[center_30%] grayscale-0"
-                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-                                                    priority
-                                                />
-                                            </motion.div>
-                                        </div>
-                                    </div>
+                                    <Image
+                                        src={portfolioData.personal.avatar}
+                                        alt={portfolioData.personal.name}
+                                        fill
+                                        className="object-contain grayscale-0"
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 660px"
+                                        priority
+                                    />
                                 </motion.div>
-                            </div>
-
-                            {/* Vault frame - responsive top/bottom covering bars so portrait remains fully visible on mobile */}
-                            <div className="absolute inset-0 pointer-events-none z-20">
-                                {/* Top bar */}
-                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -top-px left-0 w-full h-4 sm:h-8 md:h-[52px]" />
-                                <motion.div style={{ background: vaultGradientDown }} className="absolute top-[14px] sm:top-[30px] md:top-[50px] left-0 w-full h-10 sm:h-20 md:h-32" />
-                                
-                                {/* Bottom bar */}
-                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -bottom-px left-0 w-full h-4 sm:h-8 md:h-[52px]" />
-                                <motion.div style={{ background: vaultGradientUp }} className="absolute bottom-[14px] sm:bottom-[30px] md:bottom-[50px] left-0 w-full h-10 sm:h-20 md:h-32" />
                             </div>
                         </div>
                     </div>
