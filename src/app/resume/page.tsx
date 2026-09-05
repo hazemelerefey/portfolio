@@ -2,8 +2,21 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Download, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { usePerformance } from '@/hooks/usePerformance';
-import { PdfViewer } from '@/components/ui/pdf-viewer';
+
+const PdfViewer = dynamic(
+    () => import('@/components/ui/pdf-viewer').then(mod => mod.PdfViewer),
+    {
+        ssr: false,
+        loading: () => (
+            <div className="flex flex-col items-center justify-center w-full h-full p-4">
+                <div className="size-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+                <p className="mt-4 text-muted-foreground text-sm font-medium">Loading Document...</p>
+            </div>
+        )
+    }
+);
 
 export default function ResumePage() {
     const { isLowPowerMode } = usePerformance();
