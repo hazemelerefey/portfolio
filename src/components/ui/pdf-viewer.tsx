@@ -7,7 +7,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Select,
   SelectContent,
@@ -45,7 +44,6 @@ const ZOOM_OPTIONS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 4, 8];
 
 function highlightPattern(text: string, pattern: string, itemIndex: number) {
   if (!pattern) return text;
-  // Basic highlight function
   return text.replace(
     new RegExp(`(${pattern})`, "gi"),
     (value: string) => `<mark id="search-result-${itemIndex}">${value}</mark>`
@@ -76,10 +74,13 @@ function Component({ url }: { url: string }) {
 
     const updatePageWidth = () => {
       if (!viewportRef.current) return;
-      const isMobile = window.innerWidth < 768;
+      const isMobile = window.innerWidth < 640;
       const horizontalPadding = isMobile ? 24 : 64;
       const availableWidth = viewportRef.current.clientWidth - horizontalPadding;
-      setPageWidth(Math.max(200, Math.min(850, availableWidth)));
+      // Standard A4 / desktop PDF size is ~600px.
+      // If available container width is smaller than 600px (mobile/tablet), scale down to fit available width.
+      // On desktop and laptop, lock to standard 600px base width so it never blows up, cut off, or overflows!
+      setPageWidth(Math.min(600, Math.max(200, availableWidth)));
     };
 
     updatePageWidth();
@@ -131,11 +132,11 @@ function Component({ url }: { url: string }) {
   }, [numPages]);
 
   return (
-    <SidebarProvider defaultOpen={false}>
+    <SidebarProvider>
       <Document
         file={url}
         onLoadSuccess={onDocumentLoadSuccess}
-        className={"w-full flex flex-row h-full max-h-full overflow-hidden bg-background rounded-xl sm:rounded-2xl border border-border"}
+        className={"w-full flex flex-row h-full max-h-full overflow-hidden bg-background rounded-2xl border border-border"}
         loading={
           <div className="flex flex-col items-center justify-center w-full h-full p-4">
             <Loader2 className="size-8 text-primary animate-spin" />
@@ -174,18 +175,18 @@ function Component({ url }: { url: string }) {
           </SidebarContent>
         </Sidebar>
         <div className="flex flex-col w-full flex-1 min-w-0 min-h-0 bg-muted/10 h-full overflow-hidden">
-            <div className="flex p-2 sm:p-3 border-b border-border bg-background/80 backdrop-blur-md justify-between items-center z-10 shrink-0 gap-1 sm:gap-2">
-              <div className="flex flex-row gap-1.5 sm:gap-3 items-center shrink-0">
+            <div className="flex p-3 border-b border-border bg-background/50 backdrop-blur-md justify-between items-center z-10 shrink-0 gap-2">
+              <div className="flex flex-row gap-3 items-center shrink-0">
                 <SidebarTrigger className="hover:bg-muted size-8" />
-                <div className="text-xs sm:text-sm font-medium text-foreground bg-muted px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md whitespace-nowrap">
+                <div className="text-sm font-medium text-foreground bg-muted px-3 py-1.5 rounded-md whitespace-nowrap">
                   {numPages ? `Page ${currentPage} of ${numPages}` : "Loading..."}
                 </div>
               </div>
-              <div className="flex flex-row gap-1 sm:gap-2 items-center overflow-x-auto no-scrollbar py-0.5">
+              <div className="flex flex-row gap-1 sm:gap-2 items-center shrink-0 overflow-x-auto no-scrollbar py-0.5">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-8 rounded-full hover:bg-muted hidden md:inline-flex"
+                  className="size-8 rounded-full hover:bg-muted shrink-0"
                   onClick={() => setRotation(rotation - 90)}
                   title="Rotate Counter-Clockwise"
                 >
@@ -194,17 +195,17 @@ function Component({ url }: { url: string }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-8 rounded-full hover:bg-muted hidden md:inline-flex"
+                  className="size-8 rounded-full hover:bg-muted shrink-0"
                   onClick={() => setRotation(rotation + 90)}
                   title="Rotate Clockwise"
                 >
                   <RotateCw className="size-4" />
                 </Button>
-                <Separator orientation="vertical" className="h-6 hidden md:block" />
+                <Separator orientation="vertical" className="h-6" />
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-7 sm:size-8 rounded-full hover:bg-muted shrink-0"
+                  className="size-8 rounded-full hover:bg-muted shrink-0"
                   disabled={zoom <= ZOOM_OPTIONS[0]}
                   onClick={() => setZoom(prev => Math.max(ZOOM_OPTIONS[0], Number((prev - 0.25).toFixed(2))))}
                   title="Zoom Out"
@@ -212,16 +213,11 @@ function Component({ url }: { url: string }) {
                   <MinusCircle className="size-4" />
                 </Button>
 
-                {/* Compact zoom indicator for mobile */}
-                <span className="sm:hidden text-xs font-mono font-semibold px-1 min-w-[2.5rem] text-center">
-                  {`${Math.round(zoom * 100)}%`}
-                </span>
-
                 <Select
                   value={zoom.toString()}
                   onValueChange={(value) => setZoom(Number(value))}
                 >
-                  <SelectTrigger className="h-8 rounded-md w-[90px] border-border/50 bg-background focus:ring-1 focus:ring-primary hidden sm:inline-flex text-xs">
+                  <SelectTrigger className="h-8 rounded-md w-[92px] sm:w-[100px] border-border/50 bg-background focus:ring-1 focus:ring-primary shrink-0 text-xs">
                     <SelectValue placeholder="Zoom">
                       {`${Math.round(zoom * 100)}%`}
                     </SelectValue>
@@ -238,7 +234,7 @@ function Component({ url }: { url: string }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-7 sm:size-8 rounded-full hover:bg-muted shrink-0"
+                  className="size-8 rounded-full hover:bg-muted shrink-0"
                   disabled={zoom >= ZOOM_OPTIONS[ZOOM_OPTIONS.length - 1]}
                   onClick={() => setZoom(prev => Math.min(ZOOM_OPTIONS[ZOOM_OPTIONS.length - 1], Number((prev + 0.25).toFixed(2))))}
                   title="Zoom In"
@@ -246,10 +242,10 @@ function Component({ url }: { url: string }) {
                   <PlusCircle className="size-4" />
                 </Button>
 
-                <Separator orientation="vertical" className="h-6 hidden sm:block" />
+                <Separator orientation="vertical" className="h-6" />
                 <Popover>
                   <PopoverTrigger asChild>
-                    <Button variant="ghost" size="icon" className="size-7 sm:size-8 rounded-full hover:bg-muted shrink-0" title="Search">
+                    <Button variant="ghost" size="icon" className="size-8 rounded-full hover:bg-muted shrink-0" title="Search document">
                       <Search className="size-4" />
                     </Button>
                   </PopoverTrigger>
@@ -266,9 +262,9 @@ function Component({ url }: { url: string }) {
                   </PopoverContent>
                 </Popover>
 
-                <Separator orientation="vertical" className="h-6 hidden sm:block" />
+                <Separator orientation="vertical" className="h-6" />
                 <a href={url} download title="Download Resume">
-                  <Button variant="ghost" size="icon" className="size-7 sm:size-8 rounded-full hover:bg-muted shrink-0">
+                  <Button variant="ghost" size="icon" className="size-8 rounded-full hover:bg-muted shrink-0">
                     <Download className="size-4" />
                   </Button>
                 </a>
@@ -280,7 +276,7 @@ function Component({ url }: { url: string }) {
               ref={viewportRef}
               data-lenis-prevent
             >
-              <div className="items-center flex p-2 sm:p-4 md:p-8 flex-col min-h-max w-full">
+              <div className="items-center flex p-4 sm:p-6 md:p-8 flex-col min-h-max w-full">
                 {Array.from(new Array(numPages || 0), (el, index) => (
                   <Page
                     key={`page_${index + 1}`}
