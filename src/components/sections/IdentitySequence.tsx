@@ -69,18 +69,31 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
     const cardY = useTransform(localProgress, [0, 0.4], ["60vh", "0vh"], { ease: easeInOut });
     const cardBorderRadius = useTransform(localProgress, [0.1, 0.4], ["60px", "0px"], { ease: easeInOut });
 
-    // 2. Internal Content Scroll
-    const contentY = useTransform(localProgress, [0.35, 1], ["0%", "-70%"], { ease: easeInOut });
-    const imageParallaxY = useTransform(localProgress, [0.35, 1], ["-3%", "3%"], { ease: easeInOut });
+    // 2. Internal Content Scroll & Image Pan Choreography
+    // [0.35 -> 0.52]: Phase 1 scrolls out, Phase 2 (the big portrait) enters and centers
+    // [0.52 -> 0.74]: Phase 2 holds centered while imageParallaxY pans the full image from top to bottom
+    // [0.74 -> 0.95]: Phase 2 scrolls away, Phase 3 (Text) & Phase 4 (Tech Stack) scroll into view
+    const contentY = useTransform(
+        localProgress,
+        [0.35, 0.52, 0.74, 0.95],
+        ["0%", "-33%", "-33%", "-70%"],
+        { ease: easeInOut }
+    );
+    const imageParallaxY = useTransform(
+        localProgress,
+        [0.48, 0.74],
+        ["0%", "-48%"],
+        { ease: easeInOut }
+    );
 
     // 3. Elements specific animations
     const phase0Opacity = useTransform(localProgress, [0, 0.15], [1, 0]);
     const cardContentOpacity = useTransform(localProgress, [0.1, 0.3], [0, 1]);
-    const photoScale = useTransform(localProgress, [0.3, 0.8], [1.05, 1], { ease: easeInOut });
-    const textOpacity = useTransform(localProgress, [0.85, 1], [0, 1]);
+    const photoScale = useTransform(localProgress, [0.35, 0.52], [1.06, 1], { ease: easeInOut });
+    const textOpacity = useTransform(localProgress, [0.76, 0.92], [0, 1]);
 
     useMotionValueEvent(localProgress, "change", (latest) => {
-        if (latest > 0.85 && !isTextAnimated) {
+        if (latest > 0.76 && !isTextAnimated) {
             setIsTextAnimated(true);
         }
     });
@@ -213,19 +226,15 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                     </div>
 
                     {/* Phase 2: The Large Portrait (The "Explore" area) */}
-                    <div className="relative w-full h-[100vh] flex flex-col items-center justify-center flex-shrink-0 px-4 md:px-8">
-                        {/* Sizing wrapper - perfectly scaled to 3:4 ratio like tablets across all screens (desktop, laptop, tablet, mobile) */}
+                    <div className="relative w-full h-[100vh] flex flex-col items-center flex-shrink-0 px-4 md:px-10 lg:px-20">
+                        {/* Sizing wrapper - original big full-size frame */}
                         <div
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
                             onClick={() => setIsHovered(prev => !prev)}
-                            style={{
-                                width: "min(calc(88vh * 0.75), calc(100vw - 2rem), 850px)",
-                                height: "88vh",
-                            }}
-                            className="relative rounded-2xl md:rounded-3xl overflow-hidden group/photo cursor-pointer shadow-2xl ring-1 ring-black/10 dark:ring-white/15 bg-zinc-950"
+                            className="relative w-full h-full max-w-[1500px] rounded-2xl md:rounded-3xl overflow-hidden group/photo cursor-pointer"
                         >
-                            {/* Image area */}
+                            {/* Image area - clipped by overflow-hidden */}
                             <div className="absolute inset-0 overflow-hidden">
                                 <motion.div
                                     style={{
@@ -238,8 +247,8 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                                     className="relative w-full h-full"
                                 >
                                     <div className="absolute inset-0">
-                                        {/* Parallax wrapper - subtle vertical parallax without pushing subject out of bounds */}
-                                        <div className="absolute w-full h-[106%] -top-[3%] left-0">
+                                        {/* Scrollable image canvas: full size with parallax so the user can scroll to see the full image from top to bottom */}
+                                        <div className="absolute w-[calc(100%+40px)] -left-[20px] h-[195%] top-0">
                                             <motion.div 
                                                 className="relative h-full w-full" 
                                                 style={{ y: imageParallaxY }}
@@ -248,8 +257,8 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                                                     src={portfolioData.personal.avatar}
                                                     alt={portfolioData.personal.name}
                                                     fill
-                                                    className="object-cover object-bottom grayscale-0 pb-2 sm:pb-3"
-                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 850px"
+                                                    className="object-cover object-top grayscale-0"
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1500px"
                                                     priority
                                                 />
                                             </motion.div>
@@ -258,15 +267,15 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                                 </motion.div>
                             </div>
 
-                            {/* Vault frame - subtle top/bottom gradient transitions */}
+                            {/* Vault frame - smooth top/bottom edge gradient transitions */}
                             <div className="absolute inset-0 pointer-events-none z-20">
                                 {/* Top bar */}
-                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -top-px left-0 w-full h-4 sm:h-6 md:h-7" />
-                                <motion.div style={{ background: vaultGradientDown }} className="absolute top-[14px] sm:top-[22px] md:top-[26px] left-0 w-full h-8 sm:h-12 md:h-14" />
+                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -top-px left-0 w-full h-4 sm:h-6 md:h-8" />
+                                <motion.div style={{ background: vaultGradientDown }} className="absolute top-[14px] sm:top-[22px] md:top-[30px] left-0 w-full h-10 sm:h-16 md:h-20" />
                                 
                                 {/* Bottom bar */}
-                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -bottom-px left-0 w-full h-4 sm:h-6 md:h-7" />
-                                <motion.div style={{ background: vaultGradientUp }} className="absolute bottom-[14px] sm:bottom-[22px] md:bottom-[26px] left-0 w-full h-8 sm:h-12 md:h-14" />
+                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -bottom-px left-0 w-full h-4 sm:h-6 md:h-8" />
+                                <motion.div style={{ background: vaultGradientUp }} className="absolute bottom-[14px] sm:bottom-[22px] md:bottom-[30px] left-0 w-full h-10 sm:h-16 md:h-20" />
                             </div>
                         </div>
                     </div>
