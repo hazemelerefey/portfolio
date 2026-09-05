@@ -76,7 +76,10 @@ function Component({ url }: { url: string }) {
 
     const updatePageWidth = () => {
       if (!viewportRef.current) return;
-      setPageWidth(Math.max(240, Math.min(600, viewportRef.current.clientWidth - 64)));
+      const isMobile = window.innerWidth < 768;
+      const horizontalPadding = isMobile ? 24 : 64;
+      const availableWidth = viewportRef.current.clientWidth - horizontalPadding;
+      setPageWidth(Math.max(200, Math.min(850, availableWidth)));
     };
 
     updatePageWidth();
@@ -128,13 +131,13 @@ function Component({ url }: { url: string }) {
   }, [numPages]);
 
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <Document
         file={url}
         onLoadSuccess={onDocumentLoadSuccess}
-        className={"w-full flex flex-row h-full max-h-full overflow-hidden bg-background rounded-2xl border border-border"}
+        className={"w-full flex flex-row h-full max-h-full overflow-hidden bg-background rounded-xl sm:rounded-2xl border border-border"}
         loading={
-          <div className="flex flex-col items-center justify-center w-full h-full">
+          <div className="flex flex-col items-center justify-center w-full h-full p-4">
             <Loader2 className="size-8 text-primary animate-spin" />
             <p className="mt-4 text-muted-foreground text-sm font-medium">Loading Document...</p>
           </div>
@@ -171,46 +174,54 @@ function Component({ url }: { url: string }) {
           </SidebarContent>
         </Sidebar>
         <div className="flex flex-col w-full flex-1 min-w-0 min-h-0 bg-muted/10 h-full overflow-hidden">
-            <div className="flex p-3 border-b border-border bg-background/50 backdrop-blur-md justify-between items-center z-10 shrink-0">
-              <div className="flex flex-row gap-3 items-center">
-                <SidebarTrigger className="hover:bg-muted" />
-                <div className="text-sm font-medium text-foreground bg-muted px-3 py-1.5 rounded-md">
+            <div className="flex p-2 sm:p-3 border-b border-border bg-background/80 backdrop-blur-md justify-between items-center z-10 shrink-0 gap-1 sm:gap-2">
+              <div className="flex flex-row gap-1.5 sm:gap-3 items-center shrink-0">
+                <SidebarTrigger className="hover:bg-muted size-8" />
+                <div className="text-xs sm:text-sm font-medium text-foreground bg-muted px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md whitespace-nowrap">
                   {numPages ? `Page ${currentPage} of ${numPages}` : "Loading..."}
                 </div>
               </div>
-              <div className="flex flex-row gap-2 items-center">
+              <div className="flex flex-row gap-1 sm:gap-2 items-center overflow-x-auto no-scrollbar py-0.5">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-8 rounded-full hover:bg-muted"
+                  className="size-8 rounded-full hover:bg-muted hidden md:inline-flex"
                   onClick={() => setRotation(rotation - 90)}
+                  title="Rotate Counter-Clockwise"
                 >
                   <RotateCcw className="size-4" />
                 </Button>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-8 rounded-full hover:bg-muted"
+                  className="size-8 rounded-full hover:bg-muted hidden md:inline-flex"
                   onClick={() => setRotation(rotation + 90)}
+                  title="Rotate Clockwise"
                 >
                   <RotateCw className="size-4" />
                 </Button>
-                <Separator orientation="vertical" className="h-6" />
+                <Separator orientation="vertical" className="h-6 hidden md:block" />
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-8 rounded-full hover:bg-muted"
+                  className="size-7 sm:size-8 rounded-full hover:bg-muted shrink-0"
                   disabled={zoom <= ZOOM_OPTIONS[0]}
-                  onClick={() => setZoom(zoom - 0.25)}
+                  onClick={() => setZoom(prev => Math.max(ZOOM_OPTIONS[0], Number((prev - 0.25).toFixed(2))))}
+                  title="Zoom Out"
                 >
                   <MinusCircle className="size-4" />
                 </Button>
+
+                {/* Compact zoom indicator for mobile */}
+                <span className="sm:hidden text-xs font-mono font-semibold px-1 min-w-[2.5rem] text-center">
+                  {`${Math.round(zoom * 100)}%`}
+                </span>
 
                 <Select
                   value={zoom.toString()}
                   onValueChange={(value) => setZoom(Number(value))}
                 >
-                  <SelectTrigger className="h-8 rounded-md w-[100px] border-border/50 bg-background focus:ring-1 focus:ring-primary">
+                  <SelectTrigger className="h-8 rounded-md w-[90px] border-border/50 bg-background focus:ring-1 focus:ring-primary hidden sm:inline-flex text-xs">
                     <SelectValue placeholder="Zoom">
                       {`${Math.round(zoom * 100)}%`}
                     </SelectValue>
@@ -227,17 +238,18 @@ function Component({ url }: { url: string }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-8 rounded-full hover:bg-muted"
+                  className="size-7 sm:size-8 rounded-full hover:bg-muted shrink-0"
                   disabled={zoom >= ZOOM_OPTIONS[ZOOM_OPTIONS.length - 1]}
-                  onClick={() => setZoom(zoom + 0.25)}
+                  onClick={() => setZoom(prev => Math.min(ZOOM_OPTIONS[ZOOM_OPTIONS.length - 1], Number((prev + 0.25).toFixed(2))))}
+                  title="Zoom In"
                 >
                   <PlusCircle className="size-4" />
                 </Button>
 
-                <Separator orientation="vertical" className="h-6" />
+                <Separator orientation="vertical" className="h-6 hidden sm:block" />
                 <Popover>
                   <PopoverTrigger asChild>
-                    <Button variant="ghost" size="icon" className="size-8 rounded-full hover:bg-muted">
+                    <Button variant="ghost" size="icon" className="size-7 sm:size-8 rounded-full hover:bg-muted shrink-0" title="Search">
                       <Search className="size-4" />
                     </Button>
                   </PopoverTrigger>
@@ -254,9 +266,9 @@ function Component({ url }: { url: string }) {
                   </PopoverContent>
                 </Popover>
 
-                <Separator orientation="vertical" className="h-6" />
-                <a href={url} download>
-                  <Button variant="ghost" size="icon" className="size-8 rounded-full hover:bg-muted">
+                <Separator orientation="vertical" className="h-6 hidden sm:block" />
+                <a href={url} download title="Download Resume">
+                  <Button variant="ghost" size="icon" className="size-7 sm:size-8 rounded-full hover:bg-muted shrink-0">
                     <Download className="size-4" />
                   </Button>
                 </a>
@@ -268,7 +280,7 @@ function Component({ url }: { url: string }) {
               ref={viewportRef}
               data-lenis-prevent
             >
-              <div className="items-center flex p-8 flex-col min-h-max w-full">
+              <div className="items-center flex p-2 sm:p-4 md:p-8 flex-col min-h-max w-full">
                 {Array.from(new Array(numPages || 0), (el, index) => (
                   <Page
                     key={`page_${index + 1}`}
@@ -279,7 +291,12 @@ function Component({ url }: { url: string }) {
                     renderTextLayer={true}
                     width={pageWidth ? pageWidth * zoom : undefined}
                     rotate={rotation}
-                    loading={<div className="h-[800px] w-[600px] bg-white animate-pulse rounded-sm" />}
+                    loading={
+                      <div 
+                        style={{ width: pageWidth ? `${Math.min(pageWidth * zoom, 600)}px` : '100%' }}
+                        className="max-w-[600px] aspect-[1/1.414] bg-white animate-pulse rounded-sm shadow-md"
+                      />
+                    }
                     customTextRenderer={textRenderer}
                   />
                 ))}

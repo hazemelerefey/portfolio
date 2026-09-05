@@ -69,11 +69,11 @@ export default function Testimonial1() {
   ];
 
   return (
-    <div className="bg-white dark:bg-black min-h-screen w-full grid place-content-center py-16 px-4 md:px-8 lg:px-16 relative">
+    <div className="bg-white dark:bg-black min-h-screen w-full grid place-content-center py-8 sm:py-12 md:py-16 px-4 md:px-8 lg:px-16 relative">
       <div className="max-w-6xl mx-auto">
         {/* Community Badge */}
-        <div className="flex justify-center mb-6">
-          <div className="bg-[#f1efec] dark:bg-zinc-900 border border-neutral-200 dark:border-zinc-800 text-black dark:text-white px-5 py-1.5 rounded-full text-xs uppercase tracking-wider font-semibold flex items-center gap-2.5 shadow-sm">
+        <div className="flex justify-center mb-4 sm:mb-6">
+          <div className="bg-[#f1efec] dark:bg-zinc-900 border border-neutral-200 dark:border-zinc-800 text-black dark:text-white px-4 sm:px-5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs uppercase tracking-wider font-semibold flex items-center gap-2 sm:gap-2.5 shadow-sm">
             <span className="relative flex h-2.5 w-2.5">
               <motion.span
                 animate={{
@@ -94,14 +94,14 @@ export default function Testimonial1() {
         </div>
 
         {/* Main Heading with Refined Block Reveal Animation */}
-        <div className="text-center max-w-5xl mx-auto relative text-neutral-900 dark:text-white px-4 space-y-1 md:space-y-2">
+        <div className="text-center max-w-5xl mx-auto relative text-neutral-900 dark:text-white px-2 sm:px-4 space-y-1 md:space-y-2">
           {[
             { text: "Data that reveals. AI that learns.", color: "#6366f1", delay: 0 },
             { text: "Frontend that delights.", color: "#10b981", delay: 0.15 },
             { text: "Three disciplines, one mind", color: "#f59e0b", delay: 0.3 },
             { text: "and the numbers behind the craft.", color: "#ef4444", delay: 0.45 }
           ].map((line, i) => (
-            <div key={i} className="relative block overflow-hidden py-1.5">
+            <div key={i} className="relative block overflow-hidden py-1 sm:py-1.5">
               <motion.h1
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -110,7 +110,7 @@ export default function Testimonial1() {
                   delay: line.delay + 0.35,
                   duration: 0.01
                 }}
-                className="text-3xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tighter"
+                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tighter"
               >
                 {line.text}
               </motion.h1>
@@ -138,7 +138,7 @@ export default function Testimonial1() {
         </div>
 
         {/* Glassmorphic Stats Bar */}
-        <div className="sm:flex grid grid-cols-2 gap-8 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl mt-12 w-full mx-auto px-8 py-10 border rounded-2xl border-white/20 dark:border-white/5 shadow-2xl relative overflow-hidden">
+        <div className="sm:flex grid grid-cols-2 gap-4 sm:gap-8 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl mt-6 sm:mt-12 w-full mx-auto px-4 sm:px-8 py-6 sm:py-10 border rounded-2xl border-white/20 dark:border-white/5 shadow-2xl relative overflow-hidden">
           {/* Subtle Background Glow inside the bar */}
           <div className="absolute top-0 left-1/4 w-1/2 h-full bg-blue-500/5 blur-[100px] pointer-events-none" />
 

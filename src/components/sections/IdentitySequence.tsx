@@ -11,6 +11,7 @@ import { BrandScroller, BrandScrollerReverse } from "@/components/ui/brand-scrol
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import MagneticEffect from "@/components/ui/MagneticEffect";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const BlurInUpText = ({ text, animate }: { text: string; animate: boolean }) => {
     const words = text.split(" ");
@@ -55,6 +56,7 @@ interface IdentitySequenceProps {
 
 export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenceProps) => {
     const t = useTranslations("about");
+    const isMobileDevice = useIsMobile();
     const [isHovered, setIsHovered] = React.useState(false);
     const [isTextAnimated, setIsTextAnimated] = React.useState(false);
 
@@ -109,19 +111,19 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
     });
 
     const marqueeItems = [
-        <span key="1" className="text-[10rem] md:text-[16rem] font-black uppercase tracking-tighter mx-12 text-black dark:text-white leading-none">
+        <span key="1" className="text-6xl sm:text-8xl md:text-[12rem] lg:text-[16rem] font-black uppercase tracking-tighter mx-4 sm:mx-8 md:mx-12 text-black dark:text-white leading-none">
             Data Analyst
         </span>,
-        <div key="icon1" className="w-32 h-32 md:w-48 md:h-48 rounded-full bg-[#D1FF4D] flex items-center justify-center mx-12">
-            <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-32 md:h-32 fill-black dark:fill-zinc-900">
+        <div key="icon1" className="w-16 h-16 sm:w-28 sm:h-28 md:w-48 md:h-48 rounded-full bg-[#D1FF4D] flex items-center justify-center mx-4 sm:mx-8 md:mx-12">
+            <svg viewBox="0 0 100 100" className="w-10 h-10 sm:w-16 sm:h-16 md:w-32 md:h-32 fill-black dark:fill-zinc-900">
                 <path d="M50 0 C60 30 100 40 100 50 C100 60 60 70 50 100 C40 70 0 60 0 50 C0 40 40 30 50 0" />
             </svg>
         </div>,
-        <span key="2" className="text-[10rem] md:text-[16rem] font-black uppercase tracking-tighter mx-12 text-black dark:text-white leading-none">
+        <span key="2" className="text-6xl sm:text-8xl md:text-[12rem] lg:text-[16rem] font-black uppercase tracking-tighter mx-4 sm:mx-8 md:mx-12 text-black dark:text-white leading-none">
             Frontend Developer
         </span>,
-        <div key="icon2" className="w-32 h-32 md:w-48 md:h-48 rounded-full bg-[#D1FF4D] flex items-center justify-center mx-12">
-            <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-32 md:h-32 fill-black dark:fill-zinc-900">
+        <div key="icon2" className="w-16 h-16 sm:w-28 sm:h-28 md:w-48 md:h-48 rounded-full bg-[#D1FF4D] flex items-center justify-center mx-4 sm:mx-8 md:mx-12">
+            <svg viewBox="0 0 100 100" className="w-10 h-10 sm:w-16 sm:h-16 md:w-32 md:h-32 fill-black dark:fill-zinc-900">
                 <path d="M50 0 C60 30 100 40 100 50 C100 60 60 70 50 100 C40 70 0 60 0 50 C0 40 40 30 50 0" />
             </svg>
         </div>,
@@ -138,24 +140,24 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                 <div className="mb-16 pointer-events-auto">
                     <MagneticEffect>
                         <div className="group flex items-center gap-2 cursor-pointer">
-                            <div className="relative px-10 py-5 rounded-full bg-black dark:bg-white group-hover:bg-[#c1e44a] dark:group-hover:bg-[#c1e44a] overflow-hidden transition-all duration-500 shadow-lg group-hover:shadow-[0_0_30px_rgba(193,228,74,0.3)]">
-                                <div className="relative z-10 h-7 overflow-hidden">
+                            <div className="relative px-6 py-3 sm:px-10 sm:py-5 rounded-full bg-black dark:bg-white group-hover:bg-[#c1e44a] dark:group-hover:bg-[#c1e44a] overflow-hidden transition-all duration-500 shadow-lg group-hover:shadow-[0_0_30px_rgba(193,228,74,0.3)]">
+                                <div className="relative z-10 h-6 sm:h-7 overflow-hidden">
                                     <div className="flex flex-col transition-transform duration-500 ease-out group-hover:-translate-y-1/2">
-                                        <span className="text-white dark:text-black group-hover:text-black font-bold text-xl leading-7 transition-colors duration-500">
+                                        <span className="text-white dark:text-black group-hover:text-black font-bold text-base sm:text-xl leading-6 sm:leading-7 transition-colors duration-500">
                                             {t("leadIn.aboutMe")}
                                         </span>
-                                        <span className="text-black font-bold text-xl leading-7 transition-colors duration-500">
+                                        <span className="text-black font-bold text-base sm:text-xl leading-6 sm:leading-7 transition-colors duration-500">
                                             {t("leadIn.aboutMe")}
                                         </span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="relative w-16 h-16 rounded-full bg-black dark:bg-white group-hover:bg-[#c1e44a] dark:group-hover:bg-[#c1e44a] overflow-hidden flex items-center justify-center transition-all duration-500 shadow-lg">
-                                <div className="relative z-10 h-8 overflow-hidden">
+                            <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-black dark:bg-white group-hover:bg-[#c1e44a] dark:group-hover:bg-[#c1e44a] overflow-hidden flex items-center justify-center transition-all duration-500 shadow-lg">
+                                <div className="relative z-10 h-6 sm:h-8 overflow-hidden">
                                     <div className="flex flex-col transition-transform duration-500 ease-out group-hover:-translate-y-1/2">
-                                        <ArrowUpRight className="w-8 h-8 text-white dark:text-black group-hover:text-black transition-colors duration-500" />
-                                        <ArrowUpRight className="w-8 h-8 text-black transition-colors duration-500" />
+                                        <ArrowUpRight className="w-6 h-6 sm:w-8 sm:h-8 text-white dark:text-black group-hover:text-black transition-colors duration-500" />
+                                        <ArrowUpRight className="w-6 h-6 sm:w-8 sm:h-8 text-black transition-colors duration-500" />
                                     </div>
                                 </div>
                             </div>
@@ -164,8 +166,8 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                 </div>
 
                 {/* Unified Bottom Labels Layer */}
-                <div className="w-full max-w-[1200px] flex items-center justify-between px-12">
-                    <div className="flex items-center gap-3 text-zinc-500 dark:text-white/60 text-sm font-medium tracking-tight">
+                <div className="w-full max-w-[1200px] flex items-center justify-between px-6 sm:px-12">
+                    <div className="flex items-center gap-2 sm:gap-3 text-zinc-500 dark:text-white/60 text-xs sm:text-sm font-medium tracking-tight">
                         <motion.span
                             animate={{ y: [0, 5, 0] }}
                             transition={{ duration: 1.5, repeat: Infinity }}
@@ -176,7 +178,7 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                         <span>{t("leadIn.scroll")}</span>
                     </div>
 
-                    <div className="text-zinc-500 dark:text-white/60 text-sm font-medium tracking-tight">
+                    <div className="text-zinc-500 dark:text-white/60 text-xs sm:text-sm font-medium tracking-tight">
                         {t("leadIn.shortStory")}
                     </div>
                 </div>
@@ -211,12 +213,13 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                     </div>
 
                     {/* Phase 2: The Large Portrait (The "Explore" area) */}
-                    <div className="relative w-full h-[100vh] flex flex-col items-center flex-shrink-0 px-4 md:px-10 lg:px-20">
+                    <div className="relative w-full h-[100vh] flex flex-col items-center flex-shrink-0 px-2 sm:px-6 md:px-10 lg:px-20">
                         {/* Sizing wrapper - not clipped */}
                         <div
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
-                            className="relative w-full h-full max-w-[1500px] group/photo cursor-pointer"
+                            onClick={() => setIsHovered(prev => !prev)}
+                            className="relative w-full h-full max-w-[1500px] rounded-2xl md:rounded-3xl overflow-hidden group/photo cursor-pointer"
                         >
                             {/* Image area - THIS is what clips. Vault frame is OUTSIDE this. */}
                             <div className="absolute inset-0 overflow-hidden">
@@ -225,14 +228,14 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                                         scale: photoScale,
                                     }}
                                     animate={{
-                                        filter: isHovered ? "grayscale(0%) contrast(1)" : "grayscale(100%) contrast(1.1)",
+                                        filter: (isHovered || isMobileDevice) ? "grayscale(0%) contrast(1)" : "grayscale(100%) contrast(1.1)",
                                     }}
                                     transition={{ duration: 0.8, ease: "easeOut" }}
                                     className="relative w-full h-full"
                                 >
                                     <div className="absolute inset-0">
-                                        {/* Parallax wrapper */}
-                                        <div className="absolute w-[calc(100%+100px)] h-[130vh] -top-[15vh] -left-[50px]">
+                                        {/* Parallax wrapper: centered without asymmetric horizontal offsets */}
+                                        <div className="absolute w-full md:w-[calc(100%+60px)] h-[120%] -top-[10%] left-0 md:-left-[30px]">
                                             <motion.div 
                                                 className="relative h-full w-full" 
                                                 style={{ y: imageParallaxY }}
@@ -241,7 +244,7 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                                                     src={portfolioData.personal.avatar}
                                                     alt="Profile"
                                                     fill
-                                                    className="object-cover object-bottom grayscale-0"
+                                                    className="object-cover object-[center_35%] md:object-[center_30%] grayscale-0"
                                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                                                     priority
                                                 />
@@ -251,15 +254,15 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                                 </motion.div>
                             </div>
 
-                            {/* Vault frame - OUTSIDE overflow-hidden, extends 1px beyond clip edge to cover it */}
+                            {/* Vault frame - responsive top/bottom covering bars so portrait remains fully visible on mobile */}
                             <div className="absolute inset-0 pointer-events-none z-20">
-                                {/* Top bar: -top-px + h-[52px] covers the clip edge by 1px */}
-                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -top-px left-0 w-full h-[52px]" />
-                                <motion.div style={{ background: vaultGradientDown }} className="absolute top-[50px] left-0 w-full h-32" />
+                                {/* Top bar */}
+                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -top-px left-0 w-full h-4 sm:h-8 md:h-[52px]" />
+                                <motion.div style={{ background: vaultGradientDown }} className="absolute top-[14px] sm:top-[30px] md:top-[50px] left-0 w-full h-10 sm:h-20 md:h-32" />
                                 
-                                {/* Bottom bar: -bottom-px + h-[52px] covers the clip edge by 1px */}
-                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -bottom-px left-0 w-full h-[52px]" />
-                                <motion.div style={{ background: vaultGradientUp }} className="absolute bottom-[50px] left-0 w-full h-32" />
+                                {/* Bottom bar */}
+                                <motion.div style={{ backgroundColor: cardBgValue }} className="absolute -bottom-px left-0 w-full h-4 sm:h-8 md:h-[52px]" />
+                                <motion.div style={{ background: vaultGradientUp }} className="absolute bottom-[14px] sm:bottom-[30px] md:bottom-[50px] left-0 w-full h-10 sm:h-20 md:h-32" />
                             </div>
                         </div>
                     </div>
@@ -267,13 +270,13 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                     {/* Phase 3: Final Layout Text */}
                     <motion.div
                         style={{ opacity: textOpacity }}
-                        className="w-full max-w-[1700px] mx-auto px-8 md:px-16 lg:px-24 pt-24 pb-8 md:pt-32 md:pb-12 flex-shrink-0"
+                        className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 pt-12 pb-6 md:pt-32 md:pb-12 flex-shrink-0"
                     >
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-10 md:gap-16 items-start">
                             {/* Header Left */}
                             <div className="md:col-span-7">
                                 <h3
-                                    className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-snug text-black dark:text-white"
+                                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-snug text-black dark:text-white"
                                     dangerouslySetInnerHTML={{ __html: t.raw("profile.title") }}
                                 />
                             </div>
@@ -293,10 +296,10 @@ export const IdentitySequence = ({ scrollYProgress, isVisible }: IdentitySequenc
                     {/* Phase 4: Tech Stack & Tools Scrollers */}
                     <motion.div
                         style={{ opacity: textOpacity }}
-                        className="w-full max-w-[1700px] mx-auto py-20 flex flex-col gap-8 flex-shrink-0"
+                        className="w-full max-w-[1700px] mx-auto py-12 md:py-20 flex flex-col gap-6 md:gap-8 flex-shrink-0"
                     >
-                        <div className="px-8 md:px-16 lg:px-24 mb-6">
-                            <h4 className="text-lg md:text-xl uppercase tracking-[0.15em] font-bold text-zinc-500 dark:text-zinc-400">
+                        <div className="px-4 sm:px-8 md:px-16 lg:px-24 mb-4 md:mb-6">
+                            <h4 className="text-base sm:text-lg md:text-xl uppercase tracking-[0.15em] font-bold text-zinc-500 dark:text-zinc-400">
                                 Tech Stack & Ecosystem
                             </h4>
                         </div>

@@ -21,6 +21,7 @@ export function ConditionalNavigation({ children }: { children: React.ReactNode 
 
     // Default to true for SSR to match the most common initial state,
     // but only actually render the conditional logic once mounted to avoid mismatches.
+    const isResume = pathname === '/resume';
     const useFullLayout = !(isProjectDetail || isBlogDetail);
 
     if (!mounted) {
@@ -29,14 +30,14 @@ export function ConditionalNavigation({ children }: { children: React.ReactNode 
 
     return (
         <div
-            className={useFullLayout ? "relative min-h-screen flex flex-col" : "contents"}
+            className={useFullLayout ? (isResume ? "relative h-[100dvh] flex flex-col overflow-hidden" : "relative min-h-screen flex flex-col") : "contents"}
         >
             {useFullLayout && <Navbar />}
-            <div className={useFullLayout ? "flex-1 relative" : "contents"}>
+            <div className={useFullLayout ? (isResume ? "flex-1 relative h-full min-h-0 overflow-hidden" : "flex-1 relative") : "contents"}>
                 {children}
             </div>
-            {useFullLayout && <Footer />}
-            {useFullLayout && <BackToTop />}
+            {useFullLayout && !isResume && <Footer />}
+            {useFullLayout && !isResume && <BackToTop />}
         </div>
     );
 }
